@@ -29,7 +29,9 @@
           <AppButton theme="outlineWhite">Вартість навчання</AppButton>
         </div>
       </div>
-      <div class="online-school__right">312</div>
+      <div class="online-school__right">
+        <img src="~@/assets/images/girl.png" alt="" />
+      </div>
     </div>
   </div>
 </template>

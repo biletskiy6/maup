@@ -68,8 +68,8 @@ export default {
           el: '.swiper-pagination'
         },
         navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
+          nextEl: '.hero-slider .swiper-button-next',
+          prevEl: '.hero-slider .swiper-button-prev'
         }
       }
     }

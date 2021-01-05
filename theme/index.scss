@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'mixins';
 @import 'smart-grid';
 *,
 *:before,
@@ -21,6 +22,7 @@ html {
 body {
   overflow-x: hidden;
   background-color: $grey;
+  @include scrollbars(8px, $grey, $dark);
 }
 p {
   line-height: 32px;
@@ -42,9 +44,9 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   border-radius: 16px;
   box-shadow: 0px 0px 32px $dark;
+  font-family: $header-font;
   text-decoration: none;
   font-size: 20px;
   font-weight: 700;
@@ -75,14 +77,9 @@ button {
     color: $white;
   }
   &.v-size--default {
-    width: 100%;
-    max-width: 325px;
-    height: 80px;
+    padding: 24px 40px 24px 24px;
   }
   &.v-size--small {
-    max-width: 185px;
-    width: 100%;
-    height: 56px;
   }
 }
 
@@ -167,38 +164,39 @@ button {
     }
   }
 
-  .swiper-button {
-    &-prev, &-next {
-      background-color: transparent;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      border: none;
-      &::after {
-        font-family: 'Material Icons';
-        -webkit-font-feature-settings: 'liga';
-        font-size: 24px;
-      }
-    }
-    &-prev {
-      border: 1px solid #C0C5C8;
-      background-color: $grey;
-      &::after {
-        content: 'arrow_back';
-        color: #879197;
-      }
-    }
-    &-next {
-      background-color: $dark;
-      &::after {
-        content: 'arrow_forward';
-        color: #fff;
-      }
-    }
-  }
-
   /*padding: 15px;*/
 }
+body .swiper-button {
+  &-prev, &-next {
+    display: block;
+    background-color: transparent;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    &::after {
+      font-family: 'Material Icons';
+      -webkit-font-feature-settings: 'liga';
+      font-size: 24px;
+    }
+  }
+  &-prev {
+    border: 1px solid #C0C5C8;
+    background-color: $grey;
+    &::after {
+      content: 'arrow_back';
+      color: #879197;
+    }
+  }
+  &-next {
+    background-color: $dark;
+    &::after {
+      content: 'arrow_forward';
+      color: #fff;
+    }
+  }
+}
+
 .slide-content {
   width: 100%;
   max-width: 980px;
@@ -231,15 +229,34 @@ button {
   }
 }
 .study-with-us {
-  background-image: url('~@/assets/images/study-with-us.png');
+  position: relative;
+  z-index: 1;
+  max-width: 1560px;
+  margin: 0 auto;
   background-repeat: no-repeat;
   background-position: bottom;
   height: 688px;
   &__content {
+    position: relative;
     display: flex;
+    height: 100%;
+    .reveal {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 456px;
+      z-index: 0;
+      img {
+        height: 100%;
+      }
+    }
   }
   .study-proposals {
+    position: relative;
+    z-index: 1;
     display: flex;
+    align-self: flex-start;
     flex-wrap: wrap;
     background-color: #fff;
     border-radius: 16px;
@@ -300,6 +317,19 @@ button {
     margin-top: 24px;
   }
 }
+.reveal {
+  overflow: hidden;
+  &__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #ddd;
+    border-radius: 16px;
+    z-index: 1;
+  }
+}
 .controls {
   display: flex;
   .v-btn {
@@ -311,19 +341,165 @@ button {
 .online-school {
   background-color: $dark;
   color: $white;
+  padding-left: 250px;
   &__content {
-    display: flex;
-  }
-  &__left {
-    flex-basis: 580px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: minmax(580px, 1fr) auto;
+    grid-column-gap: 20px;
   }
   &__right {
-    flex: 1;
   }
   p {
     margin-bottom: 16px;
     &:last-child {
       margin-bottom: 0;
+    }
+  }
+}
+
+// Education Process
+.round {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 40px;
+  &-inner {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid rgba($dark, .24);
+  }
+  &.active {
+    .round-inner {
+      border: 4px solid $blue;
+      width: 24px;
+      height: 24px;
+      &::after {
+        position: absolute;
+        content: '';
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: $blue;
+      }
+    }
+  }
+}
+.education-process {
+  &__content {
+    background-color: #fff;
+    border-radius: 24px;
+    padding: 130px 120px;
+  }
+  &__inner {
+    position: relative;
+    display: flex;
+    padding-top: 45px;
+  }
+  &__timeline {
+    flex: 1 0 440px;
+    margin-right: 60px;
+    &-icon {
+      position: absolute;
+      top: 0;
+    }
+    ul {
+      padding-left: 19px;
+      li {
+        display: flex;
+        align-items: center;
+        position: relative;
+        font-size: 26px;
+        font-weight: 700;
+        color: $dark;
+        margin-bottom: 32px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        .round {
+          margin-right: 12px;
+          background-color: #fff;
+        }
+      }
+    }
+  }
+  &__description {
+    flex: 1 1 auto;
+  }
+  &__info {
+    padding: 56px 60px 24px 60px;
+    border-radius: 24px;
+    background-color: $blue;
+    color: $white;
+    span {
+      margin-right: 24px;
+    }
+    h3 {
+      display: flex;
+      align-items: center;
+      font-weight: 900;
+      font-family: $header-font;
+      font-size: 39px;
+      margin-bottom: 32px;
+    }
+    p {
+    }
+  }
+}
+
+.our-team {
+  &__content {
+    position: relative;
+  }
+  &__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
+  &__description {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 2;
+  }
+  &__pagination {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 220px;
+    span {
+      position: absolute;
+      z-index: 9;
+      transform: rotate(-90deg);
+      right: 0;
+    }
+    .swiper-button {
+      &-prev, &-next {
+        position: relative;
+        &.swiper-button-disabled {
+          opacity: 0.7;
+        }
+      }
+      &-prev {
+        left: 0;
+      }
+      &-next {
+        right: 0;
+      }
+
     }
   }
 }

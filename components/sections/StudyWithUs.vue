@@ -1,15 +1,22 @@
 <template>
   <section class="study-with-us">
-    <div class="container">
-      <div class="study-with-us__content">
-        <h3 ref="title" class="section-title">Навчання з нами - це</h3>
-        <div class="study-proposals">
-          <div v-for="item in 4" :key="item" class="study-proposal">
-            <div v-html="icons['clock']" class="study-icon"></div>
-            <p class="study-text">
-              Навчання за індивідуальним графіком на своїй швидкості сприйняття
-            </p>
-          </div>
+    <div class="study-with-us__content">
+      <div ref="reveal" class="reveal">
+        <div ref="revealOverlay" class="reveal__overlay"></div>
+        <img
+          ref="revealImage"
+          class="reveal__image"
+          src="~@/assets/images/study-with-us.png"
+          alt=""
+        />
+      </div>
+      <h3 ref="title" class="section-title">Навчання з нами - це</h3>
+      <div class="study-proposals">
+        <div v-for="item in 4" :key="item" class="study-proposal">
+          <div v-html="icons['clock']" class="study-icon"></div>
+          <p class="study-text">
+            Навчання за індивідуальним графіком на своїй швидкості сприйняття
+          </p>
         </div>
       </div>
     </div>
@@ -30,12 +37,45 @@ export default {
         defaults: { duration: 1 },
         scrollTrigger: {
           trigger: this.$refs.title,
-          scrub: true
+          markers: true
         }
       })
-      .to(this.$refs.title, {
-        x: 400
-      })
+      .fromTo(
+        this.$refs.title,
+        {
+          x: -120,
+          autoAlpha: 0
+        },
+        {
+          x: 0,
+          autoAlpha: 1
+        },
+        0
+      )
+      .fromTo(
+        this.$refs.revealOverlay,
+        {
+          skewX: 30,
+          scale: 1.5
+        },
+        {
+          skewX: 0,
+          xPercent: 190,
+          transformOrigin: '0% 100%',
+          ease: 'power4.easeOut'
+        },
+        0
+      )
+      .fromTo(
+        this.$refs.revealImage,
+        {
+          scale: 1.6
+        },
+        {
+          scale: 1
+        },
+        0
+      )
   },
   data() {
     return {
