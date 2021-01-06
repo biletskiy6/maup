@@ -5,17 +5,16 @@
         <div class="education-process__wrapper">
           <h2 class="section-title">Процес навчання</h2>
           <div class="education-process__inner">
-            <div class="education-process__timeline">
-              <span
-                class="education-process__timeline-icon"
-                v-html="timelineIcon"
-              ></span>
+            <div class="timeline">
+              <span class="timeline-icon" v-html="timelineIcon"></span>
               <ul>
-                <li v-for="item in 6" :key="item">
-                  <span class="round active"
+                <li v-for="item in educationItems" :key="item.id">
+                  <span class="round" :class="{ active: item.isActive }"
                     ><span class="round-inner"></span
                   ></span>
-                  <span>Видеоурок</span>
+                  <span @click="handleSetProcess(item.id)">{{
+                    item.name
+                  }}</span>
                 </li>
               </ul>
             </div>
@@ -48,7 +47,22 @@ export default {
   data() {
     return {
       timelineIcon,
-      presentaionIcon
+      presentaionIcon,
+      educationItems: [
+        { id: 'video', name: 'Відеоурок', isActive: true },
+        { id: 'e-book', name: 'Електронний підручник', isActive: false },
+        { id: 'consulting', name: 'Консультації', isActive: false },
+        { id: 'homework', name: 'Домашнє завдання', isActive: false },
+        { id: 'exam', name: 'Контрольна робота', isActive: false },
+        { id: 'video-checking', name: 'Відеоразбор робіт', isActive: false }
+      ]
+    }
+  },
+  methods: {
+    handleSetProcess(id) {
+      this.educationItems.forEach((i) => (i.isActive = false))
+      const item = this.educationItems.find((i) => i.id === id)
+      item.isActive = true
     }
   }
 }

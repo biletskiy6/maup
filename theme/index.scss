@@ -24,6 +24,120 @@ body {
   background-color: $grey;
   @include scrollbars(8px, $grey, $dark);
 }
+a {
+  &:focus {
+    outline: none;
+  }
+}
+.preloader {
+  display: none;
+  justify-content: center;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #fff;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  .div1, .div2 {
+    animation: rotate-all 2s 0 infinite linear alternate;
+  }
+
+  .div1 {
+    width: 80px;
+    height: 80px;
+    background-color: #669999;
+    position: relative;
+    //margin: auto;
+    animation: square-to-circle 2.5s .5s infinite cubic-bezier(1,.015,.295,1.225) alternate-reverse;
+
+  }
+
+  .div2 {
+    width: 80px;
+    height: 80px;
+    background-color: #669999;
+    position: relative;
+    //margin: auto;
+    animation: square-to-circle2 2.5s .42s infinite cubic-bezier(1,.015,.295,1.225) alternate-reverse;
+  }
+
+  #one {
+    top: 150px;
+  }
+
+  #two {
+    top: 150px;
+    right: 80px;
+  }
+
+  #three {
+    top: 150px;
+  }
+
+  #four {
+    bottom: 10px;
+    left: 80px;
+  }
+
+  @keyframes square-to-circle {
+    0%  {
+      border-radius:0 0 0 0;
+      //background:;
+      transform:rotate(45deg);
+    }
+    25%  {
+      border-radius:50% 0 0 0;
+      background:darksalmon;
+      transform:rotate(135deg);
+    }
+    50%  {
+      border-radius:50% 50% 0 0;
+      background:indianred;
+      transform:rotate(180deg);
+    }
+    75%  {
+      border-radius:50% 50% 50% 0;
+      background:lightcoral;
+      transform:rotate(315deg);
+    }
+    100% {
+      border-radius:50%;
+      background:darksalmon;
+      transform:rotate(404deg);
+    }
+  }
+
+  @keyframes square-to-circle2 {
+    0%  {
+      border-radius:0 0 0 0;
+      //background: ;
+      transform:rotate(45deg);
+    }
+    25%  {
+      border-radius:0 0 50% 0;
+      background:darksalmon;
+      transform:rotate(135deg);
+    }
+    50%  {
+      border-radius:0 0 50% 50%;
+      background:indianred;
+      transform:rotate(180deg);
+    }
+    75%  {
+      border-radius:50% 0 50% 50%;
+      background:lightcoral;
+      transform:rotate(315deg);
+    }
+    100% {
+      border-radius:50%;
+      background:darksalmon;
+      transform:rotate(404deg);
+    }
+  }
+}
+
 p {
   line-height: 32px;
 }
@@ -143,7 +257,7 @@ button {
       justify-content: center;
       //align-items: center;
       //text-align: center;
-      background-color: red;
+      background-color: $grey;
       background-position: center;
       background-size: cover;
       color: $dark;
@@ -391,6 +505,35 @@ body .swiper-button {
     }
   }
 }
+
+.timeline {
+  flex: 1 0 440px;
+  margin-right: 60px;
+  &-icon {
+    position: absolute;
+    top: 0;
+  }
+  ul {
+    padding-left: 19px;
+    li {
+      display: flex;
+      align-items: center;
+      position: relative;
+      font-size: 26px;
+      font-weight: 700;
+      color: $dark;
+      margin-bottom: 32px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .round {
+        margin-right: 12px;
+        background-color: #fff;
+      }
+    }
+  }
+}
+
 .education-process {
   &__content {
     background-color: #fff;
@@ -401,33 +544,6 @@ body .swiper-button {
     position: relative;
     display: flex;
     padding-top: 45px;
-  }
-  &__timeline {
-    flex: 1 0 440px;
-    margin-right: 60px;
-    &-icon {
-      position: absolute;
-      top: 0;
-    }
-    ul {
-      padding-left: 19px;
-      li {
-        display: flex;
-        align-items: center;
-        position: relative;
-        font-size: 26px;
-        font-weight: 700;
-        color: $dark;
-        margin-bottom: 32px;
-        &:last-child {
-          margin-bottom: 0;
-        }
-        .round {
-          margin-right: 12px;
-          background-color: #fff;
-        }
-      }
-    }
   }
   &__description {
     flex: 1 1 auto;
@@ -501,5 +617,220 @@ body .swiper-button {
       }
 
     }
+  }
+}
+
+// Enter School
+.school-plans {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  .school-plan {
+    border-radius: 24px;
+    &__header {
+      font-family: $header-font;
+      font-weight: 900;
+      text-align: center;
+      font-size: 26px;
+      margin-bottom: 24px;
+    }
+    &__price {
+      color: $blue;
+      font-size: 26px;
+      margin-bottom: 32px;
+      text-align: center;
+      span {
+        font-weight: 900;
+      }
+    }
+    &:not(.school-plan--proposal) {
+      background-color: $white;
+      padding: 56px 32px 60px;
+    }
+    &__items {
+
+    }
+    &__item {
+      margin-bottom: 24px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+.enter-school {
+
+}
+
+
+// Additional Opps
+
+.additional-opps {
+  &__content {
+
+  }
+  &-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    margin-top: 52px;
+    &__item {
+      border-radius: 24px;
+      border: 1px solid #C0C5C8;
+      background-color: $white;
+      padding: 56px 32px;
+    }
+    &__top {
+      display: flex;
+      align-items: center;
+      margin-bottom: 24px;
+      h4 {
+        font-family: $header-font;
+        font-weight: 900;
+        font-size: 26px;
+      }
+      img {
+        display: block;
+        width: 96px;
+        height: 96px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+    }
+    &__text {
+      color: #879197;
+    }
+  }
+}
+
+// Request
+
+.request {
+  background-image: url("~@/assets/images/request-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 90%;
+  margin: 130px auto 140px;
+  background-color: #fff;
+  padding: 130px 30px 75px 30px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .controls {
+    margin-top: 64px;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  &__description {
+    font-family: $header-font;
+    font-weight: 700;
+    font-size: 26px;
+    margin-top: 40px;
+  }
+}
+
+// Footer
+
+.logo {
+  &--white {
+    path {
+      fill: #fff;
+    }
+  }
+}
+
+.footer {
+  background-color: $dark;
+  color: #fff;
+  padding-top: 130px;
+  padding-bottom: 55px;
+  &-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 180px;
+  }
+  .logo {
+    margin-bottom: 75px;
+  }
+  &-item {
+    h4 {
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    &__phones {
+      display: flex;
+      align-items: center;
+      li {
+        margin-right: 8px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+    }
+    &__payments {
+      li {
+        margin-bottom: 26px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    &__news {
+      p {
+        color: #879197;
+      }
+    }
+  }
+}
+
+.subscription {
+  &__container {
+
+  }
+  &__form {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-bottom: 6px;
+    &::after {
+      position: absolute;
+      content: '';
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #879197;
+    }
+  }
+  &__input {
+    border: none;
+    display: block;
+    background-color: transparent;
+    &::placeholder {
+      color: #fff;
+    }
+  }
+  &__icon {
+    margin-right: 16px;
+  }
+  &__submit {
+    display: inline-flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    border: none;
+    background-color: $blue;
+    margin-left: auto;
   }
 }

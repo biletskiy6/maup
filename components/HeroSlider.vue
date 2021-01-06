@@ -52,7 +52,8 @@ export default {
     return {
       swiperOption: {
         effect: 'cube',
-        grabCursor: true,
+        grabCursor: false,
+        touchRatio: 0,
         direction: 'horizontal',
         paginationClickable: true,
         mousewheel: false,
