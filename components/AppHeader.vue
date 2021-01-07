@@ -13,19 +13,36 @@
 
       <div class="top-line__right">
         <AppButton theme="white" size="small">Вхід</AppButton>
+        <ul class="language-switcher">
+          <li><a class="active" href="#">Ukr</a></li>
+          <li><a href="#">Eng</a></li>
+        </ul>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
 import AppButton from './AppButton'
 import Logo from '@/components/Logo'
+gsap.registerPlugin(ScrollTrigger)
 export default {
   name: 'AppHeader',
   components: {
     AppButton,
     Logo
+  },
+  mounted() {
+    ScrollTrigger.create({
+      start: 'top -80',
+      end: 99999,
+      toggleClass: {
+        className: 'app-header--scrolled',
+        targets: '.app-header'
+      }
+    })
   }
 }
 </script>

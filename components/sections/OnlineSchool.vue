@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="online-school__right">
-        <img src="~@/assets/images/girl.png" alt="" />
+        <img src="~@/assets/images/online-school.png" alt="" />
       </div>
     </div>
   </div>

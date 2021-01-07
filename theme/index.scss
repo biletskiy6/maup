@@ -30,8 +30,8 @@ a {
   }
 }
 .preloader {
-  display: none;
   justify-content: center;
+  display: none;
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -40,6 +40,12 @@ a {
   top: 0;
   left: 0;
   z-index: 999;
+  &__content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -90%);
+  }
   .div1, .div2 {
     animation: rotate-all 2s 0 infinite linear alternate;
   }
@@ -152,17 +158,46 @@ button {
     outline: none;
   }
 }
-
+.language-switcher {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: 65px;
+  &::before {
+    position: absolute;
+    content: '';
+    width: 1px;
+    height: 60%;
+    background-color: #E7E7E9;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -32px;
+  }
+  li {
+    margin-right: 16px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  a {
+    font-weight: 700;
+    color: $dark;
+    text-decoration: none;
+    text-transform: uppercase;
+    &.active {
+      color: $accent;
+    }
+  }
+}
 .v-btn {
   background-color: transparent;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 16px;
   box-shadow: 0px 0px 32px $dark;
-  font-family: $header-font;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   .icon {
     display: inline-flex;
@@ -191,9 +226,10 @@ button {
     color: $white;
   }
   &.v-size--default {
-    padding: 24px 40px 24px 24px;
+    padding: 15px 24px 15px 24px;
   }
   &.v-size--small {
+    padding: 9px 43px;
   }
 }
 
@@ -209,11 +245,16 @@ button {
   position: absolute;
   width: 100%;
   z-index: 101;
+  padding: 40px;
+  .logo {
+    margin-right: 54px;
+  }
 }
 .top-line {
   display: flex;
   &__left {
     display: flex;
+    align-items: center;
   }
   &__right {
     display: flex;
@@ -231,6 +272,7 @@ button {
     }
   }
   a {
+    display: inline-block;
     text-decoration: none;
     font-weight: 900;
     color: $dark;
@@ -271,11 +313,52 @@ button {
         background: linear-gradient(#ad72e3, #63acdc);
       }
     }
-    .swiper-pagination {
-      .swiper-pagination-bullet.swiper-pagination-bullet-active {
-        background-color: #fff;
+  }
+  .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets {
+    display: flex;
+    align-items: center;
+    left: 280px;
+    bottom: 60px;
+  }
+  .swiper-pagination {
+    text-align: inherit;
+    .swiper-pagination-bullet {
+      opacity: 1;
+      background-color: transparent;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid rgba(#182C37, .24);
+      &-active {
+        position: relative;
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background-color: transparent;
+        border: 4px solid #182C37;
+        &::after {
+          position: absolute;
+          content: '';
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: #182C37;
+        }
       }
     }
+  }
+  .slider-header {
+    line-height: 80px;
+    margin-bottom: 40px;
+  }
+  .slider-title {
+    margin-bottom: 32px;
+  }
+  .slider-subtitle {
+    margin-bottom: 54px;
   }
 
   /*padding: 15px;*/
@@ -316,6 +399,9 @@ body .swiper-button {
   max-width: 980px;
   padding-left: 280px;
 }
+.swiper-wrapper {
+
+}
 .slide-controls {
   display: flex;
   align-items: center;
@@ -346,7 +432,7 @@ body .swiper-button {
   position: relative;
   z-index: 1;
   max-width: 1560px;
-  margin: 0 auto;
+  margin: 216px auto 130px;
   background-repeat: no-repeat;
   background-position: bottom;
   height: 688px;
@@ -364,6 +450,12 @@ body .swiper-button {
       img {
         height: 100%;
       }
+    }
+    .section-title {
+      padding-top: 20px;
+      margin-right: 20px;
+      padding-left: 218px;
+      flex: 0 0 40%;
     }
   }
   .study-proposals {
@@ -456,18 +548,83 @@ body .swiper-button {
   background-color: $dark;
   color: $white;
   padding-left: 250px;
+  padding-top: 130px;
+  padding-bottom: 250px;
+  .section-title {
+    margin-bottom: 32px;
+  }
+  .controls {
+    margin-top: 64px;
+  }
   &__content {
-    display: grid;
-    align-items: center;
-    grid-template-columns: minmax(580px, 1fr) auto;
-    grid-column-gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__left {
+    flex: 1 1 38%;
+    padding-right: 20px;
   }
   &__right {
+    flex: 1 1 62%;
   }
   p {
     margin-bottom: 16px;
     &:last-child {
       margin-bottom: 0;
+    }
+  }
+}
+
+// Demo Access
+
+.demo-access {
+  max-width: 1625px;
+  margin: 0 auto;
+  &__inner {
+    display: flex;
+    margin: -15px;
+  }
+  &__top {
+    margin-bottom: 64px;
+  }
+  .section-title {
+    margin-bottom: 32px;
+  }
+  &__description {
+    color: $dark;
+    max-width: 50%;
+  }
+  &__left {
+    flex: 1 1 65%;
+    margin: 15px;
+  }
+  &__right {
+    flex: 1 1 35%;
+    margin: 15px;
+    ul {
+      padding-top: 35px;
+      margin-bottom: 60px;
+      li {
+        position: relative;
+        font-weight: 700;
+        margin-bottom: 16px;
+        color: $dark;
+        padding-left: 20px;
+        &::before {
+          position: absolute;
+          content: '';
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          border-radius: 50%;
+          width: 10px;
+          height: 10px;
+          background-color: $dark;
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
     }
   }
 }
@@ -522,7 +679,7 @@ body .swiper-button {
       font-size: 26px;
       font-weight: 700;
       color: $dark;
-      margin-bottom: 32px;
+      margin-bottom: 20px;
       &:last-child {
         margin-bottom: 0;
       }
@@ -535,6 +692,9 @@ body .swiper-button {
 }
 
 .education-process {
+  position: relative;
+  margin-top: -130px;
+  margin-bottom: 130px;
   &__content {
     background-color: #fff;
     border-radius: 24px;
@@ -543,7 +703,7 @@ body .swiper-button {
   &__inner {
     position: relative;
     display: flex;
-    padding-top: 45px;
+    padding-top: 60px;
   }
   &__description {
     flex: 1 1 auto;
@@ -570,6 +730,10 @@ body .swiper-button {
 }
 
 .our-team {
+  padding-top: 130px;
+  .section-title {
+    margin-bottom: 72px;
+  }
   &__content {
     position: relative;
   }
@@ -579,6 +743,13 @@ body .swiper-button {
     left: 0;
     right: 0;
     z-index: 1;
+    &-right {
+      position: absolute;
+      z-index: 9;
+      width: 100%;
+      height: 100%;
+      display: none;
+    }
   }
   &__description {
     position: absolute;
@@ -586,6 +757,22 @@ body .swiper-button {
     right: 0;
     left: 0;
     z-index: 2;
+    padding: 0 10px;
+    text-align: center;
+    h2 {
+      font-family: $header-font;
+      font-size: 26px;
+      font-weight: 700;
+      color: $dark;
+      margin-bottom: 16px;
+    }
+    p {
+      color: $dark;
+      opacity: 0.5;
+      line-height: 24px;
+      max-width: 80%;
+      margin: 0 auto;
+    }
   }
   &__pagination {
     display: flex;
@@ -596,11 +783,8 @@ body .swiper-button {
     top: 0;
     height: 100%;
     width: 220px;
-    span {
-      position: absolute;
-      z-index: 9;
-      transform: rotate(-90deg);
-      right: 0;
+    .swiper-slide {
+      position: relative;
     }
     .swiper-button {
       &-prev, &-next {

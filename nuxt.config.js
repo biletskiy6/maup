@@ -2,6 +2,9 @@ export default {
   /*
    ** Headers of the page
    */
+  server: {
+    host: '0.0.0.0'
+  },
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -37,7 +40,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [{ src: '@/plugins/swiper.js', ssr: false }],
   /*
    ** Nuxt.js dev-modules
    */

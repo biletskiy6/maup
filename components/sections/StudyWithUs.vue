@@ -10,7 +10,10 @@
           alt=""
         />
       </div>
-      <h3 ref="title" class="section-title">Навчання з нами - це</h3>
+      <h3 ref="title" class="section-title">
+        Навчання <br />
+        з нами - це
+      </h3>
       <ul ref="studyProposals" class="study-proposals">
         <li
           ref="studyProposal"

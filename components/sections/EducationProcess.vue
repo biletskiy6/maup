@@ -3,7 +3,10 @@
     <div class="container">
       <div class="education-process__content">
         <div class="education-process__wrapper">
-          <h2 class="section-title">Процес навчання</h2>
+          <h2 class="section-title">
+            Процес <br />
+            навчання
+          </h2>
           <div class="education-process__inner">
             <div class="timeline">
               <span class="timeline-icon" v-html="timelineIcon"></span>
