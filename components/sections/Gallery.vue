@@ -57,63 +57,6 @@
         </li>
       </ul>
     </section>
-    <section class="demo-gallery">
-      <ul class="wrapper">
-        <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=77"
-            width="1240"
-          />
-        </li>
-        <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=37"
-            width="1240"
-          />
-        </li>
-        <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=24"
-            width="1240"
-          />
-        </li>
-        <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=204"
-            width="1240"
-          />
-        </li>
-      </ul>
-    </section>
-    <section class="demo-gallery">
-      <ul class="wrapper">
-        <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=32"
-            width="1240"
-          />
-        </li>
-        <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=120"
-            width="1240"
-          />
-        </li>
-        <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=204"
-            width="1240"
-          />
-        </li>
-      </ul>
-    </section>
   </div>
 </template>
 

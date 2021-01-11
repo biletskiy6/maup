@@ -4,8 +4,10 @@
     :class="[themes[theme], sizes[size]]"
     :to="to"
     @click.native="handleClick"
-    ><slot
-  /></nuxt-link>
+  >
+    <span><slot /></span>
+    <div class="liquid"></div>
+  </nuxt-link>
 </template>
 <script>
 export default {

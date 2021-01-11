@@ -1,7 +1,7 @@
 <template>
   <div class="subscription">
     <div class="subscription__container">
-      <form class="subscription__form" action="">
+      <form @submit.prevent class="subscription__form" action="">
         <span v-html="mail" class="subscription__icon"></span>
         <input
           type="text"

@@ -1,5 +1,5 @@
 <template>
-  <section ref="studyWithUs" class="study-with-us">
+  <section id="study-with-us" ref="studyWithUs" class="study-with-us">
     <div class="study-with-us__content">
       <div ref="reveal" class="reveal">
         <div ref="revealOverlay" class="reveal__overlay"></div>

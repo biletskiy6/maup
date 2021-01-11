@@ -11,16 +11,34 @@
         <ul class="school-plans">
           <li class="school-plan school-plan--proposal">
             <h4>Економія при оплаті</h4>
-            <div class="timeline">
+            <div class="timeline timeline--enter-school">
               <span class="timeline-icon" v-html="timelineIcon"></span>
-              <ul>
-                <li v-for="item in 6" :key="item">
-                  <span class="round active"
-                    ><span class="round-inner"></span
-                  ></span>
-                  <span>Видеоурок</span>
-                </li>
-              </ul>
+              <div class="timeline__period">
+                <div class="timeline__header">Ekonomiya</div>
+                <ul>
+                  <li v-for="item in 6" :key="item">
+                    <div class="">
+                      <span class="round active"
+                        ><span class="round-inner"></span
+                      ></span>
+                      <span>1 місяць</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="timeline__economy">
+                <div class="timeline__header">Project</div>
+                <ul>
+                  <li v-for="item in 6" :key="item">
+                    <div class="">
+                      <span class="round active"
+                        ><span class="round-inner"></span
+                      ></span>
+                      <span>0%</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
             </div>
           </li>
           <li v-for="item in 3" :key="item" class="school-plan">
@@ -28,7 +46,8 @@
             <h6 class="school-plan__price"><span>2 500 ₴</span> в місяць</h6>
             <div class="school-plan__items">
               <div v-for="item in 7" :key="item" class="school-plan__item">
-                <span>Тестування</span>
+                <div v-html="doneIcon" class="access available"></div>
+                <span class="school-plan__item-text">Тестування</span>
               </div>
               <AppButton>
                 Обрати
@@ -44,11 +63,13 @@
 <script>
 import timelineIcon from '@/assets/icons/timeline.svg?raw'
 import AppButton from '@/components/AppButton'
+import doneIcon from '@/assets/icons/done.svg?raw'
 export default {
   name: 'EnterSchool',
   data() {
     return {
-      timelineIcon
+      timelineIcon,
+      doneIcon
     }
   },
   components: {

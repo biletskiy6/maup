@@ -9,11 +9,11 @@
     <OnlineSchool />
     <DemoAccess />
     <Gallery />
+    <EducationProcess />
     <EnterSchool />
     <AdditionalOpps />
     <Request />
     <Footer />
-    <br v-for="item in 100" :key="item" />
   </div>
 </template>
 
@@ -24,15 +24,16 @@ import AppHeader from '@/components/AppHeader'
 import HeroSlider from '@/components/HeroSlider'
 import StudyWithUs from '@/components/sections/StudyWithUs'
 import OnlineSchool from '@/components/sections/OnlineSchool'
-// import EducationProcess from '@/components/sections/EducationProcess'
 import Footer from '@/components/Footer'
 import Request from '@/components/sections/Request'
 import AdditionalOpps from '@/components/sections/AdditionalOpps'
 import Gallery from '@/components/sections/Gallery'
 import EnterSchool from '@/components/sections/EnterSchool'
 import DemoAccess from '@/components/sections/DemoAccess'
+import EducationProcess from '@/components/sections/EducationProcess'
 export default {
   components: {
+    EducationProcess,
     DemoAccess,
     Preloader,
     EnterSchool,

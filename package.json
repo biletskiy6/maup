@@ -21,6 +21,7 @@
     "sass": "^1.32.0",
     "sass-loader": "^10.1.0",
     "smart-grid": "^2.1.2",
+    "smooth-scrollbar": "^8.5.3",
     "swiper": "5.3.7",
     "vue-awesome-swiper": "^4.1.1"
   },
