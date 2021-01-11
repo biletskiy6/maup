@@ -3,8 +3,14 @@
     <swiper class="swiper" :options="swiperOption">
       <swiper-slide>
         <div class="slide-content">
-          <h2 class="slider-header">
-            Онлайн школа <span class="accent">для 9-11 класів!</span>
+          <h2 class="slider-header js-splitme">
+            <span class="word">Онлайн</span>
+            <span class="word">школа</span>
+            <span class="accent">
+              <span class="word">для</span>
+              <span class="word">9-11</span>
+              <span class="word">класів!</span>
+            </span>
           </h2>
           <h3 class="slider-title">
             Ми навчаємо дистанційно!

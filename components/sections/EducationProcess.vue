@@ -41,9 +41,12 @@
 </template>
 
 <script>
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import timelineIcon from '@/assets/icons/timeline.svg?raw'
 import presentaionIcon from '@/assets/icons/presentation.svg?raw'
 import OurTeam from '@/components/sections/OurTeam'
+gsap.registerPlugin(ScrollTrigger)
 export default {
   name: 'EducationProcess',
   components: { OurTeam },
@@ -61,7 +64,22 @@ export default {
       ]
     }
   },
+  mounted() {
+    gsap.defaults({ overwrite: 'auto' })
+    gsap.set('.education-process__description > *', {
+      xPercent: -50,
+      yPercent: -50
+    })
+    ScrollTrigger.create({
+      trigger: '.education-process__inner',
+      start: 'top top',
+      end: 'bottom bottom',
+      onUpdate: this.getCurrentSection,
+      pin: '.education-process__description'
+    })
+  },
   methods: {
+    getCurrentSection() {},
     handleSetProcess(id) {
       this.educationItems.forEach((i) => (i.isActive = false))
       const item = this.educationItems.find((i) => i.id === id)

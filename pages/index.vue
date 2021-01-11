@@ -1,6 +1,6 @@
 <template>
   <div class="home-page">
-    <Preloader />
+    <Preloader v-if="false" />
     <header class="main-header">
       <AppHeader />
       <HeroSlider />
@@ -19,6 +19,7 @@
 
 <script>
 import gsap from 'gsap'
+import Splitter from 'split-html-to-chars'
 import Preloader from '@/components/Preloader'
 import AppHeader from '@/components/AppHeader'
 import HeroSlider from '@/components/HeroSlider'
@@ -48,8 +49,48 @@ export default {
   },
   mounted() {
     // eslint-disable-next-line nuxt/no-env-in-hooks
-    if (process.client) {
-      const tl = gsap.timeline({ delay: 2 })
+    this.splitText()
+    const tl = gsap.timeline({ delay: 2 })
+    tl.add(this.animatePreloader())
+    tl.add(this.animateTopLine())
+    tl.add(this.animateSlider())
+  },
+  methods: {
+    splitText() {
+      const heroTitle = document.querySelectorAll('.js-splitme')
+      ;[].forEach.call(heroTitle, function(el) {
+        // outerHTML, thats *important*, no direct text nodes should be in parsed HTML
+        el.outerHTML = Splitter(el.outerHTML, '<span class="letter">$</span>')
+      })
+      return heroTitle
+    },
+    animatePreloader() {
+      const tl = gsap.timeline({ delay: 1, paused: false })
+      tl.fromTo(
+        '.preloader .first',
+        { y: 0 },
+        { y: '-100%', ease: 'expo.easeInOut', delay: 0.5 },
+        0
+      )
+        .fromTo(
+          '.preloader .second',
+          { y: 0 },
+          { y: '-100%', ease: 'expo.easeInOut', delay: 0.7 },
+          0
+        )
+        .fromTo(
+          '.preloader .third',
+          { y: 0 },
+          { y: '-100%', ease: 'expo.easeInOut', delay: 0.9 },
+          0
+        )
+        .to('.preloader', {
+          autoAlpha: 0
+        })
+      return tl
+    },
+    animateTopLine() {
+      const tl = gsap.timeline()
       tl.fromTo(
         '.app-header .logo',
         { autoAlpha: 0, x: -20 },
@@ -66,7 +107,32 @@ export default {
           0
         )
         .fromTo(
-          '.slider-header',
+          '.top-line__right',
+          {
+            autoAlpha: 0,
+            x: 20
+          },
+          {
+            autoAlpha: 1,
+            x: 0
+          },
+          0
+        )
+      return tl
+    },
+    animateSlider() {
+      const tl = gsap.timeline()
+      tl.fromTo(
+        '.hero-slider .letter',
+        {
+          autoAlpha: 0,
+          y: -20
+        },
+        { autoAlpha: 1, y: 0, stagger: { each: 0.03 } },
+        0
+      )
+        .fromTo(
+          '.slider-title',
           {
             autoAlpha: 0,
             y: -20
@@ -74,6 +140,25 @@ export default {
           { autoAlpha: 1, y: 0 },
           0
         )
+        .fromTo(
+          '.slider-subtitle',
+          {
+            autoAlpha: 0,
+            y: -20
+          },
+          { autoAlpha: 1, y: 0 },
+          0
+        )
+        .fromTo(
+          '.hero-slider .controls',
+          {
+            autoAlpha: 0,
+            y: -20
+          },
+          { autoAlpha: 1, y: 0 },
+          0
+        )
+      return tl
     }
   }
 }

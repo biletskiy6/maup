@@ -55,8 +55,10 @@ export default {
         defaults: { duration: 1 },
         scrollTrigger: {
           trigger: studyWithUs,
-          start: 500,
-          markers: true
+          start: 200,
+          end: 'bottom 10%',
+          markers: true,
+          scrub: 1
         }
       })
       .fromTo(title, { x: -120, autoAlpha: 0 }, { x: 0, autoAlpha: 1 }, 0)

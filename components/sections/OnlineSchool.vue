@@ -37,9 +37,33 @@
 </template>
 
 <script>
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
 import AppButton from '../AppButton'
+
+gsap.registerPlugin(ScrollTrigger)
+
 export default {
   name: 'OnlineSchool',
-  components: { AppButton }
+  components: { AppButton },
+  mounted() {
+    gsap
+      .timeline({
+        defaults: { duration: 1 },
+        scrollTrigger: {
+          trigger: '.online-school',
+          start: 200,
+          end: 'bottom 100%',
+          markers: true,
+          scrub: 1
+        }
+      })
+      .fromTo(
+        '.online-school .section-title',
+        { x: -120, autoAlpha: 0 },
+        { x: 0, autoAlpha: 1 },
+        0
+      )
+  }
 }
 </script>
