@@ -54,7 +54,6 @@ export default {
           trigger: '.online-school',
           start: 200,
           end: 'bottom 100%',
-          markers: true,
           scrub: 1
         }
       })

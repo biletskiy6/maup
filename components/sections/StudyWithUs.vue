@@ -57,7 +57,6 @@ export default {
           trigger: studyWithUs,
           start: 200,
           end: 'bottom 10%',
-          markers: true,
           scrub: 1
         }
       })

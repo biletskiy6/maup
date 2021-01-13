@@ -3,6 +3,7 @@
     <swiper class="swiper" :options="swiperOption">
       <swiper-slide>
         <div class="slide-content">
+          <p class="test">Hello world</p>
           <h2 class="slider-header js-splitme">
             <span class="word">Онлайн</span>
             <span class="word">школа</span>

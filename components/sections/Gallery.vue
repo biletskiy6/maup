@@ -91,14 +91,4 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.demo-gallery {
-  .wrapper {
-    display: flex;
-  }
-  li {
-    flex-shrink: 0;
-    width: clamp(500px, 60vw, 800px);
-  }
-}
-</style>
+<style lang="scss"></style>

@@ -53,7 +53,7 @@ export default {
     // eslint-disable-next-line nuxt/no-env-in-hooks
     this.splitText()
     const tl = gsap.timeline({ delay: 2 })
-    tl.add(this.animatePreloader())
+    // tl.add(this.animatePreloader())
     tl.add(this.animateTopLine())
     tl.add(this.animateSlider())
   },

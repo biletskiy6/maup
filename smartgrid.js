@@ -10,6 +10,10 @@ const settings = {
     fields: '20px'
   },
   breakPoints: {
+    lg: {
+      width: '1680px',
+      fields: '15px'
+    },
     md: {
       width: '1366px',
       fields: '15px'
@@ -20,6 +24,10 @@ const settings = {
     },
     tablet: {
       width: '1024px',
+      fields: '15px'
+    },
+    tabletl: {
+      width: '992px',
       fields: '15px'
     },
     tabletx: {
