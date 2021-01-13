@@ -44,16 +44,36 @@ export default {
     Swiper,
     SwiperSlide
   },
+  mounted() {
+    const ctx = this
+    window.addEventListener('resize', function(e) {
+      const width = this.innerWidth
+      if (width < 1100) {
+        ctx.swiperOptions.slidesPerView = 1
+      }
+      console.log(this)
+    })
+  },
   data() {
     const currentInstance = this
     return {
       SliderOverlay,
       SliderOverlayRight,
       swiperOptions: {
-        slidesPerView: 3.5,
         spaceBetween: 20,
         observer: true,
         observeParents: true,
+        breakpoints: {
+          320: {
+            slidesPerView: 1.5
+          },
+          992: {
+            slidesPerView: 2.5
+          },
+          1366: {
+            slidesPerView: 3.5
+          }
+        },
         pagination: {
           el: '.swiper-pagination',
           dynamicBullets: false,

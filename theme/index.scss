@@ -260,7 +260,8 @@ button {
     will-change: transform;
   }
 }
-.burger__close, .burger__open {
+.burger__close,
+.burger__open {
   top: 50%;
   left: 50%;
   width: 2.222vw;
@@ -270,7 +271,7 @@ button {
 }
 
 .burger__open {
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   span {
     height: 2px;
     width: 18px;
@@ -280,7 +281,7 @@ button {
   }
 }
 .burger__close {
-  transform: translate(-50%,-50%) rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg);
   width: 1.667vw;
   height: 1.667vw;
   span {
@@ -308,10 +309,7 @@ button {
   height: 100%;
   position: absolute;
   background: $blue;
-
 }
-
-
 
 .v-btn {
   position: relative;
@@ -328,7 +326,20 @@ button {
   font-size: 18px;
   font-weight: 700;
   transition: color 0.25s ease;
-  transform: translate(0, 0);
+  .ripple {
+    position: absolute;
+    display: block;
+    content: '';
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-radius: 100%;
+    background: #fff;
+    transform: translate(-50%, -50%);
+    transition: width 0.7s, padding-top 0.7s;
+  }
   .icon {
     display: inline-flex;
     align-items: center;
@@ -343,11 +354,9 @@ button {
     }
   }
   &.primary {
+    position: relative;
     background-color: $blue;
     color: $white;
-    &:hover {
-      //color: $blue;
-    }
   }
   &.white {
     background-color: $white;
@@ -373,9 +382,10 @@ button {
     z-index: 20;
   }
   &:hover {
-    --spacing: 0;
-    --duration: 0.45s;
-    transition: color 0.25s ease;
+    .ripple {
+      width: calc(100% * 2.25);
+      padding-top: calc(100% * 2.25);
+    }
   }
 }
 .accent {
@@ -941,11 +951,17 @@ body .swiper-button {
     background-color: #fff;
     border-radius: 24px;
     padding: 130px 120px;
+    @include md-block() {
+      padding: 120px 70px 120px 90px;
+    }
   }
   &__inner {
     position: relative;
     display: flex;
     padding-top: 60px;
+    @include mdx-block() {
+      flex-direction: column;
+    }
   }
   &__description {
     position: relative;
@@ -1315,7 +1331,7 @@ body .swiper-button {
         color: inherit;
       }
       @include md-block() {
-       flex-direction: column;
+        flex-direction: column;
         align-items: flex-start;
         li {
           margin-right: 0;

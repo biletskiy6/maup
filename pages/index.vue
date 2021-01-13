@@ -10,7 +10,7 @@
     <DemoAccess />
     <Gallery />
     <EducationProcess />
-    <EnterSchool />
+    <EnterSchool v-if="false" />
     <AdditionalOpps />
     <Request />
     <Footer />
@@ -52,8 +52,8 @@ export default {
   mounted() {
     // eslint-disable-next-line nuxt/no-env-in-hooks
     this.splitText()
-    const tl = gsap.timeline({ delay: 2 })
-    // tl.add(this.animatePreloader())
+    const tl = gsap.timeline({ delay: 1 })
+    tl.add(this.animatePreloader())
     tl.add(this.animateTopLine())
     tl.add(this.animateSlider())
   },
