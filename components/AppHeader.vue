@@ -3,7 +3,7 @@
     <div class="top-line">
       <div class="top-line__left">
         <Logo />
-        <ul class="main-menu">
+        <ul v-if="false" class="main-menu">
           <li><a href="#study-with-us">Навчання з нами - це</a></li>
           <li><a href="#">Демо доступ</a></li>
           <li><a href="#">Вступ до школи</a></li>
@@ -17,6 +17,7 @@
           <li><a class="active" href="#">Ukr</a></li>
           <li><a href="#">Eng</a></li>
         </ul>
+        <MenuBurger @handleBurgerClick="handleBurgerClick" />
       </div>
     </div>
   </div>
@@ -27,12 +28,14 @@ import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import ScrollToPlugin from 'gsap/ScrollToPlugin'
 import AppButton from './AppButton'
+import MenuBurger from './MenuBurger'
 import Logo from '@/components/Logo'
 gsap.registerPlugin(ScrollTrigger)
 gsap.registerPlugin(ScrollToPlugin)
 export default {
   name: 'AppHeader',
   components: {
+    MenuBurger,
     AppButton,
     Logo
   },
@@ -41,6 +44,21 @@ export default {
     this.scrollToSection()
   },
   methods: {
+    handleBurgerClick() {
+      const tl = gsap.timeline()
+      tl.to('.burger__open span', {
+        x: '-105%',
+        stagger: {
+          each: 0.05
+        }
+      }).to('.burger__close span', {
+        x: 0,
+        y: 0,
+        stagger: {
+          each: 0.05
+        }
+      })
+    },
     pinHeader() {
       ScrollTrigger.create({
         start: 'top -80',

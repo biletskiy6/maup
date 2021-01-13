@@ -20,6 +20,7 @@
 <script>
 import gsap from 'gsap'
 import Splitter from 'split-html-to-chars'
+import { CSSRulePlugin } from 'gsap/CSSRulePlugin'
 import Preloader from '@/components/Preloader'
 import AppHeader from '@/components/AppHeader'
 import HeroSlider from '@/components/HeroSlider'
@@ -32,6 +33,7 @@ import Gallery from '@/components/sections/Gallery'
 import EnterSchool from '@/components/sections/EnterSchool'
 import DemoAccess from '@/components/sections/DemoAccess'
 import EducationProcess from '@/components/sections/EducationProcess'
+gsap.registerPlugin(CSSRulePlugin)
 export default {
   components: {
     EducationProcess,
@@ -66,28 +68,66 @@ export default {
     },
     animatePreloader() {
       const tl = gsap.timeline({ delay: 1, paused: false })
-      tl.fromTo(
-        '.preloader .first',
-        { y: 0 },
-        { y: '-100%', ease: 'expo.easeInOut', delay: 0.5 },
-        0
+      const cont = { val: 0 }
+      const newVal = 100
+      const firstOverlayAfter = CSSRulePlugin.getRule(
+        '.preloader .overlay.first:after'
       )
+      const secondOverlayAfter = CSSRulePlugin.getRule(
+        '.preloader .overlay.second:after'
+      )
+      tl.to(cont, {
+        val: newVal,
+        roundProps: 'val',
+        duration: 2,
+        onUpdate() {
+          document.querySelector('.counter__number').innerHTML = cont.val
+        }
+      })
+        .addLabel('counterFinished')
+        // eslint-disable-next-line no-unreachable
+        .to(
+          [firstOverlayAfter, secondOverlayAfter],
+          {
+            height: '0%',
+            duration: 1
+          },
+          'counterFinished'
+        )
+        .fromTo(
+          '.preloader .counter',
+          {
+            y: 0,
+            autoAlpha: 1
+          },
+          {
+            y: -20,
+            autoAlpha: 0
+          },
+          'counterFinished+=0.5'
+        )
+        .fromTo(
+          '.preloader .first',
+          { y: 0 },
+          { y: '-100%', ease: 'expo.easeInOut', delay: 0.5 },
+          'counterFinished'
+        )
         .fromTo(
           '.preloader .second',
           { y: 0 },
           { y: '-100%', ease: 'expo.easeInOut', delay: 0.7 },
-          0
+          'counterFinished'
         )
         .fromTo(
           '.preloader .third',
           { y: 0 },
           { y: '-100%', ease: 'expo.easeInOut', delay: 0.9 },
-          0
+          'counterFinished'
         )
-        .to('.preloader', {
-          autoAlpha: 0
-        })
-      return tl
+      // .to('.preloader', {
+      //   autoAlpha: 0
+      // })
+      // return tl
     },
     animateTopLine() {
       const tl = gsap.timeline()

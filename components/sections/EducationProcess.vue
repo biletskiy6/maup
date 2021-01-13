@@ -65,18 +65,18 @@ export default {
     }
   },
   mounted() {
-    gsap.defaults({ overwrite: 'auto' })
-    gsap.set('.education-process__description > *', {
-      xPercent: -50,
-      yPercent: -50
-    })
-    ScrollTrigger.create({
-      trigger: '.education-process__inner',
-      start: 'top top',
-      end: 'bottom bottom',
-      onUpdate: this.getCurrentSection,
-      pin: '.education-process__description'
-    })
+    // gsap.defaults({ overwrite: 'auto' })
+    // gsap.set('.education-process__description > *', {
+    //   xPercent: -50,
+    //   yPercent: -50
+    // })
+    // ScrollTrigger.create({
+    //   trigger: '.education-process__inner',
+    //   start: 'top top',
+    //   end: 'bottom bottom',
+    //   onUpdate: this.getCurrentSection,
+    //   pin: '.education-process__description'
+    // })
   },
   methods: {
     getCurrentSection() {},

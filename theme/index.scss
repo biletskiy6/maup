@@ -38,6 +38,16 @@ a {
   top: 0;
   left: 0;
   z-index: 99999;
+  .counter {
+    position: absolute;
+    font-size: 56px;
+    font-weight: 900;
+    font-family: $header-font;
+    z-index: 103;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
   .overlay {
     height: 100%;
     top: 0%;
@@ -52,14 +62,27 @@ a {
     }
     &.first,
     &.second {
-      &::after {
-        display: none;
+      &:after {
         position: absolute;
         content: '';
         right: 0;
         width: 1px;
         height: 100%;
-        background-color: #879197;
+        background-color: rgba(#879197, 0.64);
+      }
+    }
+    &.first {
+      &:after {
+        top: 0;
+        right: 0;
+        height: 100%;
+      }
+    }
+    &.second {
+      &:after {
+        right: 0;
+        bottom: 0;
+        height: 100%;
       }
     }
   }
@@ -186,9 +209,12 @@ button {
 .language-switcher {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-left: 65px;
+  justify-content: center;
+  margin-left: 32px;
   &::before {
+    display: none;
     position: absolute;
     content: '';
     width: 1px;
@@ -199,7 +225,8 @@ button {
     left: -32px;
   }
   li {
-    margin-right: 16px;
+    //margin-right: 16px;
+    margin-bottom: 6px;
     &:last-child {
       margin-right: 0;
     }
@@ -207,6 +234,7 @@ button {
   a {
     font-weight: 700;
     color: $dark;
+    //font-size: 12px;
     text-decoration: none;
     text-transform: uppercase;
     &.active {
@@ -214,6 +242,77 @@ button {
     }
   }
 }
+
+// Menu Burger
+
+.menu__burger {
+  top: 0;
+  right: 0;
+  z-index: 1;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  position: absolute;
+  span {
+    display: block;
+    background: #fff;
+    border-radius: 1px;
+    will-change: transform;
+  }
+}
+.burger__close, .burger__open {
+  top: 50%;
+  left: 50%;
+  width: 2.222vw;
+  z-index: 2;
+  overflow: hidden;
+  position: absolute;
+}
+
+.burger__open {
+  transform: translate(-50%,-50%);
+  span {
+    height: 2px;
+    width: 2.222vw;
+    &:nth-child(2) {
+      margin: 4px 0;
+    }
+  }
+}
+.burger__close {
+  transform: translate(-50%,-50%) rotate(45deg);
+  width: 1.667vw;
+  height: 1.667vw;
+  span {
+    position: absolute;
+    &:first-child {
+      height: 2px;
+      width: 100%;
+      top: calc(50% - 1px);
+      transform: translate(-105%, 0);
+    }
+    &:nth-child(2) {
+      width: 2px;
+      height: 100%;
+      left: calc(50% - 1px);
+      transform: translate(0, -105%);
+    }
+  }
+}
+
+.burger__shape {
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: $blue;
+
+}
+
+
+
 .v-btn {
   position: relative;
   appearance: none;
@@ -781,14 +880,6 @@ body .swiper-button {
   &__description {
     position: relative;
     flex: 1 1 auto;
-    height: 100vh;
-    > * {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      opacity: 0;
-      visibility: hidden;
-    }
   }
   &__info {
     padding: 56px 60px 24px 60px;
