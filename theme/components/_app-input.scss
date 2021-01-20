@@ -1,0 +1,26 @@
+.app-input {
+  position: relative;
+  .v-input {
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #E7E7E9;
+    color: $dark;
+    padding: 21px 32px;
+    transition: border-bottom-color .25s ease;
+    &::placeholder {
+      color: #879197;
+    }
+    &:focus {
+      outline: none;
+      border-bottom-color: $dark;
+      transition: border-bottom-color .25s ease;
+    }
+  }
+  &__icon {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

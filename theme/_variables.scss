@@ -8,3 +8,21 @@ Roboto, 'Helvetica Neue', Arial, sans-serif;
 $default-font: 'OpenSans', $fallback;
 $header-font: 'Montserrat', $fallback;
 $default-font-size: 18px;
+
+
+// Slider Header
+// lg-point
+$slider-lg-gutter: 180px;
+$slider-tablet-gutter: 120px;
+//md-point
+$slider-header-md-size: 60px;
+//tablet-point
+$slider-header-tablet-size: 50px;
+//tabletx-point
+$slider-tabletx-gutter: 80px;
+$slider-header-tabletx-size: 40px;
+$slider-title-tabletx-size: 24px;
+//phonex-point
+$slider-phonex-gutter: 15px;
+$slider-header-phonex-size: 36px;
+$slider-header-phone-size: 28px;

@@ -7,6 +7,7 @@ $break_mdx: 1280px;
 $break_tablet: 1024px;
 $break_tabletl: 992px;
 $break_tabletx: 768px;
+$break_phonex: 576px;
 $break_phone: 480px;
 $break_iphone: 320px;
 
@@ -17,6 +18,7 @@ $offset_mdx: $offset;
 $offset_tablet: $offset;
 $offset_tabletl: $offset;
 $offset_tabletx: $offset;
+$offset_phonex: $offset;
 $offset_phone: $offset;
 $offset_iphone: $offset;
 
@@ -27,6 +29,7 @@ $offset_mdx_one_side: ($offset_mdx / 2);
 $offset_tablet_one_side: ($offset_tablet / 2);
 $offset_tabletl_one_side: ($offset_tabletl / 2);
 $offset_tabletx_one_side: ($offset_tabletx / 2);
+$offset_phonex_one_side: ($offset_phonex / 2);
 $offset_phone_one_side: ($offset_phone / 2);
 $offset_iphone_one_side: ($offset_iphone / 2);
 
@@ -37,6 +40,7 @@ $fields_mdx: 15px;
 $fields_tablet: 15px;
 $fields_tabletl: 15px;
 $fields_tabletx: 15px;
+$fields_phonex: 10px;
 $fields_phone: 10px;
 $fields_iphone: 10px;
 
@@ -72,6 +76,11 @@ $fields_iphone: 10px;
     @include tabletx-block(){
         padding-left: $fields_tabletx;
         padding-right: $fields_tabletx;
+    }
+
+    @include phonex-block(){
+        padding-left: $fields_phonex;
+        padding-right: $fields_phonex;
     }
 
     @include phone-block(){
@@ -169,6 +178,11 @@ $fields_iphone: 10px;
 @mixin size-tabletx($n){
     $val: 100% / $columns * $n;
     @include tabletx(width, #{calc(#{$val} - #{$offset_tabletx})});
+}
+
+@mixin size-phonex($n){
+    $val: 100% / $columns * $n;
+    @include phonex(width, #{calc(#{$val} - #{$offset_phonex})});
 }
 
 @mixin size-phone($n){
@@ -405,6 +419,38 @@ $fields_iphone: 10px;
     @include tabletx(padding-right, #{calc(#{$val} + #{$offset_tabletx_one_side})});
 }
 
+@mixin shift-phonex($n){
+    $val: 100% / $columns * $n;
+    @include phonex(margin-left, #{calc(#{$val} + #{$offset_phonex_one_side})});
+    @include phonex(margin-right, #{calc(#{$val} + #{$offset_phonex_one_side})});
+}
+
+@mixin shift-phonex-left($n){
+    $val: 100% / $columns * $n;
+    @include phonex(margin-left, #{calc(#{$val} + #{$offset_phonex_one_side})});
+}
+
+@mixin shift-phonex-right($n){
+    $val: 100% / $columns * $n;
+    @include phonex(margin-right, #{calc(#{$val} + #{$offset_phonex_one_side})});
+}
+
+@mixin shift-phonex-padding($n){
+    $val: 100% / $columns * $n;
+    @include phonex(padding-left, #{calc(#{$val} + #{$offset_phonex_one_side})});
+    @include phonex(padding-right, #{calc(#{$val} + #{$offset_phonex_one_side})});
+}
+
+@mixin shift-phonex-padding-left($n){
+    $val: 100% / $columns * $n;
+    @include phonex(padding-left, #{calc(#{$val} + #{$offset_phonex_one_side})});
+}
+
+@mixin shift-phonex-padding-right($n){
+    $val: 100% / $columns * $n;
+    @include phonex(padding-right, #{calc(#{$val} + #{$offset_phonex_one_side})});
+}
+
 @mixin shift-phone($n){
     $val: 100% / $columns * $n;
     @include phone(margin-left, #{calc(#{$val} + #{$offset_phone_one_side})});
@@ -537,6 +583,18 @@ $fields_iphone: 10px;
 
 @mixin tabletx-block(){
     @media screen and (max-width: $break_tabletx){
+        @content;
+    }
+}
+
+@mixin phonex($name, $value){
+    @media screen and (max-width: $break_phonex){
+        #{$name}: $value;
+    }
+}
+
+@mixin phonex-block(){
+    @media screen and (max-width: $break_phonex){
         @content;
     }
 }

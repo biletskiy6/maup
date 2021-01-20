@@ -1,13 +1,12 @@
 <template>
-  <nuxt-link
+  <button
     class="v-btn hover"
     :class="[themes[theme], sizes[size]]"
-    :to="to"
-    @click.native="handleClick"
+    @click="handleClick"
   >
     <span><slot /></span>
     <span class="ripple"></span>
-  </nuxt-link>
+  </button>
 </template>
 <script>
 export default {

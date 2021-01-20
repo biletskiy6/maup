@@ -4,8 +4,8 @@
       <swiper-slide>
         <div class="slide-content">
           <h2 class="slider-header js-splitme">
-            <span class="word">Онлайн</span>
-            <span class="word">школа</span>
+            <span class="word">Всеукраинска</span>
+            <span class="word">онланй-школа</span>
             <span class="accent">
               <span class="word">для</span>
               <span class="word">9-11</span>
@@ -19,13 +19,13 @@
             Ви отримаєте свідоцтва про повну загальну середню освіту
           </p>
           <div class="controls">
-            <AppButton>
+            <AppButton theme="primary">
               <span class="icon"
                 ><i class="material-icons">arrow_forward</i></span
               >
               Розпочати навчання
             </AppButton>
-            <AppButton theme="white">Матеріали для батьків</AppButton>
+            <!--            <AppButton theme="white">Матеріали для батьків</AppButton>-->
           </div>
         </div>
       </swiper-slide>

@@ -3,9 +3,8 @@
     <div class="top-line">
       <div class="top-line__left">
         <Logo />
-        <ul v-if="false" class="main-menu">
+        <ul v-if="true" class="main-menu">
           <li><a href="#study-with-us">Навчання з нами - це</a></li>
-          <li><a href="#">Демо доступ</a></li>
           <li><a href="#">Вступ до школи</a></li>
           <li><a href="#">Вартість навчання</a></li>
         </ul>
@@ -17,7 +16,7 @@
           <li><a class="active" href="#">Ukr</a></li>
           <li><a href="#">Eng</a></li>
         </ul>
-        <MenuBurger @handleBurgerClick="handleBurgerClick" />
+        <!--        <MenuBurger @handleBurgerClick="handleBurgerClick" />-->
       </div>
     </div>
   </div>
@@ -28,14 +27,14 @@ import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import ScrollToPlugin from 'gsap/ScrollToPlugin'
 import AppButton from './AppButton'
-import MenuBurger from './MenuBurger'
+// import MenuBurger from './MenuBurger'
 import Logo from '@/components/Logo'
 gsap.registerPlugin(ScrollTrigger)
 gsap.registerPlugin(ScrollToPlugin)
 export default {
   name: 'AppHeader',
   components: {
-    MenuBurger,
+    // MenuBurger,
     AppButton,
     Logo
   },
@@ -58,6 +57,7 @@ export default {
           each: 0.05
         }
       })
+      this.$modal.show('auth')
     },
     pinHeader() {
       ScrollTrigger.create({

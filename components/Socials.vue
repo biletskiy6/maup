@@ -1,25 +1,40 @@
 <template>
-  <div class="socials-container">
-    <label for="socials">Соціальні мережі:</label>
+  <div class="socials-container" :class="layout">
+    <label v-if="label" for="socials">Соціальні мережі:</label>
     <ul id="socials" class="socials">
-      <li><a v-html="InstagramIcon" href="#"></a></li>
-      <li><a v-html="YoutubeIcon" href="#"></a></li>
-      <li><a v-html="FacebookIcon" href="#"></a></li>
+      <li v-for="social in socials" :key="social.name">
+        <a v-html="icons[social.name]" href="#"></a>
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
-import InstagramIcon from '@/assets/icons/instagram.svg?raw'
-import YoutubeIcon from '@/assets/icons/youtube.svg?raw'
-import FacebookIcon from '@/assets/icons/facebook.svg?raw'
+import { mapGetters } from 'vuex'
+import instagram from '@/assets/icons/instagram.svg?raw'
+import youtube from '@/assets/icons/youtube.svg?raw'
+import facebook from '@/assets/icons/facebook.svg?raw'
 export default {
   name: 'Socials',
+  computed: {
+    ...mapGetters({
+      socials: 'socials/socials'
+    })
+  },
+  props: {
+    label: {
+      type: Boolean,
+      default: false
+    },
+    layout: {
+      required: false,
+      type: String,
+      default: 'first'
+    }
+  },
   data() {
     return {
-      InstagramIcon,
-      YoutubeIcon,
-      FacebookIcon
+      icons: { instagram, youtube, facebook }
     }
   }
 }

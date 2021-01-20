@@ -42,7 +42,9 @@ export default {
    */
   plugins: [
     { src: '@/plugins/swiper.js', ssr: false },
-    { src: '@/plugins/smooth-scrollbar.js', ssr: false }
+    { src: '@/plugins/smooth-scrollbar.js', ssr: false },
+    { src: '@/plugins/modal.js', ssr: false },
+    { src: '@/plugins/vuelidate.js', ssr: false }
   ],
   /*
    ** Nuxt.js dev-modules

@@ -22,8 +22,17 @@ html {
 body {
   overflow-x: hidden;
   background-color: $grey;
+  color: $dark;
   @include scrollbars(8px, $grey, $dark);
 }
+
+@import 'components/app-modal';
+@import 'components/app-input';
+@import 'components/app-checkbox';
+@import 'components/close-button';
+@import 'components/common-section';
+@import 'modals/loyalty';
+
 a {
   &:focus {
     outline: none;
@@ -202,6 +211,9 @@ p {
 @include reset();
 
 button {
+  border: none;
+  outline: none;
+  cursor: pointer;
   &:focus {
     outline: none;
   }
@@ -228,7 +240,7 @@ button {
     //margin-right: 16px;
     margin-bottom: 6px;
     &:last-child {
-      margin-right: 0;
+      margin-bottom: 0;
     }
   }
   a {
@@ -336,9 +348,8 @@ button {
     width: 0;
     height: 0;
     border-radius: 100%;
-    background: #fff;
     transform: translate(-50%, -50%);
-    transition: width 0.7s, padding-top 0.7s;
+    transition: width 0.45s, padding-top 0.45s;
   }
   .icon {
     display: inline-flex;
@@ -357,12 +368,24 @@ button {
     position: relative;
     background-color: $blue;
     color: $white;
+    .ripple {
+      background: #fff;
+    }
+    &:hover {
+      color: $dark;
+      i {
+        color: $white;
+      }
+    }
   }
   &.white {
     background-color: $white;
     color: $blue;
+    .ripple {
+      background-color: $blue;
+    }
     &:hover {
-      //color: $white;
+      color: $white;
     }
   }
   &.outline-white {
@@ -496,7 +519,13 @@ button {
     left: 280px;
     bottom: 60px;
     @include lg-block() {
-      left: 100px;
+      left: $slider-lg-gutter;
+    }
+    @include tablet-block() {
+      left: $slider-tablet-gutter;
+    }
+    @include phonex-block() {
+      left: $slider-phonex-gutter;
     }
   }
   .swiper-pagination {
@@ -532,14 +561,29 @@ button {
   .slider-header {
     line-height: 80px;
     margin-bottom: 40px;
+    @include md-block() {
+      margin-bottom: 30px;
+      line-height: 70px;
+    }
+    @include tabletx-block() {
+      line-height: 50px;
+    }
   }
   .slider-title {
     margin-bottom: 32px;
+    @include tabletx-block() {
+      margin-bottom: 16px;
+    }
   }
   .slider-subtitle {
-    margin-bottom: 54px;
   }
 
+  .controls {
+    margin-top: 54px;
+    @include md-block() {
+      margin-top: 40px;
+    }
+  }
   /*padding: 15px;*/
 }
 body .swiper-button {
@@ -556,17 +600,35 @@ body .swiper-button {
       -webkit-font-feature-settings: 'liga';
       font-size: 24px;
     }
+    @include tabletx-block() {
+      width: 46px;
+      height: 46px;
+      &::after {
+        font-size: 18px;
+      }
+    }
+    @include phonex-block() {
+      display: none;
+    }
   }
   &-prev {
     border: 1px solid #c0c5c8;
     background-color: $grey;
+    left: 32px;
     &::after {
       content: 'arrow_back';
       color: #879197;
     }
+    @include tabletx-block() {
+      left: 16px;
+    }
   }
   &-next {
     background-color: $dark;
+    right: 32px;
+    @include tabletx-block() {
+      right: 16px;
+    }
     &::after {
       content: 'arrow_forward';
       color: #fff;
@@ -579,7 +641,20 @@ body .swiper-button {
   max-width: 980px;
   padding-left: 280px;
   @include lg-block() {
-    padding-left: 100px;
+    padding-left: $slider-lg-gutter;
+    padding-right: $slider-lg-gutter;
+  }
+  @include tablet-block() {
+    padding-left: $slider-tablet-gutter;
+    padding-right: $slider-tablet-gutter;
+  }
+  @include tabletx-block() {
+    padding-left: $slider-tabletx-gutter;
+    padding-right: $slider-tabletx-gutter;
+  }
+  @include phonex-block() {
+    padding-left: $slider-phonex-gutter;
+    padding-right: $slider-phonex-gutter;
   }
 }
 .swiper-wrapper {
@@ -592,10 +667,28 @@ body .swiper-button {
   font-family: $header-font;
   font-size: 72px;
   font-weight: 900;
+  @include md-block() {
+    font-size: $slider-header-md-size;
+  }
+  @include tablet-block() {
+    font-size: $slider-header-tablet-size;
+  }
+  @include tabletx-block() {
+    font-size: $slider-header-tabletx-size;
+  }
+  @include phonex-block() {
+    font-size: $slider-header-phonex-size;
+  }
+  @include phone-block() {
+    font-size: $slider-header-phone-size;
+  }
 }
 .slider-title {
   font-size: 26px;
   font-weight: 700;
+  @include tabletx-block() {
+    font-size: $slider-title-tabletx-size;
+  }
 }
 .slider-subtitle {
 }
@@ -1434,54 +1527,76 @@ body .swiper-button {
       display: inline-block;
       margin-right: 8px;
     }
-  }
-  li {
-    margin-right: 15px;
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-  a {
-    position: relative;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #fff;
-    width: 40px;
-    height: 40px;
-    border-radius: 6px;
-    background-color: transparent;
-    text-decoration: none;
-    overflow: hidden;
-    z-index: 2;
-    transition: color 0.35s ease;
-
-    span {
-      transition: transform 0.35s ease;
-    }
-
-    &::before {
-      position: absolute;
-      content: '';
-      width: 120%;
-      height: 120%;
-      background-color: $blue;
-      transform: rotate(45deg);
-      border-radius: 6px;
-      left: -110%;
-      top: 90%;
-      z-index: -1;
-    }
-    &:hover {
-      transition: color 0.35s ease;
-      &::before {
-        animation: link 0.7s 1;
-        top: -10%;
-        left: -10%;
+    li {
+      margin-right: 15px;
+      &:last-child {
+        margin-right: 0;
       }
-      svg {
-        transform: scale(1.2);
-        transition: transform 0.25s ease;
+    }
+    &.first {
+      a {
+        position: relative;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #fff;
+        width: 40px;
+        height: 40px;
+        border-radius: 6px;
+        background-color: transparent;
+        text-decoration: none;
+        overflow: hidden;
+        z-index: 2;
+        transition: color 0.35s ease;
+
+        span {
+          transition: transform 0.35s ease;
+        }
+
+        &::before {
+          position: absolute;
+          content: '';
+          width: 120%;
+          height: 120%;
+          background-color: $blue;
+          transform: rotate(45deg);
+          border-radius: 6px;
+          left: -110%;
+          top: 90%;
+          z-index: -1;
+        }
+        &:hover {
+          transition: color 0.35s ease;
+          &::before {
+            animation: link 0.7s 1;
+            top: -10%;
+            left: -10%;
+          }
+          svg {
+            transform: scale(1.2);
+            transition: transform 0.25s ease;
+          }
+        }
+      }
+    }
+    &.second {
+      a {
+        position: relative;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        //border: 1px solid #fff;
+        width: 16px;
+        height: 16px;
+        border-radius: 6px;
+        background-color: transparent;
+        text-decoration: none;
+        overflow: hidden;
+        z-index: 2;
+        transition: color 0.35s ease;
+        span {
+          transition: transform 0.35s ease;
+        }
       }
     }
   }

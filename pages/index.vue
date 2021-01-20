@@ -1,18 +1,47 @@
 <template>
   <div class="home-page">
     <Preloader v-if="false" />
+    <AppModal name="loyalty">
+      <LoyaltyModal />
+    </AppModal>
     <header class="main-header">
       <AppHeader />
       <HeroSlider />
     </header>
-    <StudyWithUs />
-    <OnlineSchool />
-    <DemoAccess />
+    <div class="common-section">
+      <h2 class="common-section__header section-title">
+        Замовити консультацію
+      </h2>
+      <p class="common-section__description">
+        Хочете отримати консультацію, звертайтесь! Ми завжди на зв'язку!
+      </p>
+      <form @submit.prevent>
+        <AppInput
+          v-model="name"
+          name="name"
+          type="text"
+          placeholder="Name"
+          :icon="UserIcon"
+        />
+        <CloseButton />
+        <AppCheckbox v-model="agree" />
+        <AppButton
+          @click="$modal.show('loyalty')"
+          type="submit"
+          theme="primary"
+        >
+          Відправити
+        </AppButton>
+      </form>
+    </div>
+    <!--    <StudyWithUs />-->
+    <!--    <OnlineSchool />-->
+    <!--    <DemoAccess />-->
     <Gallery />
-    <EducationProcess />
-    <EnterSchool v-if="false" />
-    <AdditionalOpps />
-    <Request />
+    <!--    <EducationProcess />-->
+    <!--    <EnterSchool v-if="false" />-->
+    <!--    <AdditionalOpps />-->
+    <!--    <Request />-->
     <Footer />
   </div>
 </template>
@@ -24,36 +53,56 @@ import { CSSRulePlugin } from 'gsap/CSSRulePlugin'
 import Preloader from '@/components/Preloader'
 import AppHeader from '@/components/AppHeader'
 import HeroSlider from '@/components/HeroSlider'
-import StudyWithUs from '@/components/sections/StudyWithUs'
-import OnlineSchool from '@/components/sections/OnlineSchool'
-import Footer from '@/components/Footer'
-import Request from '@/components/sections/Request'
-import AdditionalOpps from '@/components/sections/AdditionalOpps'
+import UserIcon from '@/assets/icons/user.svg?raw'
+import AppButton from '@/components/AppButton'
+// import StudyWithUs from '@/components/sections/StudyWithUs'
+// import OnlineSchool from '@/components/sections/OnlineSchool'
+// import Request from '@/components/sections/Request'
+// import AdditionalOpps from '@/components/sections/AdditionalOpps'
 import Gallery from '@/components/sections/Gallery'
-import EnterSchool from '@/components/sections/EnterSchool'
-import DemoAccess from '@/components/sections/DemoAccess'
-import EducationProcess from '@/components/sections/EducationProcess'
+// import EnterSchool from '@/components/sections/EnterSchool'
+// import DemoAccess from '@/components/sections/DemoAccess'
+// import EducationProcess from '@/components/sections/EducationProcess'
+import AppModal from '@/components/AppModal'
+import Footer from '@/components/Footer'
+import AppInput from '@/components/AppInput'
+import CloseButton from '@/components/CloseButton'
+import AppCheckbox from '@/components/AppCheckbox'
+import LoyaltyModal from '@/components/modals/LoyaltyModal'
 gsap.registerPlugin(CSSRulePlugin)
 export default {
   components: {
-    EducationProcess,
-    DemoAccess,
+    LoyaltyModal,
+    AppCheckbox,
+    CloseButton,
+    AppInput,
+    AppModal,
+    AppButton,
+    // EducationProcess,
+    // DemoAccess,
     Preloader,
-    EnterSchool,
+    // EnterSchool,
     Gallery,
-    AdditionalOpps,
-    Request,
+    // AdditionalOpps,
+    // Request,
     Footer,
-    OnlineSchool,
-    StudyWithUs,
+    // OnlineSchool,
+    // StudyWithUs,
     AppHeader,
     HeroSlider
+  },
+  data() {
+    return {
+      name: '',
+      UserIcon,
+      agree: false
+    }
   },
   mounted() {
     // eslint-disable-next-line nuxt/no-env-in-hooks
     this.splitText()
     const tl = gsap.timeline({ delay: 1 })
-    tl.add(this.animatePreloader())
+    // tl.add(this.animatePreloader())
     tl.add(this.animateTopLine())
     tl.add(this.animateSlider())
   },

@@ -29,7 +29,8 @@
                   Ви будете отримувати регулярно новини та повідомлень
                   електронною поштою
                 </p>
-                <Socials />
+                <Socials label layout="first" />
+                <Socials layout="second" />
               </div>
             </div>
           </div>

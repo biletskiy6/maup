@@ -34,6 +34,10 @@ const settings = {
       width: '768px',
       fields: '15px'
     },
+    phonex: {
+      width: '576px',
+      fields: '10px'
+    },
     phone: {
       width: '480px',
       fields: '10px'

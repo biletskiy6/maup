@@ -1,0 +1,17 @@
+.close-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background-color: #C0C5C8;
+  border-radius: 100%;
+  transition: background-color .25s ease;
+  &__icon {
+
+  }
+  &:hover {
+    background-color: $dark;
+    transition: background-color .25s ease;
+  }
+}
