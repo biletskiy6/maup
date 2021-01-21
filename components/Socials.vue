@@ -1,5 +1,5 @@
 <template>
-  <div class="socials-container" :class="layout">
+  <div class="socials-container" :class="{ [layout]: layout, [color]: color }">
     <label v-if="label" for="socials">Соціальні мережі:</label>
     <ul id="socials" class="socials">
       <li v-for="social in socials" :key="social.name">
@@ -30,6 +30,11 @@ export default {
       required: false,
       type: String,
       default: 'first'
+    },
+    color: {
+      required: false,
+      type: String,
+      default: 'white'
     }
   },
   data() {

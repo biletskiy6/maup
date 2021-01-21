@@ -31,6 +31,7 @@ body {
 @import 'components/app-checkbox';
 @import 'components/close-button';
 @import 'components/common-section';
+@import 'components/mobile-menu';
 @import 'modals/loyalty';
 
 a {
@@ -221,7 +222,7 @@ button {
 .language-switcher {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   margin-left: 32px;
@@ -237,10 +238,11 @@ button {
     left: -32px;
   }
   li {
-    //margin-right: 16px;
-    margin-bottom: 6px;
+    margin-right: 16px;
+    //margin-bottom: 6px;
     &:last-child {
-      margin-bottom: 0;
+      //margin-bottom: 0;
+      margin-right: 0;
     }
   }
   a {
@@ -260,9 +262,9 @@ button {
 .menu__burger {
   top: 0;
   right: 0;
-  z-index: 1;
-  width: 50px;
-  height: 50px;
+  z-index: 999;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   position: absolute;
   span {
@@ -286,9 +288,11 @@ button {
   transform: translate(-50%, -50%);
   span {
     height: 2px;
-    width: 18px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
     &:nth-child(2) {
-      margin: 4px 0;
+      margin: 4px auto;
     }
   }
 }
@@ -319,8 +323,9 @@ button {
   z-index: 1;
   width: 100%;
   height: 100%;
+  border-radius: 50%;
   position: absolute;
-  background: $blue;
+  background: $accent;
 }
 
 .v-btn {
@@ -1596,6 +1601,13 @@ body .swiper-button {
         transition: color 0.35s ease;
         span {
           transition: transform 0.35s ease;
+        }
+      }
+    }
+    &.grey {
+      a {
+        path {
+          fill: #879197;
         }
       }
     }

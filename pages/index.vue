@@ -7,6 +7,8 @@
     <header class="main-header">
       <AppHeader />
       <HeroSlider />
+      <MobileMenu />
+      <MenuBurger v-model="isMenuOpened" />
     </header>
     <div class="common-section">
       <h2 class="common-section__header section-title">
@@ -69,9 +71,13 @@ import AppInput from '@/components/AppInput'
 import CloseButton from '@/components/CloseButton'
 import AppCheckbox from '@/components/AppCheckbox'
 import LoyaltyModal from '@/components/modals/LoyaltyModal'
+import MobileMenu from '@/components/MobileMenu'
+import MenuBurger from '@/components/MenuBurger'
 gsap.registerPlugin(CSSRulePlugin)
 export default {
   components: {
+    MobileMenu,
+    MenuBurger,
     LoyaltyModal,
     AppCheckbox,
     CloseButton,
@@ -95,7 +101,8 @@ export default {
     return {
       name: '',
       UserIcon,
-      agree: false
+      agree: false,
+      isMenuOpened: false
     }
   },
   mounted() {

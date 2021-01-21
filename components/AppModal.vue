@@ -33,6 +33,7 @@ export default {
       handler(val) {
         if (val) {
           this.$nextTick(() => {
+            document.body.style.setProperty('overflow', 'hidden')
             const tl = gsap.timeline({ delay: 0.2 })
             tl.to('.app-modal', {
               clipPath: 'polygon(0 0, 110% 0, 90% 100%, 0 100%)',
@@ -46,6 +47,8 @@ export default {
               0.3
             )
           })
+        } else {
+          document.body.style.removeProperty('overflow', 'hidden')
         }
       }
     }

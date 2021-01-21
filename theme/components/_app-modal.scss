@@ -15,12 +15,25 @@
   //transform: translate3d(-100%, 0, 0);
   @include scrollbars(8px, rgba($dark, .8), rgba($dark, .2));
   &-inner {
+    position: relative;
     display: flex;
+    max-width: 75%;
+    margin: 0 auto;
+    .close-button {
+      position: absolute;
+      top: 56px;
+      right: 56px;
+    }
     //background: red;
   }
   &.loyalty {
     background-color: $dark;
-    .app-modal-inner {}
+    .app-modal-inner {
+      padding: 80px 16px 16px 16px;
+      //padding: 80px 230px 36px;
+      border-radius: 24px;
+      background-color: #fff;
+    }
   }
 }
 

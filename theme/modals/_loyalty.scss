@@ -1,4 +1,77 @@
 .loyalty-modal {
-  padding: 80px 15px 15px;
-  background-color: #fff;
+  &__top {
+    max-width: 80%;
+    text-align: center;
+    margin: auto;
+  }
+  &__text {
+    margin-top: 32px;
+  }
+}
+.loyalty-content {
+  padding: 80px 230px 36px;
+  max-height: 500px;
+  overflow-y: scroll;
+  @include scrollbars(8px, #C0C5C8, #F6F6F6);
+  &__header {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+  &__item {
+    margin-bottom: 32px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.loyalty-list {
+  &__item {
+    position: relative;
+    margin-bottom: 24px;
+    padding-left: 25px;
+    &::after {
+      position: absolute;
+      content: '';
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      background-color: $dark;
+      border-radius: 50%;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.to-remember {
+  background-color: #F6F6F6;
+  padding: 40px;
+  border-radius: 16px;
+  margin-top: 56px;
+  &__header {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+}
+
+
+.number-list {
+  //color: $dark;
+  &__item {
+    margin-bottom: 16px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  &__marker {
+    display: inline-block;
+    color: $accent;
+    margin-right: 8px;
+  }
 }
