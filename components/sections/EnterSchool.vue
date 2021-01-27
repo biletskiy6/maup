@@ -1,79 +1,81 @@
 <template>
   <div class="enter-school">
     <div class="container">
-      <div class="enter-school__content">
-        <div class="enter-school__top">
-          <h4 class="section-title">Вступ до школи</h4>
-          <ul class="enter-school__classes">
-            <li class="enter-school__class">9-11 class</li>
-          </ul>
+      <h4 class="section-title">Вступ до школи</h4>
+      <p class="section-text">
+        Що потрібно зробити, щоб зарахувати до нас дитину?
+      </p>
+    </div>
+    <div class="enter-school__content">
+      <div class="enter-school__left">
+        <img
+          src="~/assets/images/slide-1.png"
+          alt=""
+          class="enter-school__image"
+        />
+        <div class="enter-school__tooltip">
+          Якщо Ви знаходитесь <b>за межами України</b> або на
+          <b>тимчасово окупованій українській території </b> – вступити до школи
+          можливо без фізичної присутності заявника, використовуючи сучасні
+          засоби електронного та поштового зв`язку.
         </div>
-        <ul class="school-plans">
-          <li class="school-plan school-plan--proposal">
-            <h4>Економія при оплаті</h4>
-            <div class="timeline timeline--enter-school">
-              <span class="timeline-icon" v-html="timelineIcon"></span>
-              <div class="timeline__period">
-                <div class="timeline__header">Ekonomiya</div>
-                <ul>
-                  <li v-for="item in 6" :key="item">
-                    <div class="">
-                      <span class="round active"
-                        ><span class="round-inner"></span
-                      ></span>
-                      <span>1 місяць</span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="timeline__economy">
-                <div class="timeline__header">Project</div>
-                <ul>
-                  <li v-for="item in 6" :key="item">
-                    <div class="">
-                      <span class="round active"
-                        ><span class="round-inner"></span
-                      ></span>
-                      <span>0%</span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </li>
-          <li v-for="item in 3" :key="item" class="school-plan">
-            <h5 class="school-plan__header">«Державний стандарт»</h5>
-            <h6 class="school-plan__price"><span>2 500 ₴</span> в місяць</h6>
-            <div class="school-plan__items">
-              <div v-for="item in 7" :key="item" class="school-plan__item">
-                <div v-html="doneIcon" class="access available"></div>
-                <span class="school-plan__item-text">Тестування</span>
-              </div>
-              <AppButton>
-                Обрати
-              </AppButton>
-            </div>
+        <div class="circle"></div>
+      </div>
+      <div class="enter-school__right">
+        <h4 class="section-subtitle">
+          Необхідні документи для вступу у школу:
+        </h4>
+        <ul class="number-list">
+          <li
+            v-for="document in documents"
+            :key="document.id"
+            class="number-list__item"
+          >
+            <span class="number-list__marker">{{ document.id }})</span>
+            <span class="number-list__text">{{ document.content }}</span>
           </li>
         </ul>
+        <AppButton theme="white">Замовити консультацію</AppButton>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import timelineIcon from '@/assets/icons/timeline.svg?raw'
 import AppButton from '@/components/AppButton'
-import doneIcon from '@/assets/icons/done.svg?raw'
 export default {
   name: 'EnterSchool',
-  data() {
-    return {
-      timelineIcon,
-      doneIcon
-    }
-  },
   components: {
     AppButton
+  },
+  data() {
+    return {
+      documents: [
+        { id: 1, content: 'заява батьків або осіб, які їх замінюють;' },
+        { id: 2, content: 'копія свідоцтва про народження дитини;' },
+        {
+          id: 3,
+          content:
+            'паспорт та індентифікаційний код (для тих кому виповнилося 14 років);'
+        },
+        {
+          id: 4,
+          content: 'фото формату 3х4 у цифровому та паперовому вигляді;'
+        },
+        {
+          id: 5,
+          content:
+            'особова справа здобувача освіти з попереднього місця навчання;'
+        },
+        {
+          id: 6,
+          content:
+            'свідоцтво про базову загальну середню освіту (для здобувачів освіти, що закінчили 9 класів);'
+        },
+        { id: 7, content: 'табель (при вступі у II семестрі);' },
+        { id: 8, content: 'медична довідка за формою № 086-1/о.' }
+      ]
+    }
   }
 }
 </script>

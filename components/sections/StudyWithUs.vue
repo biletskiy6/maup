@@ -10,7 +10,7 @@
           alt=""
         />
       </div>
-      <h3 ref="title" class="section-title">
+      <h3 ref="title" class="default-left section-title">
         Навчання <br />
         з нами - це
       </h3>
@@ -23,21 +23,21 @@
             </p>
           </li>
           <li ref="studyProposal" class="study-proposal">
-            <div v-html="icons['clock']" class="study-icon"></div>
+            <div v-html="icons['bookReader']" class="study-icon"></div>
             <p class="study-text">
               Навчання незалежно від місця проживання/перебування й стану
               здоров'я
             </p>
           </li>
           <li ref="studyProposal" class="study-proposal">
-            <div v-html="icons['clock']" class="study-icon"></div>
+            <div v-html="icons['smile']" class="study-icon"></div>
             <p class="study-text">
               Відсутність стресів, ранніх підйомів, важких портфелів і
               додаткових витрат
             </p>
           </li>
           <li ref="studyProposal" class="study-proposal">
-            <div v-html="icons['clock']" class="study-icon"></div>
+            <div v-html="icons['trophy']" class="study-icon"></div>
             <p class="study-text">
               Додатковий вільний час на особистий розвиток дитини, хобі, гуртки
               й подорожі
@@ -50,6 +50,24 @@
         </AppButton>
       </div>
     </div>
+    <div class="study-intro default-left">
+      <ul class="study-intro-list">
+        <li class="study-intro-item">
+          <h4 class="section-title study-intro__header">1 000+</h4>
+          <p class="study-intro__text">учнів навчається</p>
+        </li>
+        <li class="study-intro-item">
+          <h4 class="section-title study-intro__header">7 376</h4>
+          <p class="study-intro__text">
+            з різних населених пунктів України потрібен лише інтернет
+          </p>
+        </li>
+        <li class="study-intro-item">
+          <h4 class="section-title study-intro__header">1 300</h4>
+          <p class="study-intro__text">вчителів співпрацює з нами</p>
+        </li>
+      </ul>
+    </div>
   </section>
 </template>
 
@@ -58,11 +76,19 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import AppButton from '@/components/AppButton'
 import clock from '~/assets/icons/clock.svg?raw'
+import trophy from '~/assets/icons/trophy.svg?raw'
+import smile from '~/assets/icons/smile.svg?raw'
+import bookReader from '~/assets/icons/book-reader.svg?raw'
 gsap.registerPlugin(ScrollTrigger)
 export default {
   name: 'StudyWithUs',
   components: {
     AppButton
+  },
+  data() {
+    return {
+      icons: { clock, trophy, smile, bookReader }
+    }
   },
   mounted() {
     // eslint-disable-next-line no-unused-vars
@@ -74,7 +100,6 @@ export default {
       studyProposals,
       studyProposal
     } = this.$refs
-    console.log(this.$refs)
     // eslint-disable-next-line no-unused-vars
     const action = gsap
       .timeline({
@@ -113,11 +138,6 @@ export default {
         0
       )
       .fromTo(revealImage, { scale: 1.6 }, { scale: 1 }, 0)
-  },
-  data() {
-    return {
-      icons: { clock }
-    }
   }
 }
 </script>

@@ -38,12 +38,13 @@
       </form>
     </div>
     <StudyWithUs />
-    <!--    <OnlineSchool />-->
+    <OnlineSchool />
     <!--    <DemoAccess />-->
     <!--    <Gallery />-->
-    <!--    <EducationProcess />-->
-    <!--    <EnterSchool v-if="false" />-->
-    <!--    <AdditionalOpps />-->
+    <EducationProcess />
+    <EducationCost />
+    <EnterSchool />
+    <AdditionalOpps />
     <!--    <Request />-->
     <Footer />
   </div>
@@ -59,13 +60,13 @@ import HeroSlider from '@/components/HeroSlider'
 import UserIcon from '@/assets/icons/user.svg?raw'
 import AppButton from '@/components/AppButton'
 import StudyWithUs from '@/components/sections/StudyWithUs'
-// import OnlineSchool from '@/components/sections/OnlineSchool'
+import OnlineSchool from '@/components/sections/OnlineSchool'
 // import Request from '@/components/sections/Request'
-// import AdditionalOpps from '@/components/sections/AdditionalOpps'
+import AdditionalOpps from '@/components/sections/AdditionalOpps'
 // import Gallery from '@/components/sections/Gallery'
-// import EnterSchool from '@/components/sections/EnterSchool'
+import EducationCost from '@/components/sections/EducationCost'
 // import DemoAccess from '@/components/sections/DemoAccess'
-// import EducationProcess from '@/components/sections/EducationProcess'
+import EducationProcess from '@/components/sections/EducationProcess'
 import AppModal from '@/components/AppModal'
 import Footer from '@/components/Footer'
 import AppInput from '@/components/AppInput'
@@ -75,9 +76,11 @@ import LoyaltyModal from '@/components/modals/LoyaltyModal'
 import MobileMenu from '@/components/MobileMenu'
 import MenuBurger from '@/components/MenuBurger'
 import TopBar from '@/components/TopBar'
+import EnterSchool from '@/components/sections/EnterSchool'
 gsap.registerPlugin(CSSRulePlugin)
 export default {
   components: {
+    EnterSchool,
     TopBar,
     MobileMenu,
     MenuBurger,
@@ -87,15 +90,15 @@ export default {
     AppInput,
     AppModal,
     AppButton,
-    // EducationProcess,
+    EducationProcess,
     // DemoAccess,
     Preloader,
-    // EnterSchool,
+    EducationCost,
     // Gallery,
-    // AdditionalOpps,
+    AdditionalOpps,
     // Request,
     Footer,
-    // OnlineSchool,
+    OnlineSchool,
     StudyWithUs,
     AppHeader,
     HeroSlider
@@ -183,6 +186,7 @@ export default {
           { y: '-100%', ease: 'expo.easeInOut', delay: 0.9 },
           'counterFinished'
         )
+      return tl
       // .to('.preloader', {
       //   autoAlpha: 0
       // })

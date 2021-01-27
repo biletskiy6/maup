@@ -22,13 +22,15 @@
               </ul>
             </div>
             <div class="education-process__description">
-              <div class="education-process__info">
-                <h3><span v-html="presentaionIcon"></span>Відеоурок</h3>
+              <div
+                v-for="item in educationItems"
+                :key="item.name"
+                class="education-process__info"
+                :class="{ active: item.isActive }"
+              >
+                <h3><span v-html="presentaionIcon"></span>{{ item.name }}</h3>
                 <p>
-                  Заняття проходять інтенсивно, з мінімальним часом біля екрану
-                  і максимумом спілкування. Багато дебатів, проектів, дискусій,
-                  конференцій, власноручних лабораторних робіт. Уроки живі з
-                  кращими онлайн вчителями, а також відеоуроки.
+                  {{ item.content }}
                 </p>
               </div>
             </div>
@@ -55,8 +57,20 @@ export default {
       timelineIcon,
       presentaionIcon,
       educationItems: [
-        { id: 'video', name: 'Відеоурок', isActive: true },
-        { id: 'e-book', name: 'Електронний підручник', isActive: false },
+        {
+          id: 'video',
+          name: 'Відеоурок',
+          isActive: true,
+          content:
+            'Заняття проходять інтенсивно, з мінімальним часом біля екрану і максимумом спілкування. Багато дебатів, проектів, дискусій, конференцій, власноручних лабораторних робіт. Уроки живі з кращими онлайн вчителями, а також відеоуроки.'
+        },
+        {
+          id: 'e-book',
+          name: 'Електронний підручник',
+          isActive: false,
+          content:
+            'З232аняття проходять інтенсивно, з мінімальним часом біля екрану і максимумом спілкування. Багато дебатів'
+        },
         { id: 'consulting', name: 'Консультації', isActive: false },
         { id: 'homework', name: 'Домашнє завдання', isActive: false },
         { id: 'exam', name: 'Контрольна робота', isActive: false },

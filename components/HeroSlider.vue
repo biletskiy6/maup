@@ -54,9 +54,7 @@
           </h2>
           <div class="controls">
             <AppButton>
-              <span class="icon"
-                ><i class="material-icons">arrow_forward</i></span
-              >
+              <span v-html="arrowRight" class="icon"></span>
               Розпочати навчання
             </AppButton>
           </div>
@@ -64,7 +62,7 @@
       </swiper-slide>
       <div class="swiper-pagination swiper-pagination1" slot="pagination"></div>
     </swiper>
-    <button class="swiper-button-prev"></button>
+    <button v-html="arrowRight" class="swiper-button-prev"></button>
     <button class="swiper-button-next"></button>
   </div>
 </template>
@@ -73,6 +71,7 @@
 // import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 // import 'swiper/css/swiper.css'
 import AppButton from './AppButton'
+import arrowRight from '@/assets/icons/arrow-right.svg?raw'
 export default {
   name: 'HeroSlider',
   title: '3D Cube effect',
@@ -81,6 +80,7 @@ export default {
   },
   data() {
     return {
+      arrowRight,
       swiperOption: {
         effect: 'cube',
         grabCursor: false,
