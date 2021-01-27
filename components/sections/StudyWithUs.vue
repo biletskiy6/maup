@@ -14,19 +14,41 @@
         Навчання <br />
         з нами - це
       </h3>
-      <ul ref="studyProposals" class="study-proposals">
-        <li
-          ref="studyProposal"
-          v-for="item in 4"
-          :key="item"
-          class="study-proposal"
-        >
-          <div v-html="icons['clock']" class="study-icon"></div>
-          <p class="study-text">
-            Навчання за індивідуальним графіком на своїй швидкості сприйняття
-          </p>
-        </li>
-      </ul>
+      <div ref="studyProposals" class="study-proposals-container">
+        <ul class="study-proposals">
+          <li ref="studyProposal" class="study-proposal">
+            <div v-html="icons['clock']" class="study-icon"></div>
+            <p class="study-text">
+              Навчання за індивідуальним графіком на своїй швидкості сприйняття
+            </p>
+          </li>
+          <li ref="studyProposal" class="study-proposal">
+            <div v-html="icons['clock']" class="study-icon"></div>
+            <p class="study-text">
+              Навчання незалежно від місця проживання/перебування й стану
+              здоров'я
+            </p>
+          </li>
+          <li ref="studyProposal" class="study-proposal">
+            <div v-html="icons['clock']" class="study-icon"></div>
+            <p class="study-text">
+              Відсутність стресів, ранніх підйомів, важких портфелів і
+              додаткових витрат
+            </p>
+          </li>
+          <li ref="studyProposal" class="study-proposal">
+            <div v-html="icons['clock']" class="study-icon"></div>
+            <p class="study-text">
+              Додатковий вільний час на особистий розвиток дитини, хобі, гуртки
+              й подорожі
+            </p>
+          </li>
+        </ul>
+        <AppButton>
+          <span class="icon"><i class="material-icons">arrow_forward</i></span>
+          Дізнатися більше
+        </AppButton>
+      </div>
     </div>
   </section>
 </template>
@@ -34,10 +56,14 @@
 <script>
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import AppButton from '@/components/AppButton'
 import clock from '~/assets/icons/clock.svg?raw'
 gsap.registerPlugin(ScrollTrigger)
 export default {
   name: 'StudyWithUs',
+  components: {
+    AppButton
+  },
   mounted() {
     // eslint-disable-next-line no-unused-vars
     const {

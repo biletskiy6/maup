@@ -5,12 +5,13 @@
       <LoyaltyModal />
     </AppModal>
     <header class="main-header">
+      <TopBar />
       <AppHeader />
-      <HeroSlider />
+      <client-only><HeroSlider /></client-only>
       <MobileMenu />
-      <MenuBurger v-model="isMenuOpened" />
+      <MenuBurger v-if="false" v-model="isMenuOpened" />
     </header>
-    <div class="common-section">
+    <div v-if="false" class="common-section">
       <h2 class="common-section__header section-title">
         Замовити консультацію
       </h2>
@@ -36,10 +37,10 @@
         </AppButton>
       </form>
     </div>
-    <!--    <StudyWithUs />-->
+    <StudyWithUs />
     <!--    <OnlineSchool />-->
     <!--    <DemoAccess />-->
-    <Gallery />
+    <!--    <Gallery />-->
     <!--    <EducationProcess />-->
     <!--    <EnterSchool v-if="false" />-->
     <!--    <AdditionalOpps />-->
@@ -57,11 +58,11 @@ import AppHeader from '@/components/AppHeader'
 import HeroSlider from '@/components/HeroSlider'
 import UserIcon from '@/assets/icons/user.svg?raw'
 import AppButton from '@/components/AppButton'
-// import StudyWithUs from '@/components/sections/StudyWithUs'
+import StudyWithUs from '@/components/sections/StudyWithUs'
 // import OnlineSchool from '@/components/sections/OnlineSchool'
 // import Request from '@/components/sections/Request'
 // import AdditionalOpps from '@/components/sections/AdditionalOpps'
-import Gallery from '@/components/sections/Gallery'
+// import Gallery from '@/components/sections/Gallery'
 // import EnterSchool from '@/components/sections/EnterSchool'
 // import DemoAccess from '@/components/sections/DemoAccess'
 // import EducationProcess from '@/components/sections/EducationProcess'
@@ -73,9 +74,11 @@ import AppCheckbox from '@/components/AppCheckbox'
 import LoyaltyModal from '@/components/modals/LoyaltyModal'
 import MobileMenu from '@/components/MobileMenu'
 import MenuBurger from '@/components/MenuBurger'
+import TopBar from '@/components/TopBar'
 gsap.registerPlugin(CSSRulePlugin)
 export default {
   components: {
+    TopBar,
     MobileMenu,
     MenuBurger,
     LoyaltyModal,
@@ -88,12 +91,12 @@ export default {
     // DemoAccess,
     Preloader,
     // EnterSchool,
-    Gallery,
+    // Gallery,
     // AdditionalOpps,
     // Request,
     Footer,
     // OnlineSchool,
-    // StudyWithUs,
+    StudyWithUs,
     AppHeader,
     HeroSlider
   },
@@ -107,11 +110,11 @@ export default {
   },
   mounted() {
     // eslint-disable-next-line nuxt/no-env-in-hooks
-    this.splitText()
-    const tl = gsap.timeline({ delay: 1 })
+    // this.splitText()
+    // const tl = gsap.timeline({ delay: 1, paused: false })
     // tl.add(this.animatePreloader())
-    tl.add(this.animateTopLine())
-    tl.add(this.animateSlider())
+    // tl.add(this.animateTopLine())
+    // tl.add(this.animateSlider())
   },
   methods: {
     splitText() {

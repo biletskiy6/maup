@@ -14,6 +14,10 @@ const settings = {
       width: '1680px',
       fields: '15px'
     },
+    mdl: {
+      width: '1450px',
+      fields: '15px'
+    },
     md: {
       width: '1366px',
       fields: '15px'

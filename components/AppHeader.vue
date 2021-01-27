@@ -1,22 +1,24 @@
 <template>
   <div class="app-header">
     <div class="top-line">
-      <div class="top-line__left">
-        <Logo />
-        <ul v-if="true" class="main-menu">
-          <li><a href="#study-with-us">Навчання з нами - це</a></li>
-          <li><a href="#">Вступ до школи</a></li>
-          <li><a href="#">Вартість навчання</a></li>
-        </ul>
-      </div>
-
-      <div class="top-line__right">
-        <AppButton theme="white" size="small">Вхід</AppButton>
-        <ul class="language-switcher">
-          <li><a class="active" href="#">Ukr</a></li>
-          <li><a href="#">Eng</a></li>
-        </ul>
-        <!--        <MenuBurger @handleBurgerClick="handleBurgerClick" />-->
+      <div class="top-line__content">
+        <div class="top-line__left">
+          <Logo />
+          <ul class="main-menu">
+            <li
+              v-for="item in menuItems"
+              :key="item.id"
+              id="menu__study-with-us"
+            >
+              <a class="link-style" href="#study-with-us">{{ item.name }}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="top-line__right">
+          <a class="link-style" href="#study-with-us">Зв'язатися з нами</a>
+          <AppButton theme="white" size="small">Вхід</AppButton>
+          <MenuBurger />
+        </div>
       </div>
     </div>
   </div>
@@ -24,40 +26,74 @@
 
 <script>
 import gsap from 'gsap'
+import CSSRulePlugin from 'gsap/CSSRulePlugin'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import ScrollToPlugin from 'gsap/ScrollToPlugin'
 import AppButton from './AppButton'
-// import MenuBurger from './MenuBurger'
+import MenuBurger from './MenuBurger'
 import Logo from '@/components/Logo'
+import { menuItems } from '@/setup'
 gsap.registerPlugin(ScrollTrigger)
 gsap.registerPlugin(ScrollToPlugin)
+gsap.registerPlugin(CSSRulePlugin)
 export default {
   name: 'AppHeader',
   components: {
-    // MenuBurger,
+    MenuBurger,
     AppButton,
     Logo
   },
+  data() {
+    return {
+      menuItems,
+      isOpen: false
+    }
+  },
   mounted() {
+    console.log('mounted')
+    this.handleDetectActiveNav()
     this.pinHeader()
     this.scrollToSection()
   },
   methods: {
-    handleBurgerClick() {
-      const tl = gsap.timeline()
-      tl.to('.burger__open span', {
-        x: '-105%',
-        stagger: {
-          each: 0.05
-        }
-      }).to('.burger__close span', {
-        x: 0,
-        y: 0,
-        stagger: {
-          each: 0.05
-        }
+    handleDetectActiveNav() {
+      gsap.utils.toArray('section').forEach((section) => {
+        const activeSection = section.id
+        const menuitem = 'menu__'.concat(activeSection)
+        const menulink = document.getElementById(menuitem).querySelector('a')
+        gsap.timeline({
+          id: 'Nav Animation',
+          defaults: { duration: 0.5 },
+          scrollTrigger: {
+            // markers: true,
+            trigger: section,
+            start: 'top 200px',
+            end: 'bottom 0%',
+            toggleActions: 'play reverse play reverse',
+            onToggle: (self) =>
+              self.isActive
+                ? menulink.classList.add('highlighted')
+                : menulink.classList.remove('highlighted')
+          }
+        })
+        // const menuitem = 'menu__'.concat(activeSection);
       })
-      this.$modal.show('auth')
+    },
+    handleBurgerClick() {
+      // const tl = gsap.timeline()
+      // tl.to('.burger__open span', {
+      //   x: '-105%',
+      //   stagger: {
+      //     each: 0.05
+      //   }
+      // }).to('.burger__close span', {
+      //   x: 0,
+      //   y: 0,
+      //   stagger: {
+      //     each: 0.05
+      //   }
+      // })
+      // this.$modal.show('auth')
     },
     pinHeader() {
       ScrollTrigger.create({

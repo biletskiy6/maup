@@ -4,20 +4,17 @@
       <swiper-slide>
         <div class="slide-content">
           <h2 class="slider-header js-splitme">
-            <span class="word">Всеукраинска</span>
-            <span class="word">онланй-школа</span>
-            <span class="accent">
-              <span class="word">для</span>
-              <span class="word">9-11</span>
-              <span class="word">класів!</span>
-            </span>
+            <span class="word">Всеукраїнська онлайн <br /></span>
+            <span class="word">школа Libera School</span>
+            <!--            <span class="accent">-->
+            <!--              <span class="word">для</span>-->
+            <!--              <span class="word">9-11</span>-->
+            <!--              <span class="word">класів!</span>-->
+            <!--            </span>-->
           </h2>
           <h3 class="slider-title">
-            Ми навчаємо дистанційно!
+            Вступи та отримай знижку на навчання
           </h3>
-          <p class="slider-subtitle">
-            Ви отримаєте свідоцтва про повну загальну середню освіту
-          </p>
           <div class="controls">
             <AppButton theme="primary">
               <span class="icon"
@@ -32,14 +29,29 @@
       <swiper-slide>
         <div class="slide-content">
           <h2 class="slider-header">
-            Онлайн школа <span class="accent">для 9-11 класів!</span>
+            Триває набір <span class="accent">для 9-11 класів!</span>
           </h2>
           <h3 class="slider-title">
-            Ми навчаємо дистанційно!
+            Вступи та отримай знижку на навчання
           </h3>
-          <p class="slider-subtitle">
-            Ви отримаєте свідоцтва про повну загальну середню освіту
-          </p>
+          <div class="controls">
+            <AppButton>
+              <span class="icon"
+                ><i class="material-icons">arrow_forward</i></span
+              >
+              Замовити консультацію
+            </AppButton>
+          </div>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div class="slide-content">
+          <h2 class="slider-header">
+            <span class="word">Створи</span>
+            <span class="word">свій</span>
+            <span class="word">перший <br /></span>
+            <span class="word">Telegram-бот</span>
+          </h2>
           <div class="controls">
             <AppButton>
               <span class="icon"
@@ -47,7 +59,6 @@
               >
               Розпочати навчання
             </AppButton>
-            <AppButton theme="white">Матеріали для батьків</AppButton>
           </div>
         </div>
       </swiper-slide>
@@ -84,6 +95,14 @@ export default {
           slideShadows: true,
           shadowOffset: 20,
           shadowScale: 0.94
+        },
+        on: {
+          slideChange() {
+            console.log(this)
+            return this.realIndex === 1
+              ? document.querySelector('.main-header').classList.add('dark')
+              : document.querySelector('.main-header').classList.remove('dark')
+          }
         },
         pagination: {
           el: '.hero-slider .swiper-pagination1',
