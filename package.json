@@ -17,6 +17,7 @@
     "@nuxtjs/pwa": "^3.0.0-0",
     "@nuxtjs/svg": "^0.1.12",
     "gsap": "^3.5.1",
+    "lodash.startcase": "^4.4.0",
     "nuxt": "^2.0.0",
     "nuxt-font-loader-strategy": "^1.1.2",
     "sass": "^1.32.0",
@@ -26,6 +27,8 @@
     "split-html-to-chars": "^1.0.5",
     "swiper": "5.3.7",
     "vue-awesome-swiper": "^4.1.1",
+    "vue-select": "^3.11.2",
+    "vuejs-paginate": "^2.1.0",
     "vuelidate": "^0.7.6"
   },
   "devDependencies": {

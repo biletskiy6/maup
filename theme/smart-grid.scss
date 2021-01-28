@@ -2,6 +2,7 @@ $columns: 12;
 $atom: (100% / $columns);
 
 $break_lg: 1680px;
+$break_lgm: 1600px;
 $break_mdl: 1450px;
 $break_md: 1366px;
 $break_mdx: 1280px;
@@ -14,6 +15,7 @@ $break_iphone: 320px;
 
 $offset: 20px;
 $offset_lg: $offset;
+$offset_lgm: $offset;
 $offset_mdl: $offset;
 $offset_md: $offset;
 $offset_mdx: $offset;
@@ -26,6 +28,7 @@ $offset_iphone: $offset;
 
 $offset_one_side: ($offset / 2);
 $offset_lg_one_side: ($offset_lg / 2);
+$offset_lgm_one_side: ($offset_lgm / 2);
 $offset_mdl_one_side: ($offset_mdl / 2);
 $offset_md_one_side: ($offset_md / 2);
 $offset_mdx_one_side: ($offset_mdx / 2);
@@ -38,6 +41,7 @@ $offset_iphone_one_side: ($offset_iphone / 2);
 
 $fields: 20px;
 $fields_lg: 15px;
+$fields_lgm: 15px;
 $fields_mdl: 15px;
 $fields_md: 15px;
 $fields_mdx: 15px;
@@ -55,6 +59,11 @@ $fields_iphone: 10px;
     @include lg-block(){
         padding-left: $fields_lg;
         padding-right: $fields_lg;
+    }
+
+    @include lgm-block(){
+        padding-left: $fields_lgm;
+        padding-right: $fields_lgm;
     }
 
     @include mdl-block(){
@@ -164,6 +173,11 @@ $fields_iphone: 10px;
     @include lg(width, #{calc(#{$val} - #{$offset_lg})});
 }
 
+@mixin size-lgm($n){
+    $val: 100% / $columns * $n;
+    @include lgm(width, #{calc(#{$val} - #{$offset_lgm})});
+}
+
 @mixin size-mdl($n){
     $val: 100% / $columns * $n;
     @include mdl(width, #{calc(#{$val} - #{$offset_mdl})});
@@ -271,6 +285,38 @@ $fields_iphone: 10px;
 @mixin shift-lg-padding-right($n){
     $val: 100% / $columns * $n;
     @include lg(padding-right, #{calc(#{$val} + #{$offset_lg_one_side})});
+}
+
+@mixin shift-lgm($n){
+    $val: 100% / $columns * $n;
+    @include lgm(margin-left, #{calc(#{$val} + #{$offset_lgm_one_side})});
+    @include lgm(margin-right, #{calc(#{$val} + #{$offset_lgm_one_side})});
+}
+
+@mixin shift-lgm-left($n){
+    $val: 100% / $columns * $n;
+    @include lgm(margin-left, #{calc(#{$val} + #{$offset_lgm_one_side})});
+}
+
+@mixin shift-lgm-right($n){
+    $val: 100% / $columns * $n;
+    @include lgm(margin-right, #{calc(#{$val} + #{$offset_lgm_one_side})});
+}
+
+@mixin shift-lgm-padding($n){
+    $val: 100% / $columns * $n;
+    @include lgm(padding-left, #{calc(#{$val} + #{$offset_lgm_one_side})});
+    @include lgm(padding-right, #{calc(#{$val} + #{$offset_lgm_one_side})});
+}
+
+@mixin shift-lgm-padding-left($n){
+    $val: 100% / $columns * $n;
+    @include lgm(padding-left, #{calc(#{$val} + #{$offset_lgm_one_side})});
+}
+
+@mixin shift-lgm-padding-right($n){
+    $val: 100% / $columns * $n;
+    @include lgm(padding-right, #{calc(#{$val} + #{$offset_lgm_one_side})});
 }
 
 @mixin shift-mdl($n){
@@ -569,6 +615,18 @@ $fields_iphone: 10px;
 
 @mixin lg-block(){
     @media screen and (max-width: $break_lg){
+        @content;
+    }
+}
+
+@mixin lgm($name, $value){
+    @media screen and (max-width: $break_lgm){
+        #{$name}: $value;
+    }
+}
+
+@mixin lgm-block(){
+    @media screen and (max-width: $break_lgm){
         @content;
     }
 }

@@ -1,78 +1,129 @@
 <template>
-  <div class="education-cost">
+  <section id="education-cost" class="education-cost">
     <div class="container">
       <div class="education-cost__content">
         <div class="education-cost__top">
-          <h4 class="section-title">Вступ до школи</h4>
+          <div class="education-cost__top-wrapper">
+            <h4 class="section-title">Вартість навчання</h4>
+            <SelectCurrency
+              v-model="isActive"
+              class="select-currency"
+              transition="translate-fade-down"
+            >
+              <button class="btn btn-primary dropdown-toggle">
+                <span class="select-currency__header">Валюта</span>
+                <span class="select-currency__currency"
+                  >{{ activeCurrency.name }}
+                  <span class="select-currency__icon" v-html="downIcon"></span>
+                </span>
+              </button>
+              <div slot="dropdown" class="dropdown-list">
+                <a
+                  v-for="currency in currencies"
+                  :key="currency.slug"
+                  class="dropdown-item"
+                  :class="{ active: activeCurrency.slug === currency.slug }"
+                  href="#"
+                  @click.prevent="setCurrency(currency.slug)"
+                >
+                  <span class="dropdown-item__text">{{ currency.name }}</span>
+                  <span class="dropdown-list__icon" v-html="doneIcon"></span>
+                </a>
+              </div>
+            </SelectCurrency>
+          </div>
           <ul class="education-cost__classes">
-            <li class="education-cost__class">9-11 class</li>
+            <li class="education-cost__class">9-11 клас</li>
           </ul>
         </div>
         <ul class="school-plans">
           <li class="school-plan school-plan--proposal">
             <h4>Економія при оплаті</h4>
             <div class="timeline timeline--education-cost">
-              <span class="timeline-icon" v-html="timelineIcon"></span>
-              <div class="timeline__period">
-                <div class="timeline__header">Ekonomiya</div>
-                <ul>
-                  <li v-for="item in 6" :key="item">
-                    <div class="">
-                      <span class="round active"
-                        ><span class="round-inner"></span
-                      ></span>
-                      <span>1 місяць</span>
-                    </div>
-                  </li>
-                </ul>
+              <div class="timeline__container">
+                <div class="timeline-icon" v-html="timelineIcon"></div>
+                <div class="timeline__period">
+                  <div class="timeline__header">Період</div>
+                  <ul>
+                    <li v-for="item in 5" :key="item">
+                      <div class="">
+                        <span class="round active"
+                          ><span class="round-inner"></span
+                        ></span>
+                        <span>1 місяць</span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="timeline__economy">
+                  <div class="timeline__header">Економія</div>
+                  <ul>
+                    <li v-for="item in 5" :key="item">
+                      <div class="">
+                        <span>0%</span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <div class="timeline__economy">
-                <div class="timeline__header">Project</div>
-                <ul>
-                  <li v-for="item in 6" :key="item">
-                    <div class="">
-                      <span class="round active"
-                        ><span class="round-inner"></span
-                      ></span>
-                      <span>0%</span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+              <AppButton theme="white" block>Всі знижки</AppButton>
             </div>
           </li>
           <li v-for="item in 3" :key="item" class="school-plan">
             <h5 class="school-plan__header">«Державний стандарт»</h5>
             <h6 class="plan-price"><span>2 500 ₴</span> в місяць</h6>
-            <div class="school-plan__items">
-              <div v-for="item in 7" :key="item" class="school-plan__item">
-                <div v-html="doneIcon" class="access available"></div>
+            <ul class="school-plan__items">
+              <li v-for="item in 7" :key="item" class="school-plan__item">
+                <div class="access available" v-html="doneIcon"></div>
                 <span class="school-plan__item-text">Тестування</span>
-              </div>
-              <AppButton>
-                Обрати
-              </AppButton>
-            </div>
+              </li>
+            </ul>
+            <AppButton block>
+              Обрати
+            </AppButton>
           </li>
         </ul>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
 import timelineIcon from '@/assets/icons/timeline.svg?raw'
 import AppButton from '@/components/AppButton'
-import doneIcon from '@/assets/icons/done.svg?raw'
+import doneIcon from '@/assets/icons/done-2.svg?raw'
+import SelectCurrency from '@/components/SelectCurrency'
+import downIcon from '@/assets/icons/down.svg?raw'
 export default {
   name: 'EducationCost',
   components: {
+    SelectCurrency,
     AppButton
   },
   data() {
     return {
       timelineIcon,
-      doneIcon
+      downIcon,
+      doneIcon,
+      isActive: false,
+      currency: 'uah',
+      currencies: [
+        { slug: 'uah', name: 'грн', isActive: true },
+        { slug: 'usd', name: 'usd', isActive: false },
+        { slug: 'euro', name: 'евро', isActive: false }
+      ]
+    }
+  },
+  computed: {
+    activeCurrency() {
+      return this.currencies.find((i) => i.isActive)
+    }
+  },
+  methods: {
+    setCurrency(slug) {
+      this.currencies.forEach((i) => (i.isActive = false))
+      const item = this.currencies.find((i) => i.slug === slug)
+      return item ? (item.isActive = true) : null
     }
   }
 }

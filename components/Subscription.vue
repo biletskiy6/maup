@@ -1,8 +1,8 @@
 <template>
   <div class="subscription">
     <div class="subscription__container">
-      <form @submit.prevent class="subscription__form" action="">
-        <span v-html="mail" class="subscription__icon"></span>
+      <form class="subscription__form" action="" @submit.prevent>
+        <span class="subscription__icon" v-html="mail"></span>
         <input
           type="text"
           placeholder="Електронна пошта"

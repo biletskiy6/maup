@@ -1,5 +1,5 @@
 <template>
-  <div class="enter-school">
+  <section id="enter-school" class="enter-school">
     <div class="container">
       <h4 class="section-title">Вступ до школи</h4>
       <p class="section-text">
@@ -9,7 +9,7 @@
     <div class="enter-school__content">
       <div class="enter-school__left">
         <img
-          src="~/assets/images/slide-1.png"
+          src="~/assets/images/enter-school.png"
           alt=""
           class="enter-school__image"
         />
@@ -19,26 +19,30 @@
           можливо без фізичної присутності заявника, використовуючи сучасні
           засоби електронного та поштового зв`язку.
         </div>
-        <div class="circle"></div>
+        <div class="circle">
+          <div class="circle__round"></div>
+        </div>
       </div>
       <div class="enter-school__right">
-        <h4 class="section-subtitle">
-          Необхідні документи для вступу у школу:
-        </h4>
-        <ul class="number-list">
-          <li
-            v-for="document in documents"
-            :key="document.id"
-            class="number-list__item"
-          >
-            <span class="number-list__marker">{{ document.id }})</span>
-            <span class="number-list__text">{{ document.content }}</span>
-          </li>
-        </ul>
-        <AppButton theme="white">Замовити консультацію</AppButton>
+        <div class="enter-school__right-container">
+          <h4 class="section-subtitle">
+            Необхідні документи для вступу у школу:
+          </h4>
+          <ul class="number-list">
+            <li
+              v-for="document in documents"
+              :key="document.id"
+              class="number-list__item"
+            >
+              <span class="number-list__marker">{{ document.id }})</span>
+              <span class="number-list__text">{{ document.content }}</span>
+            </li>
+          </ul>
+          <AppButton theme="white">Замовити консультацію</AppButton>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

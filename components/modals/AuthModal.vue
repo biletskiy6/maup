@@ -1,8 +1,6 @@
 <template>
-  <div class='auth-modal'>
-    <div class='auth-modal__content'>
-
-    </div>
+  <div class="auth-modal">
+    <div class="auth-modal__content"></div>
   </div>
 </template>
 

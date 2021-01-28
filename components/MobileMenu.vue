@@ -8,8 +8,8 @@
       <div class="mobile-menu__bar">
         <Logo />
         <button
-          @click="$store.commit('menu/resetOpen')"
           class="mobile-menu__close"
+          @click="$store.commit('menu/resetOpen')"
         >
           <span></span>
           <span></span>

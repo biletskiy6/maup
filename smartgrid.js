@@ -14,6 +14,10 @@ const settings = {
       width: '1680px',
       fields: '15px'
     },
+    lgm: {
+      width: '1600px',
+      fields: '15px'
+    },
     mdl: {
       width: '1450px',
       fields: '15px'

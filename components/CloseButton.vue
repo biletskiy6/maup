@@ -1,6 +1,6 @@
 <template>
-  <button @click="$emit('close')" class="close-button">
-    <span v-html="CloseIcon" class="close-button__icon"></span>
+  <button class="close-button" @click="$emit('close')">
+    <span class="close-button__icon" v-html="CloseIcon"></span>
   </button>
 </template>
 

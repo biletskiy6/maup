@@ -1,6 +1,7 @@
 <template>
   <div class="app-input">
     <input
+      v-if="type !== 'textarea'"
       :id="name"
       :name="name"
       :type="inputType"
@@ -9,6 +10,17 @@
       class="v-input v-text-field v-input theme--light v-text-field--is-booted"
       @input="$emit('input', $event.target.value)"
     />
+    <textarea
+      v-if="type === 'textarea'"
+      :id="name"
+      :name="name"
+      :type="inputType"
+      :value="value"
+      v-bind="$attrs"
+      class="v-input v-textarea v-text-field v-input theme--light v-text-field--is-booted"
+      @input="$emit('input', $event.target.value)"
+    >
+    </textarea>
     <span class="app-input__icon" v-html="icon"></span>
     <a
       v-if="type === 'password'"

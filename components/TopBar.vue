@@ -11,9 +11,9 @@
 <script>
 import Socials from '@/components/Socials'
 export default {
+  name: 'TopBar',
   components: {
     Socials
-  },
-  name: 'TopBar'
+  }
 }
 </script>

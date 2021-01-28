@@ -1,0 +1,30 @@
+<template>
+  <ul class="breadcrumbs">
+    <li v-for="crumb in crumbs" :key="crumb.to">
+      <nuxt-link :to="crumb.to">{{ crumb.title }}</nuxt-link>
+    </li>
+  </ul>
+</template>
+
+<script>
+import startCase from 'lodash.startcase'
+export default {
+  name: 'Breadcrumbs',
+  computed: {
+    crumbs() {
+      const pathArray = this.$route.path.split('/')
+      pathArray.shift()
+      const breadcrumbs = pathArray.reduce((breadcrumbArray, path, idx) => {
+        breadcrumbArray.push({
+          to: breadcrumbArray[idx - 1]
+            ? '/' + breadcrumbArray[idx - 1].path + '/' + path
+            : '/' + path,
+          title: startCase(path)
+        })
+        return breadcrumbArray
+      }, [])
+      return breadcrumbs
+    }
+  }
+}
+</script>

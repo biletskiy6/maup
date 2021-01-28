@@ -1,8 +1,48 @@
-.common-section {
-  background-image: url("~@/assets/icons/mask.svg");
-  background-color: #fff;
-  padding: 66px 240px 94px 240px;
-  &__header {
+.consult {
+  padding-top: 216px;
+  padding-bottom: 216px;
+}
 
+.common-section {
+  &__container {
+    background-color: #fff;
+    padding: 66px 240px 94px 240px;
+    border-radius: 32px;
+    background-image: url('~@/assets/icons/mask.svg');
+  }
+  &__header,
+  &__description {
+    text-align: center;
   }
 }
+
+.common-form {
+  margin-top: 64px;
+  &__container {
+    display: flex;
+    margin-left: -32px;
+    margin-right: -32px;
+  }
+  &__left,
+  &__right {
+    margin-left: 32px;
+    margin-right: 32px;
+    width: calc(50% - 64px);
+  }
+  .app-input, .v-select {
+    margin-bottom: 16px;
+  }
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: -32px;
+    margin-right: -32px;
+    &-agreed, &-submit {
+      margin-left: 32px;
+      margin-right: 32px;
+      width: calc(50% - 64px);
+    }
+  }
+}
+

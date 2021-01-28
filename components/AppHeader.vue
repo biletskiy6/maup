@@ -7,15 +7,20 @@
           <ul class="main-menu">
             <li
               v-for="item in menuItems"
+              :id="`menu__${item.anchor}`"
               :key="item.id"
-              id="menu__study-with-us"
             >
-              <a class="link-style" href="#study-with-us">{{ item.name }}</a>
+              <a class="link-style" :href="`#${item.anchor}`">{{
+                item.name
+              }}</a>
             </li>
           </ul>
         </div>
         <div class="top-line__right">
-          <a class="link-style" href="#study-with-us">Зв'язатися з нами</a>
+          <div id="menu__consult">
+            <a class="link-style" href="#consult">Зв'язатися з нами</a>
+          </div>
+
           <AppButton theme="white" size="small">Вхід</AppButton>
           <MenuBurger />
         </div>
@@ -59,6 +64,8 @@ export default {
     handleDetectActiveNav() {
       gsap.utils.toArray('section').forEach((section) => {
         const activeSection = section.id
+
+        console.log(activeSection)
         const menuitem = 'menu__'.concat(activeSection)
         const menulink = document.getElementById(menuitem).querySelector('a')
         gsap.timeline({
@@ -106,7 +113,7 @@ export default {
       })
     },
     scrollToSection() {
-      gsap.utils.toArray('.main-menu a').forEach(function(a) {
+      gsap.utils.toArray('.link-style').forEach(function(a) {
         a.addEventListener('click', function(e) {
           e.preventDefault()
           gsap.to(window, {

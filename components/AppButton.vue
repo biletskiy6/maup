@@ -1,7 +1,7 @@
 <template>
   <button
     class="v-btn hover"
-    :class="[themes[theme], sizes[size]]"
+    :class="[themes[theme], sizes[size], { isBlock: block }]"
     @click="handleClick"
   >
     <span><slot /></span>
@@ -27,6 +27,11 @@ export default {
       default: () => ({
         name: 'index'
       })
+    },
+    block: {
+      required: false,
+      type: Boolean,
+      default: false
     }
   },
   data: () => ({

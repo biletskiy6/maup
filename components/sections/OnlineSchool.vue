@@ -31,7 +31,7 @@
           <div class="pulse pulse-1"></div>
           <div class="pulse pulse-2"></div>
           <button class="play-btn">
-            <span v-html="play" class="play-btn__icon"></span>
+            <span class="play-btn__icon" v-html="play"></span>
           </button>
         </div>
       </div>

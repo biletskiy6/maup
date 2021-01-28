@@ -17,27 +17,27 @@
       <div ref="studyProposals" class="study-proposals-container">
         <ul class="study-proposals">
           <li ref="studyProposal" class="study-proposal">
-            <div v-html="icons['clock']" class="study-icon"></div>
+            <div class="study-icon" v-html="icons['clock']"></div>
             <p class="study-text">
               Навчання за індивідуальним графіком на своїй швидкості сприйняття
             </p>
           </li>
           <li ref="studyProposal" class="study-proposal">
-            <div v-html="icons['bookReader']" class="study-icon"></div>
+            <div class="study-icon" v-html="icons['bookReader']"></div>
             <p class="study-text">
               Навчання незалежно від місця проживання/перебування й стану
               здоров'я
             </p>
           </li>
           <li ref="studyProposal" class="study-proposal">
-            <div v-html="icons['smile']" class="study-icon"></div>
+            <div class="study-icon" v-html="icons['smile']"></div>
             <p class="study-text">
               Відсутність стресів, ранніх підйомів, важких портфелів і
               додаткових витрат
             </p>
           </li>
           <li ref="studyProposal" class="study-proposal">
-            <div v-html="icons['trophy']" class="study-icon"></div>
+            <div class="study-icon" v-html="icons['trophy']"></div>
             <p class="study-text">
               Додатковий вільний час на особистий розвиток дитини, хобі, гуртки
               й подорожі
@@ -45,7 +45,7 @@
           </li>
         </ul>
         <AppButton>
-          <span class="icon"><i class="material-icons">arrow_forward</i></span>
+          <span class="icon" v-html="arrowRight"></span>
           Дізнатися більше
         </AppButton>
       </div>
@@ -79,6 +79,7 @@ import clock from '~/assets/icons/clock.svg?raw'
 import trophy from '~/assets/icons/trophy.svg?raw'
 import smile from '~/assets/icons/smile.svg?raw'
 import bookReader from '~/assets/icons/book-reader.svg?raw'
+import arrowRight from '~/assets/icons/arrow-right.svg?raw'
 gsap.registerPlugin(ScrollTrigger)
 export default {
   name: 'StudyWithUs',
@@ -87,7 +88,8 @@ export default {
   },
   data() {
     return {
-      icons: { clock, trophy, smile, bookReader }
+      icons: { clock, trophy, smile, bookReader },
+      arrowRight
     }
   },
   mounted() {

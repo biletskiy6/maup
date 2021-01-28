@@ -1,26 +1,72 @@
 .app-input {
   position: relative;
-  .v-input {
-    display: block;
-    width: 100%;
-    border: none;
-    border-bottom: 1px solid #E7E7E9;
-    color: $dark;
-    padding: 21px 32px;
-    transition: border-bottom-color .25s ease;
-    &::placeholder {
-      color: #879197;
-    }
-    &:focus {
-      outline: none;
-      border-bottom-color: $dark;
-      transition: border-bottom-color .25s ease;
-    }
-  }
   &__icon {
     position: absolute;
     left: 0;
     top: 50%;
     transform: translateY(-50%);
+  }
+}
+.v-input,
+.vs__search {
+  position: relative;
+  display: block;
+  width: 100%;
+  border: none;
+  resize: none;
+  border-bottom: 1px solid #e7e7e9;
+  color: $dark;
+  padding: 21px 32px;
+  transition: border-bottom-color 0.25s ease;
+  &::placeholder {
+    color: #879197;
+  }
+  &:focus {
+    outline: none;
+    border-bottom-color: $dark;
+    transition: border-bottom-color 0.25s ease;
+  }
+}
+.v-textarea {
+  height: 100%;
+}
+.v-select {
+  position: relative;
+  .app-input {
+    &__icon {
+      transform: none;
+      top: 22px;
+    }
+  }
+}
+.vs {
+  &__dropdown {
+    &-toggle {
+      position: relative;
+    }
+    &-menu {
+      position: absolute;
+      top: 100%;
+      z-index: 9999;
+    }
+  }
+  &__selected {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 40px;
+    z-index: 10;
+    &-options {
+      position: relative;
+    }
+  }
+  &__actions {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    svg {
+      fill: #879197;
+      transform: scale(0.8);
+    }
   }
 }

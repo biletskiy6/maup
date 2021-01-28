@@ -43,6 +43,7 @@ body {
 @import 'components/close-button';
 @import 'components/common-section';
 @import 'components/mobile-menu';
+@import 'components/dropdown';
 @import 'modals/loyalty';
 
 a {
@@ -388,6 +389,10 @@ button {
       font-size: 16px;
     }
   }
+  &.isBlock {
+    display: block;
+    width: 100%;
+  }
   &.primary {
     position: relative;
     background-color: $blue;
@@ -418,7 +423,7 @@ button {
     color: $white;
   }
   &.v-size--default {
-    padding: 15px 24px 15px 24px;
+    padding: 19px 24px 19px 24px;
   }
   &.v-size--small {
     padding: 9px 43px;
@@ -596,22 +601,6 @@ button {
   }
   a {
     position: relative;
-    &::before {
-      content: '';
-      position: absolute;
-      top: -32px;
-      width: 0;
-      height: 8px;
-      background-color: $blue;
-      transition: width 0.25s ease;
-    }
-    &.highlighted {
-      color: $blue !important;
-      &::before {
-        width: 100%;
-        transition: width 0.25s ease;
-      }
-    }
   }
   @include mdl-block() {
     display: none;
@@ -619,10 +608,27 @@ button {
 }
 
 .link-style {
+  position: relative;
   display: inline-block;
   text-decoration: none;
   font-weight: 900;
   color: $dark;
+  &::before {
+    content: '';
+    position: absolute;
+    top: -32px;
+    width: 0;
+    height: 8px;
+    background-color: $blue;
+    transition: width 0.25s ease;
+  }
+  &.highlighted {
+    color: $blue !important;
+    &::before {
+      width: 100%;
+      transition: width 0.25s ease;
+    }
+  }
 }
 
 .hero-slider {
@@ -770,7 +776,11 @@ body .swiper-button {
     border: none;
     outline: none;
     transition: background-color 0.25s ease;
+    path {
+      fill: #fff;
+    }
     &::after {
+      display: none;
       font-family: 'Material Icons';
       -webkit-font-feature-settings: 'liga';
       font-size: 24px;
@@ -794,6 +804,9 @@ body .swiper-button {
     //border: 1px solid #c0c5c8;
     background-color: $dark;
     left: 32px;
+    svg {
+      transform: rotate(-180deg);
+    }
     &::after {
       content: 'arrow_back';
       color: #fff;
@@ -1322,7 +1335,7 @@ body .swiper-button {
       font-size: 26px;
       font-weight: 700;
       color: $dark;
-      margin-bottom: 20px;
+      margin-bottom: 17px;
       &:last-child {
         margin-bottom: 0;
       }
@@ -1468,16 +1481,23 @@ body .swiper-button {
 // Education Cost
 .timeline--education-cost {
   display: flex;
+  flex-direction: column;
   position: relative;
   padding-top: 0px;
   margin-right: 0;
   .timeline {
+    &__container {
+      display: flex;
+    }
     &__period,
     &__economy {
       display: flex;
       flex-direction: column;
     }
     &__period {
+      .timeline__header {
+        text-indent: 73px;
+      }
       flex: 1;
       ul {
         li {
@@ -1491,10 +1511,14 @@ body .swiper-button {
     }
     &__economy {
       ul {
+        padding-left: 0;
         li {
           display: flex;
           align-items: center;
+          justify-content: flex-start;
           color: $accent;
+          min-height: 40px;
+          padding-top: 8px;
           .round {
             background-color: transparent;
             border: none;
@@ -1529,14 +1553,19 @@ body .swiper-button {
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
   .school-plan {
+    display: flex;
+    flex-direction: column;
     border-radius: 24px;
+    padding: 56px 32px 60px;
+    .plan-price {
+      text-align: center;
+    }
     &--proposal {
       h4 {
         font-family: $header-font;
         font-size: 39px;
         font-weight: 500;
         margin-bottom: 56px;
-        padding-top: 56px;
       }
     }
     &__header {
@@ -1548,22 +1577,26 @@ body .swiper-button {
     }
     &:not(.school-plan--proposal) {
       background-color: $white;
-      padding: 56px 32px 60px;
     }
     &__items {
+      margin-top: 32px;
     }
     &__item {
       display: flex;
       align-items: center;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
+      font-style: italic;
+      &:last-child {
+        margin-bottom: 0;
+      }
       .access {
         margin-right: 16px;
       }
       &-text {
       }
-      &:last-child {
-        margin-bottom: 0;
-      }
+    }
+    .v-btn {
+      margin-top: auto;
     }
   }
 }
@@ -1574,22 +1607,34 @@ body .swiper-button {
   height: 20px;
   justify-content: center;
   align-items: center;
-  border: 2px solid #e7e7e9;
+  border-radius: 50%;
+  background-color: #E7E7E9;
   &.available {
-    border-color: $accent;
+    background-color: $accent;
     svg {
-      fill: $accent;
-      font-weight: 600;
+      fill: $white;
+      width: 16px;
+      height: 16px;
+      font-weight: 900;
     }
   }
 }
 
 .education-cost {
+  padding-top: 246px;
+  padding-bottom: 216px;
   &__top {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 64px;
+    &-wrapper {
+      display: flex;
+      align-items: center;
+    }
+    .section-title {
+      margin-right: 16px;
+    }
   }
   &__classes {
     padding-left: 15px;
@@ -1609,43 +1654,82 @@ body .swiper-button {
 .circle {
   position: relative;
   display: inline-flex;
-  width: 36px;
-  height: 36px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  border: 4px solid $accent;
-  &::after {
-    position: absolute;
-    content: '';
-    top: 50%;
-    left: 50%;
-    width: 12px;
-    height: 12px;
-    background-color: $accent;
+  background-color: #f6f6f6;
+  &__round {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    border: 4px solid $accent;
     border-radius: 50%;
-    transform: translate(-50%, -50%);
+    &::after {
+      position: absolute;
+      content: '';
+      top: 50%;
+      left: 50%;
+      width: 12px;
+      height: 12px;
+      background-color: $accent;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 }
 .enter-school {
+  margin-top: 130px;
+  .section-text {
+    margin-top: 32px;
+    margin-bottom: 64px;
+  }
   &__content {
     display: flex;
+    @include mdx-block() {
+      flex-direction: column;
+      align-items: center;
+      padding: 0 18px;
+    }
   }
   &__left {
     position: relative;
     align-self: flex-start;
     flex: 1;
     margin-right: 140px;
+    min-height: 665px;
+    @include mdl-block() {
+      margin-right: 100px;
+    }
+    @include mdx-block() {
+      min-height: auto;
+      margin: 0 auto 40px;
+    }
   }
   &__right {
     flex: 1;
+    &-container {
+      padding-right: 40px;
+      width: 100%;
+      max-width: 75%;
+      @include lgm-block() {
+        max-width: 90%;
+      }
+    }
   }
   &__image {
     display: block;
+    object-fit: cover;
+    height: 100%;
   }
   .number-list {
     margin-top: 32px;
     margin-bottom: 64px;
     li {
       font-weight: 700;
+      line-height: 28px;
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
   &__tooltip {
@@ -1656,12 +1740,16 @@ body .swiper-button {
     max-width: 380px;
     border-radius: 16px 16px 0px 16px;
     padding: 40px 32px;
+    line-height: 24px;
     background-color: $white;
   }
   .circle {
     position: absolute;
-    left: 0;
-    bottom: 0;
+    right: -20px;
+    bottom: -20px;
+    &__round {
+      transform: translate(6px, 6px);
+    }
   }
 }
 
@@ -1701,12 +1789,12 @@ body .swiper-button {
         height: 0;
         border-radius: 24px;
         background-color: $blue;
-        transition: height .25s ease;
+        transition: height 0.25s ease;
       }
       &:hover {
         &::before {
           height: 100%;
-          transition: height .25s ease;
+          transition: height 0.25s ease;
         }
         .additional-opps-list {
           &__top {
@@ -1715,7 +1803,8 @@ body .swiper-button {
             }
           }
           &__bottom {
-            .plan-price, .simple-btn {
+            .plan-price,
+            .simple-btn {
               color: $white;
             }
           }
@@ -1751,7 +1840,9 @@ body .swiper-button {
     &__text {
       color: #879197;
     }
-    &__top, &__middle, &__bottom {
+    &__top,
+    &__middle,
+    &__bottom {
       position: relative;
       z-index: 10;
     }
@@ -1823,7 +1914,7 @@ body .swiper-button {
   }
   &-item {
     @include col();
-    @include size(4);
+    @include size(3);
     h4 {
       font-weight: 700;
       margin-bottom: 24px;
@@ -1853,9 +1944,27 @@ body .swiper-button {
         }
       }
     }
-    &__payments {
+    &__lists {
       li {
+        position: relative;
         margin-bottom: 26px;
+        font-style: italic;
+
+        span {
+          position: relative;
+          display: inline-block;
+          padding-bottom: 10px;
+          &::after {
+            position: absolute;
+            content: '';
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: rgba(255, 255, 255, .05);
+          }
+        }
+
         &:last-child {
           margin-bottom: 0;
         }
@@ -2065,3 +2174,5 @@ body .swiper-button {
     }
   }
 }
+
+@import 'news';

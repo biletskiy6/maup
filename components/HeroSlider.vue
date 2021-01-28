@@ -17,9 +17,7 @@
           </h3>
           <div class="controls">
             <AppButton theme="primary">
-              <span class="icon"
-                ><i class="material-icons">arrow_forward</i></span
-              >
+              <span class="icon" v-html="arrowRight"></span>
               Розпочати навчання
             </AppButton>
             <!--            <AppButton theme="white">Матеріали для батьків</AppButton>-->
@@ -54,16 +52,16 @@
           </h2>
           <div class="controls">
             <AppButton>
-              <span v-html="arrowRight" class="icon"></span>
+              <span class="icon" v-html="arrowRight"></span>
               Розпочати навчання
             </AppButton>
           </div>
         </div>
       </swiper-slide>
-      <div class="swiper-pagination swiper-pagination1" slot="pagination"></div>
+      <div slot="pagination" class="swiper-pagination swiper-pagination1"></div>
     </swiper>
-    <button v-html="arrowRight" class="swiper-button-prev"></button>
-    <button class="swiper-button-next"></button>
+    <button class="swiper-button-prev" v-html="arrowRight"></button>
+    <button class="swiper-button-next" v-html="arrowRight"></button>
   </div>
 </template>
 

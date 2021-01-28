@@ -1,10 +1,10 @@
 <template>
   <div class="preloader">
     <div class="preloader__content">
-      <div class="div1" id="one"></div>
-      <div class="div1" id="two"></div>
-      <div class="div2" id="three"></div>
-      <div class="div2" id="four"></div>
+      <div id="one" class="div1"></div>
+      <div id="two" class="div1"></div>
+      <div id="three" class="div2"></div>
+      <div id="four" class="div2"></div>
     </div>
   </div>
 </template>

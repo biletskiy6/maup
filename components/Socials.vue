@@ -3,7 +3,7 @@
     <label v-if="label" for="socials">Соціальні мережі:</label>
     <ul id="socials" class="socials">
       <li v-for="social in socials" :key="social.name">
-        <a v-html="icons[social.name]" href="#"></a>
+        <a href="#" v-html="icons[social.name]"></a>
       </li>
     </ul>
   </div>

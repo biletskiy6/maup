@@ -3,7 +3,7 @@
     <div class="container">
       <div class="footer__content">
         <div class="footer__content-main">
-          <div v-html="logo" class="logo logo--white"></div>
+          <div class="logo logo--white" v-html="logo"></div>
           <div class="footer-items">
             <div class="footer-item">
               <h4>Телефони для довідок:</h4>
@@ -14,11 +14,18 @@
             </div>
             <div class="footer-item">
               <h4>Методи оплати:</h4>
-              <ul class="footer-item__payments">
-                <li>Оплата кредитною карткою</li>
-                <li>Банківськи платежем</li>
-                <li>Оплата готівкою</li>
-                <li>PayPal</li>
+              <ul class="footer-item__lists">
+                <li><span>Оплата кредитною карткою</span></li>
+                <li><span>Банківськи платежем</span></li>
+                <li><span>Оплата готівкою</span></li>
+              </ul>
+            </div>
+            <div class="footer-item">
+              <h4>Корисно знати:</h4>
+              <ul class="footer-item__lists">
+                <li>Новини</li>
+                <li>Всі знижки</li>
+                <li>Навчання з нами - це</li>
               </ul>
             </div>
             <div class="footer-item">
@@ -30,7 +37,6 @@
                   електронною поштою
                 </p>
                 <Socials label layout="first" />
-                <Socials layout="second" />
               </div>
             </div>
           </div>
@@ -41,8 +47,8 @@
           </div>
           <div class="copyrights__right">
             <p>
-              <span>Розроблено в </span>
-              <a v-html="TangramLogo" href="#"></a>
+              <span>By</span>
+              <a href="#" v-html="TangramLogo"></a>
             </p>
           </div>
         </div>

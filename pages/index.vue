@@ -9,44 +9,16 @@
       <AppHeader />
       <client-only><HeroSlider /></client-only>
       <MobileMenu />
-      <MenuBurger v-if="false" v-model="isMenuOpened" />
     </header>
-    <div v-if="false" class="common-section">
-      <h2 class="common-section__header section-title">
-        Замовити консультацію
-      </h2>
-      <p class="common-section__description">
-        Хочете отримати консультацію, звертайтесь! Ми завжди на зв'язку!
-      </p>
-      <form @submit.prevent>
-        <AppInput
-          v-model="name"
-          name="name"
-          type="text"
-          placeholder="Name"
-          :icon="UserIcon"
-        />
-        <CloseButton />
-        <AppCheckbox v-model="agree" />
-        <AppButton
-          @click="$modal.show('loyalty')"
-          type="submit"
-          theme="primary"
-        >
-          Відправити
-        </AppButton>
-      </form>
-    </div>
     <StudyWithUs />
     <OnlineSchool />
     <!--    <DemoAccess />-->
     <!--    <Gallery />-->
     <EducationProcess />
-    <EducationCost />
     <EnterSchool />
+    <EducationCost />
     <AdditionalOpps />
-    <!--    <Request />-->
-    <Footer />
+    <Consult />
   </div>
 </template>
 
@@ -54,67 +26,52 @@
 import gsap from 'gsap'
 import Splitter from 'split-html-to-chars'
 import { CSSRulePlugin } from 'gsap/CSSRulePlugin'
-import Preloader from '@/components/Preloader'
 import AppHeader from '@/components/AppHeader'
+import TopBar from '@/components/TopBar'
+import Preloader from '@/components/Preloader'
 import HeroSlider from '@/components/HeroSlider'
-import UserIcon from '@/assets/icons/user.svg?raw'
-import AppButton from '@/components/AppButton'
 import StudyWithUs from '@/components/sections/StudyWithUs'
 import OnlineSchool from '@/components/sections/OnlineSchool'
-// import Request from '@/components/sections/Request'
 import AdditionalOpps from '@/components/sections/AdditionalOpps'
 // import Gallery from '@/components/sections/Gallery'
 import EducationCost from '@/components/sections/EducationCost'
 // import DemoAccess from '@/components/sections/DemoAccess'
 import EducationProcess from '@/components/sections/EducationProcess'
 import AppModal from '@/components/AppModal'
-import Footer from '@/components/Footer'
-import AppInput from '@/components/AppInput'
-import CloseButton from '@/components/CloseButton'
-import AppCheckbox from '@/components/AppCheckbox'
 import LoyaltyModal from '@/components/modals/LoyaltyModal'
 import MobileMenu from '@/components/MobileMenu'
-import MenuBurger from '@/components/MenuBurger'
-import TopBar from '@/components/TopBar'
 import EnterSchool from '@/components/sections/EnterSchool'
+import Consult from '@/components/Consult'
 gsap.registerPlugin(CSSRulePlugin)
 export default {
   components: {
-    EnterSchool,
+    AppHeader,
     TopBar,
+    Consult,
+    EnterSchool,
     MobileMenu,
-    MenuBurger,
     LoyaltyModal,
-    AppCheckbox,
-    CloseButton,
-    AppInput,
     AppModal,
-    AppButton,
     EducationProcess,
     // DemoAccess,
     Preloader,
     EducationCost,
     // Gallery,
     AdditionalOpps,
-    // Request,
-    Footer,
     OnlineSchool,
     StudyWithUs,
-    AppHeader,
     HeroSlider
   },
   data() {
     return {
       name: '',
-      UserIcon,
-      agree: false,
       isMenuOpened: false
     }
   },
   mounted() {
     // eslint-disable-next-line nuxt/no-env-in-hooks
     // this.splitText()
-    // const tl = gsap.timeline({ delay: 1, paused: false })
+    // const tl = gsap.timeline({ delay: 1, paused: true })
     // tl.add(this.animatePreloader())
     // tl.add(this.animateTopLine())
     // tl.add(this.animateSlider())

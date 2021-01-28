@@ -1,5 +1,5 @@
 <template>
-  <div @click="toggle" class="menu__burger" :class="{ active: toggled }">
+  <div class="menu__burger" :class="{ active: toggled }" @click="toggle">
     <div class="burger__open">
       <span></span>
       <span></span>

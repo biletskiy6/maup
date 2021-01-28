@@ -1,12 +1,12 @@
 <template>
   <div>
     <nuxt />
-    <SvgFilters />
+    <Footer />
   </div>
 </template>
 <script>
-import SvgFilters from '@/components/SvgFilters'
+import Footer from '@/components/Footer'
 export default {
-  components: { SvgFilters }
+  components: { Footer }
 }
 </script>
