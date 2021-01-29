@@ -111,8 +111,8 @@ export default {
         defaults: { duration: 1 },
         scrollTrigger: {
           trigger: studyWithUs,
-          start: 200,
-          end: 'bottom 10%',
+          start: 'top 120%',
+          end: 'bottom',
           scrub: 1
         }
       })

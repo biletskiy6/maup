@@ -22,12 +22,30 @@
     display: flex;
     margin-left: -32px;
     margin-right: -32px;
+    margin-bottom: 64px;
   }
   &__left,
   &__right {
     margin-left: 32px;
     margin-right: 32px;
     width: calc(50% - 64px);
+  }
+  &__left {
+    .app-input {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  &__right {
+    display: flex;
+    flex-direction: column;
+    .app-input {
+      height: 100%;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
   .app-input, .v-select {
     margin-bottom: 16px;

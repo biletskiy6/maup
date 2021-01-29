@@ -3,7 +3,7 @@
   &__icon {
     position: absolute;
     left: 0;
-    top: 50%;
+    top: 32px;
     transform: translateY(-50%);
   }
 }
@@ -16,7 +16,7 @@
   resize: none;
   border-bottom: 1px solid #e7e7e9;
   color: $dark;
-  padding: 21px 32px;
+  padding: 21px 40px;
   transition: border-bottom-color 0.25s ease;
   &::placeholder {
     color: #879197;
