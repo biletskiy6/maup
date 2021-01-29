@@ -583,6 +583,9 @@ body {
     transition: padding 0.25s ease, background-color 0.25s ease;
     border-bottom: 1px solid #d3d3d3;
   }
+  @include phonex-block() {
+    padding: 24px 15px 24px 15px;
+  }
 }
 .top-bar {
   position: absolute;
@@ -593,6 +596,9 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 15px 40px;
+  @include phonex-block() {
+    padding: 15px;
+  }
 }
 .top-line {
   //display: flex;

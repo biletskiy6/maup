@@ -1,6 +1,6 @@
 <template>
   <div class="hero-slider">
-    <swiper class="swiper" :options="swiperOption">
+    <swiper ref="heroSlider" class="swiper" :options="swiperOption">
       <swiper-slide>
         <div class="slide-content">
           <h2 class="slider-header js-splitme">
@@ -73,6 +73,13 @@ export default {
   title: '3D Cube effect',
   components: {
     AppButton
+  },
+  mounted() {
+    console.log(this.$refs.heroSlider.$swiper)
+    if (window.innerWidth <= 600) {
+      this.swiperOption.effect = 'fade'
+      this.swiperOption.cubeEffect = false
+    }
   },
   data() {
     return {
