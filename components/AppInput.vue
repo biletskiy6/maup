@@ -7,7 +7,7 @@
       :type="inputType"
       :value="value"
       v-bind="$attrs"
-      class="v-input v-text-field v-input theme--light v-text-field--is-booted"
+      class="v-input v-text-field v-input theme--light"
       @input="$emit('input', $event.target.value)"
     />
     <textarea
@@ -17,7 +17,7 @@
       :type="inputType"
       :value="value"
       v-bind="$attrs"
-      class="v-input v-textarea v-text-field v-input theme--light v-text-field--is-booted"
+      class="v-input v-textarea v-text-field"
       @input="$emit('input', $event.target.value)"
     >
     </textarea>

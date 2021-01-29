@@ -67,7 +67,7 @@ export default {
       return `<p>Попередня сторінка</p>`
     },
     nextText() {
-      return `<p>Наступка сторінка</p>`
+      return `<p>Наступна сторінка</p>`
     }
   },
   data() {
@@ -84,20 +84,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.pagination {
-  display: flex;
-  align-items: center;
-  li {
-    &.page-item {
-      &:first-child {
-        margin-left: 164px;
-      }
-      &:last-child {
-        margin-right: 164px;
-      }
-    }
-  }
-}
-</style>

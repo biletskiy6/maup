@@ -26,8 +26,19 @@
         </div>
       </div>
       <div class="online-school__right">
+        <client-only>
+          <AppModal name="youtube">
+            <EmbedYoutube
+              :embedYoutube="embedYoutube"
+              :readyState="readyState"
+              videoId="FvKzGwg3UwE"
+              @handleCloseVideoTrailer="handleCloseVideoTrailer"
+              @handleReadyVideoTrailer="handleReadyVideoTrailer"
+            />
+          </AppModal>
+        </client-only>
         <img src="~@/assets/images/online-school.png" alt="" />
-        <div class="play">
+        <div @click="handleOpenVideoTrailer" class="play">
           <div class="pulse pulse-1"></div>
           <div class="pulse pulse-2"></div>
           <button class="play-btn">
@@ -44,11 +55,21 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import AppButton from '../AppButton'
 import play from '@/assets/icons/play.svg?raw'
+import EmbedYoutube from '@/components/EmbedYoutube'
+import AppModal from '@/components/AppModal'
 gsap.registerPlugin(ScrollTrigger)
 
 export default {
   name: 'OnlineSchool',
-  components: { AppButton },
+  components: { AppModal, EmbedYoutube, AppButton },
+  computed: {
+    embedYoutube() {
+      return this.$store.getters['embedYoutube/embedYoutube']
+    },
+    readyState() {
+      return this.$store.getters['embedYoutube/readyState']
+    }
+  },
   data() {
     return {
       play
@@ -71,6 +92,20 @@ export default {
         { x: 0, autoAlpha: 1 },
         0
       )
+  },
+  methods: {
+    handleReadyVideoTrailer() {
+      this.$store.commit('embedYoutube/setReadyVideoTrailer')
+    },
+    handleCloseVideoTrailer() {
+      this.$store.commit('embedYoutube/closeVideoTrailer')
+    },
+    handleOpenVideoTrailer() {
+      this.$store.commit('embedYoutube/openVideoTrailer', {
+        youtubeLink: 'https://youtu.be/FvKzGwg3UwE'
+      })
+      this.$modal.show('youtube')
+    }
   }
 }
 </script>

@@ -5,15 +5,13 @@
       <LoyaltyModal />
     </AppModal>
     <header class="main-header">
-      <TopBar />
-      <AppHeader />
       <client-only><HeroSlider /></client-only>
       <MobileMenu />
     </header>
     <StudyWithUs />
     <OnlineSchool />
     <!--    <DemoAccess />-->
-    <!--    <Gallery />-->
+    <Gallery />
     <EducationProcess />
     <EnterSchool />
     <EducationCost />
@@ -23,17 +21,15 @@
 </template>
 
 <script>
-import gsap from 'gsap'
-import Splitter from 'split-html-to-chars'
+import { gsap } from 'gsap'
 import { CSSRulePlugin } from 'gsap/CSSRulePlugin'
-import AppHeader from '@/components/AppHeader'
-import TopBar from '@/components/TopBar'
+import Splitter from 'split-html-to-chars'
 import Preloader from '@/components/Preloader'
 import HeroSlider from '@/components/HeroSlider'
 import StudyWithUs from '@/components/sections/StudyWithUs'
 import OnlineSchool from '@/components/sections/OnlineSchool'
 import AdditionalOpps from '@/components/sections/AdditionalOpps'
-// import Gallery from '@/components/sections/Gallery'
+import Gallery from '@/components/sections/Gallery'
 import EducationCost from '@/components/sections/EducationCost'
 // import DemoAccess from '@/components/sections/DemoAccess'
 import EducationProcess from '@/components/sections/EducationProcess'
@@ -42,11 +38,11 @@ import LoyaltyModal from '@/components/modals/LoyaltyModal'
 import MobileMenu from '@/components/MobileMenu'
 import EnterSchool from '@/components/sections/EnterSchool'
 import Consult from '@/components/Consult'
-gsap.registerPlugin(CSSRulePlugin)
+if (process.client) {
+  gsap.registerPlugin(CSSRulePlugin)
+}
 export default {
   components: {
-    AppHeader,
-    TopBar,
     Consult,
     EnterSchool,
     MobileMenu,
@@ -56,7 +52,7 @@ export default {
     // DemoAccess,
     Preloader,
     EducationCost,
-    // Gallery,
+    Gallery,
     AdditionalOpps,
     OnlineSchool,
     StudyWithUs,
@@ -71,10 +67,10 @@ export default {
   mounted() {
     // eslint-disable-next-line nuxt/no-env-in-hooks
     // this.splitText()
-    // const tl = gsap.timeline({ delay: 1, paused: true })
+    const tl = gsap.timeline({ delay: 1, paused: false })
     // tl.add(this.animatePreloader())
     // tl.add(this.animateTopLine())
-    // tl.add(this.animateSlider())
+    tl.add(this.animateSlider())
   },
   methods: {
     splitText() {
@@ -181,6 +177,8 @@ export default {
       return tl
     },
     animateSlider() {
+      if (!process.client) return
+      console.log(document.querySelector('.slider-title'))
       const tl = gsap.timeline()
       tl.fromTo(
         '.hero-slider .letter',

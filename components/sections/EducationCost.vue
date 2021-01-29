@@ -50,7 +50,7 @@
                         <span class="round active"
                           ><span class="round-inner"></span
                         ></span>
-                        <span>1 місяць</span>
+                        <span>12 місяців</span>
                       </div>
                     </li>
                   </ul>
@@ -69,7 +69,11 @@
               <AppButton theme="white" block>Всі знижки</AppButton>
             </div>
           </li>
-          <li v-for="item in 3" :key="item" class="school-plan">
+          <li
+            v-for="item in 3"
+            :key="item"
+            class="school-plan school-plan--standard"
+          >
             <h5 class="school-plan__header">«Державний стандарт»</h5>
             <h6 class="plan-price"><span>2 500 ₴</span> в місяць</h6>
             <ul class="school-plan__items">

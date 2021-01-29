@@ -1,5 +1,5 @@
 <template>
-  <div class="logo" v-html="logo"></div>
+  <nuxt-link to="/" class="logo" v-html="logo"></nuxt-link>
 </template>
 
 <script>

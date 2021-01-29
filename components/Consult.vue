@@ -13,21 +13,24 @@
             <div class="common-form__container">
               <div class="common-form__left">
                 <AppInput
-                  v-model="name"
+                  v-model.trim="$v.name.$model"
                   name="name"
                   type="text"
-                  placeholder="Name"
+                  placeholder="Ім'я"
+                  :class="{
+                    invalid: $v.name.$dirty && !$v.name.required
+                  }"
                   :icon="UserIcon"
                 />
                 <AppInput
-                  v-model="phone"
+                  v-model.trim="$v.phone.$model"
                   name="phone"
                   type="text"
                   placeholder="Номер мобільного"
                   :icon="MobileIcon"
                 />
                 <AppInput
-                  v-model="email"
+                  v-model.trim="$v.email.$model"
                   name="email"
                   type="text"
                   placeholder="Електронна адреса"
@@ -56,7 +59,12 @@
                 <AppCheckbox v-model="agree" />
               </div>
               <div class="common-form__footer-submit">
-                <AppButton type="submit" theme="primary" block>
+                <AppButton
+                  :disabled="$v.$invalid"
+                  type="submit"
+                  theme="primary"
+                  block
+                >
                   Відправити
                 </AppButton>
               </div>
@@ -70,6 +78,8 @@
 </template>
 
 <script>
+import { required } from 'vuelidate/lib/validators'
+import { isEmail, isPhone } from '@/utils/validators'
 import AppCheckbox from '@/components/AppCheckbox'
 import AppInput from '@/components/AppInput'
 import AppButton from '@/components/AppButton'
@@ -90,7 +100,7 @@ export default {
       MobileIcon,
       EmailIcon,
       CommentIcon,
-      name: '',
+      name: null,
       phone: '',
       email: '',
       message: '',
@@ -100,6 +110,17 @@ export default {
         { label: '5-8', code: '5-8' },
         { label: '9-11', code: '9-11' }
       ]
+    }
+  },
+  validations: {
+    name: {
+      required
+    },
+    email: {
+      isEmailValid: isEmail
+    },
+    phone: {
+      isPhoneValid: isPhone
     }
   }
 }

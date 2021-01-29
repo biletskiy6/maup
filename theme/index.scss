@@ -25,8 +25,18 @@ body {
   background-color: $grey;
   color: $dark;
   @include scrollbars(8px, $grey, $dark);
+  &.news {
+    padding-top: 160px;
+  }
 }
-
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.5s;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
 .default-left {
   padding-left: 218px;
   @include mdx-block() {
@@ -44,6 +54,8 @@ body {
 @import 'components/common-section';
 @import 'components/mobile-menu';
 @import 'components/dropdown';
+@import 'components/youtube';
+@import 'components/notifications';
 @import 'modals/loyalty';
 
 a {
@@ -259,7 +271,7 @@ button {
   }
   a {
     font-weight: 700;
-    color: rgba($white, 0.54);
+    color: rgba($white, 0.56);
     font-size: 15px;
     text-decoration: none;
     text-transform: uppercase;
@@ -368,13 +380,13 @@ button {
     display: block;
     content: '';
     z-index: 10;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
     width: 0;
     height: 0;
     border-radius: 100%;
     transform: translate(-50%, -50%);
-    transition: width 0.45s, padding-top 0.45s;
+    transition: width .5s, padding-top .5s;
   }
   .icon {
     display: inline-flex;
@@ -385,6 +397,13 @@ button {
     background-color: $dark;
     border-radius: 12px;
     margin-right: 16px;
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+    path {
+      fill: $white;
+    }
     i {
       font-size: 16px;
     }
@@ -426,7 +445,7 @@ button {
     padding: 19px 24px 19px 24px;
   }
   &.v-size--small {
-    padding: 9px 43px;
+    padding: 17px 52px;
   }
   span {
     position: relative;
@@ -437,6 +456,7 @@ button {
     .ripple {
       width: calc(100% * 2.25);
       padding-top: calc(100% * 2.25);
+      transition: width .5s, padding-top .5s;
     }
   }
 }
@@ -460,9 +480,7 @@ button {
   }
 }
 // Home page -- Header Section
-.main-header {
-  min-height: 600px;
-  height: 100vh;
+body {
   &.dark {
     .link-style {
       color: $dark !important;
@@ -479,10 +497,15 @@ button {
     }
     .language-switcher {
       a {
-        color: rgba($dark, 0.54);
+        color: rgba($dark, 0.56);
         &.active {
           color: $accent;
         }
+      }
+    }
+    .socials {
+      path {
+        fill: $dark;
       }
     }
     .hero-slider .swiper-pagination {
@@ -497,6 +520,13 @@ button {
       }
     }
   }
+  .logo {
+    svg {
+      path {
+        fill: $white;
+      }
+    }
+  }
   .link-style {
     color: $white !important;
     &--dark {
@@ -506,16 +536,26 @@ button {
   .hero-slider .swiper .swiper-slide {
     color: $white;
   }
-  .logo {
-    svg {
-      path {
-        fill: $white;
+  .app-header {
+    &--scrolled {
+      .logo {
+        path {
+          fill: $blue !important;
+        }
+      }
+      .link-style {
+        color: $dark !important;
       }
     }
   }
+}
+.main-header {
+  min-height: 600px;
+  height: 100vh;
   .hero-slider .swiper-pagination {
     .swiper-pagination-bullet {
-      border: 2px solid rgba($dark, 0.56);
+      border: 2px solid rgba($white, 0.56);
+      outline: none;
     }
     .swiper-pagination-bullet-active {
       border: 4px solid $white;
@@ -542,18 +582,11 @@ button {
     background-color: #fff;
     transition: padding 0.25s ease, background-color 0.25s ease;
     border-bottom: 1px solid #d3d3d3;
-    .logo {
-      path {
-        fill: $blue !important;
-      }
-    }
-    .link-style {
-      color: $dark !important;
-    }
   }
 }
 .top-bar {
   position: absolute;
+  top: 0;
   width: 100%;
   z-index: 101;
   display: flex;
@@ -1132,6 +1165,10 @@ body .swiper-button {
     flex-shrink: 0;
     width: clamp(500px, 60vw, 800px);
   }
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .online-school,
@@ -1192,6 +1229,7 @@ body .swiper-button {
   }
   p {
     margin-bottom: 20px;
+    font-style: italic;
     &:last-child {
       margin-bottom: 0;
     }
@@ -1210,6 +1248,9 @@ body .swiper-button {
     align-items: center;
     border-radius: 50%;
     z-index: 10;
+    path {
+      fill: $white;
+    }
   }
   .pulse {
     position: absolute;
@@ -1340,7 +1381,7 @@ body .swiper-button {
         margin-bottom: 0;
       }
       .round {
-        margin-right: 12px;
+        margin-right: 8px;
         background-color: #fff;
       }
     }
@@ -1402,9 +1443,34 @@ body .swiper-button {
     }
   }
 }
-
+.swiper--team {
+  position: relative;
+  &::after {
+    position: absolute;
+    content: '';
+    background-image: url('~@/assets/icons/slider-overlay-right.svg');
+    right: 0;
+    top: 0;
+    width: 220px;
+    height: 100%;
+    transition: 0.25s ease;
+    z-index: 1;
+    @include md-block() {
+      width: 155px;
+    }
+  }
+  &.end {
+    &::after {
+      opacity: 0.2;
+      transition: 0.25s ease;
+    }
+  }
+}
 .our-team {
   padding-top: 130px;
+  &__container {
+    position: relative;
+  }
   .section-title {
     margin-bottom: 72px;
   }
@@ -1420,9 +1486,10 @@ body .swiper-button {
     &-right {
       position: absolute;
       z-index: 9;
-      width: 100%;
+      width: 220px;
       height: 100%;
-      display: none;
+      right: 0;
+      top: 0;
     }
   }
   &__description {
@@ -1446,6 +1513,7 @@ body .swiper-button {
       line-height: 24px;
       max-width: 80%;
       margin: 0 auto;
+      font-style: italic;
     }
   }
   &__pagination {
@@ -1465,14 +1533,43 @@ body .swiper-button {
       &-next {
         position: relative;
         &.swiper-button-disabled {
-          opacity: 0.7;
+          background-color: #f6f6f6;
+          border: 1px solid #c0c5c8;
+          path {
+            fill: $dark;
+          }
         }
       }
       &-prev {
         left: 0;
+        transform: translateY(-52px);
       }
       &-next {
         right: 0;
+      }
+    }
+    .swiper-pagination {
+      &-counts {
+        display: flex;
+        font-size: 26px;
+        font-family: $header-font;
+        position: absolute;
+        color: #879197;
+        bottom: 0;
+        font-weight: 400;
+        z-index: 10;
+      }
+      &-current {
+        position: relative;
+        margin-right: 30px;
+        &::after {
+          position: absolute;
+          content: '';
+          width: 2px;
+          height: 100%;
+          background-color: #879197;
+          right: -17px;
+        }
       }
     }
   }
@@ -1486,7 +1583,18 @@ body .swiper-button {
   padding-top: 0px;
   margin-right: 0;
   .timeline {
+    &-icon {
+      position: absolute;
+      height: 100%;
+      svg {
+        position: absolute;
+        height: 100%;
+        //position: absolute;
+        //height: 100%;
+      }
+    }
     &__container {
+      position: relative;
       display: flex;
     }
     &__period,
@@ -1495,6 +1603,7 @@ body .swiper-button {
       flex-direction: column;
     }
     &__period {
+      padding-right: 15px;
       .timeline__header {
         text-indent: 73px;
       }
@@ -1550,8 +1659,12 @@ body .swiper-button {
 }
 .school-plans {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr auto auto auto;
   grid-gap: 20px;
+  @include mdl-block() {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
   .school-plan {
     display: flex;
     flex-direction: column;
@@ -1559,6 +1672,15 @@ body .swiper-button {
     padding: 56px 32px 60px;
     .plan-price {
       text-align: center;
+    }
+    &--standard {
+      max-width: 340px;
+      @include lgm-block() {
+        max-width: 320px;
+      }
+      @include mdl-block() {
+        max-width: 100%;
+      }
     }
     &--proposal {
       h4 {
@@ -1598,6 +1720,34 @@ body .swiper-button {
     .v-btn {
       margin-top: auto;
     }
+    &:nth-child(1) {
+      @include mdl-block() {
+        grid-row-start: 1;
+        grid-column-start: 1;
+        grid-column-end: 3;
+      }
+    }
+    &:nth-child(2) {
+      @include mdl-block() {
+        grid-row-start: 2;
+        grid-column-start: 1;
+        grid-column-end: 3;
+      }
+    }
+    &:nth-child(3) {
+      @include mdl-block() {
+        grid-row-start: 2;
+        grid-column-start: 3;
+        grid-column-end: 5;
+      }
+    }
+    &:nth-child(4) {
+      @include mdl-block() {
+        grid-row-start: 1;
+        grid-column-start: 3;
+        grid-column-end: 5;
+      }
+    }
   }
 }
 
@@ -1608,13 +1758,13 @@ body .swiper-button {
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background-color: #E7E7E9;
+  background-color: #e7e7e9;
   &.available {
     background-color: $accent;
     svg {
       fill: $white;
-      width: 16px;
-      height: 16px;
+      width: 10px;
+      height: 10px;
       font-weight: 900;
     }
   }
@@ -1894,7 +2044,7 @@ body .swiper-button {
   background-color: $dark;
   color: #fff;
   padding-top: 130px;
-  padding-bottom: 55px;
+  padding-bottom: 0;
   &-items {
     @include row-flex();
     @include lg-block() {
@@ -1961,7 +2111,7 @@ body .swiper-button {
             left: 0;
             width: 100%;
             height: 1px;
-            background-color: rgba(255, 255, 255, .05);
+            background-color: rgba(255, 255, 255, 0.05);
           }
         }
 
@@ -1973,6 +2123,7 @@ body .swiper-button {
     &__news {
       p {
         color: #879197;
+        font-style: italic;
       }
     }
     @include md-block() {
@@ -1980,6 +2131,9 @@ body .swiper-button {
       &:nth-child(3) {
         margin-top: 40px;
       }
+    }
+    .socials-container {
+      margin-top: 42px;
     }
   }
 }

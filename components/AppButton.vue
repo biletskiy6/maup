@@ -1,5 +1,6 @@
 <template>
   <button
+    v-if="!router"
     class="v-btn hover"
     :class="[themes[theme], sizes[size], { isBlock: block }]"
     @click="handleClick"
@@ -7,6 +8,15 @@
     <span><slot /></span>
     <span class="ripple"></span>
   </button>
+  <nuxt-link
+    v-else
+    class="v-btn hover"
+    :class="[themes[theme], sizes[size], { isBlock: block }]"
+    :to="to"
+  >
+    <span><slot /></span>
+    <span class="ripple"></span>
+  </nuxt-link>
 </template>
 <script>
 export default {
@@ -29,6 +39,11 @@ export default {
       })
     },
     block: {
+      required: false,
+      type: Boolean,
+      default: false
+    },
+    router: {
       required: false,
       type: Boolean,
       default: false

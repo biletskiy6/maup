@@ -1,62 +1,62 @@
 <template>
   <div class="gallery">
-    <section class="demo-gallery">
+    <div class="demo-gallery">
       <ul class="wrapper">
         <li>
           <img
             height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=156"
+            src="https://images.pexels.com/photos/771317/pexels-photo-771317.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
             width="1240"
           />
         </li>
         <li>
           <img
             height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=56"
+            src="https://images.pexels.com/photos/1181534/pexels-photo-1181534.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
             width="1240"
           />
         </li>
         <li>
           <img
             height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=164"
+            src="https://images.pexels.com/photos/4778611/pexels-photo-4778611.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
             width="1240"
           />
         </li>
       </ul>
-    </section>
-    <section class="demo-gallery">
+    </div>
+    <div class="demo-gallery">
       <ul class="wrapper">
         <li>
           <img
             height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=138"
+            src="https://images.pexels.com/photos/5088179/pexels-photo-5088179.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
             width="1240"
           />
         </li>
         <li>
           <img
             height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=77"
+            src="https://images.pexels.com/photos/3755511/pexels-photo-3755511.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
             width="1240"
           />
         </li>
         <li>
           <img
             height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=121"
+            src="https://images.pexels.com/photos/5212325/pexels-photo-5212325.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
             width="1240"
           />
         </li>
         <li>
           <img
             height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=202"
+            src="https://images.pexels.com/photos/261909/pexels-photo-261909.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
             width="1240"
           />
         </li>
       </ul>
-    </section>
+    </div>
   </div>
 </template>
 
@@ -67,7 +67,7 @@ export default {
   mounted() {
     const images = gsap.utils.toArray('.gallery img')
     console.log(images)
-    gsap.utils.toArray('.gallery section').forEach((section, index) => {
+    gsap.utils.toArray('.gallery .demo-gallery').forEach((section, index) => {
       const w = section.querySelector('.demo-gallery .wrapper')
       // eslint-disable-next-line no-unreachable
       const [x, xEnd] =

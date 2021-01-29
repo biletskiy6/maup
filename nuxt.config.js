@@ -40,9 +40,12 @@ export default {
     { src: '@/plugins/swiper.js', ssr: false },
     { src: '@/plugins/smooth-scrollbar.js', ssr: false },
     { src: '@/plugins/modal.js', ssr: false },
-    { src: '@/plugins/vuelidate.js', ssr: false },
+    { src: '@/plugins/vuelidate.js', ssr: true },
     { src: '@/plugins/vue-select', ssr: false },
     { src: '@/plugins/vue-paginate', ssr: false },
+    { src: '@/plugins/youtube', ssr: false },
+    { src: '@/plugins/notifications', ssr: false },
+    { src: '@/plugins/clipboard', ssr: false },
   ],
   /*
    ** Nuxt.js dev-modules

@@ -17,6 +17,16 @@
             <div class="share-action">
               <div v-html="ShareIcon" class="share-action__shape"></div>
               <div class="share-action__text">Поділитись:</div>
+              <ul class="share-list">
+                <li class="share-list-item">
+                  <a
+                    @click.prevent="handleShareClick"
+                    v-html="LinkIcon"
+                    class="share-list-link"
+                    href="#"
+                  ></a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -30,7 +40,7 @@
       </div>
     </div>
     <div class="news-inner-container">
-      <p>
+      <p v-for="item in 10" :key="item">
         Кількість передплатників у найбільш популярних Telegram-каналів, в тому
         числі і тих, які ведуть боти для чатів Telegram, обчислюється вже
         сотнями тисяч.
@@ -43,6 +53,7 @@
 import EyeIcon from '@/assets/icons/eye.svg?raw'
 import CalendarIcon from '@/assets/icons/calender.svg?raw'
 import ShareIcon from '@/assets/icons/share.svg?raw'
+import LinkIcon from '@/assets/icons/link.svg?raw'
 export default {
   name: 'index',
   layout: 'news',
@@ -50,7 +61,23 @@ export default {
     return {
       EyeIcon,
       CalendarIcon,
-      ShareIcon
+      ShareIcon,
+      LinkIcon
+    }
+  },
+  methods: {
+    async handleShareClick() {
+      try {
+        await this.$copyText(document.URL)
+        this.$notify({ group: 'foo', clean: true })
+        this.$notify({
+          group: 'foo',
+          title: 'Посилання скопійоване!',
+          type: 'success'
+        })
+      } catch (e) {
+        console.error(e)
+      }
     }
   }
 }

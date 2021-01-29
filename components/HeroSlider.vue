@@ -34,9 +34,7 @@
           </h3>
           <div class="controls">
             <AppButton>
-              <span class="icon"
-                ><i class="material-icons">arrow_forward</i></span
-              >
+              <span class="icon" v-html="arrowRight"></span>
               Замовити консультацію
             </AppButton>
           </div>
@@ -98,8 +96,8 @@ export default {
           slideChange() {
             console.log(this)
             return this.realIndex === 1
-              ? document.querySelector('.main-header').classList.add('dark')
-              : document.querySelector('.main-header').classList.remove('dark')
+              ? document.querySelector('body').classList.add('dark')
+              : document.querySelector('body').classList.remove('dark')
           }
         },
         pagination: {

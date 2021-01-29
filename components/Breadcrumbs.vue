@@ -1,9 +1,13 @@
 <template>
-  <ul class="breadcrumbs">
-    <li v-for="crumb in crumbs" :key="crumb.to">
-      <nuxt-link :to="crumb.to">{{ crumb.title }}</nuxt-link>
-    </li>
-  </ul>
+  <div class="breadcrumbs">
+    <div class="single-hero-container breadcrumbs__container">
+      <ul class="breadcrumbs">
+        <li v-for="crumb in crumbs" :key="crumb.to">
+          <nuxt-link :to="crumb.to">{{ crumb.title }}</nuxt-link>
+        </li>
+      </ul>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -23,6 +27,10 @@ export default {
         })
         return breadcrumbArray
       }, [])
+      breadcrumbs.unshift({
+        to: '/',
+        title: 'Home'
+      })
       return breadcrumbs
     }
   }

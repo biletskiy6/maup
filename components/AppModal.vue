@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import { gsap } from 'gsap'
 export default {
   name: 'AppModal',
   props: {
@@ -34,21 +33,9 @@ export default {
         if (val) {
           this.$nextTick(() => {
             document.body.style.setProperty('overflow', 'hidden')
-            const tl = gsap.timeline({ delay: 0.2 })
-            tl.to('.app-modal', {
-              clipPath: 'polygon(0 0, 110% 0, 90% 100%, 0 100%)',
-              duration: 1
-            }).to(
-              '.app-modal',
-              {
-                clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
-                duration: 1
-              },
-              0.3
-            )
           })
         } else {
-          document.body.style.removeProperty('overflow', 'hidden')
+          document.body.style.removeProperty('overflow')
         }
       }
     }
@@ -71,23 +58,7 @@ export default {
   },
   methods: {
     handleClose() {
-      const tl = gsap.timeline({ delay: 0.2 })
-      tl.to('.app-modal', {
-        clipPath: 'polygon(0 0, -5% 0, 40% 100%, 0 100%)',
-        duration: 1
-      })
-        .to(
-          '.app-modal',
-          {
-            clipPath: 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)',
-            duration: 1
-          },
-          0.3
-        )
-        .eventCallback('onComplete', () => {
-          this.$store.commit('resetModalVisible')
-          this.visible = false
-        })
+      this.visible = false
     }
   }
 }

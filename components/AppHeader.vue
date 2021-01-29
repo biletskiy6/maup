@@ -10,9 +10,15 @@
               :id="`menu__${item.anchor}`"
               :key="item.id"
             >
-              <a class="link-style" :href="`#${item.anchor}`">{{
+              <a
+                v-if="!item.router"
+                class="link-style js-scroll-to"
+                :href="`#${item.anchor}`"
+                >{{ item.name }}</a
+              >
+              <nuxt-link class="link-style" v-if="item.router" :to="item.to">{{
                 item.name
-              }}</a>
+              }}</nuxt-link>
             </li>
           </ul>
         </div>
@@ -30,6 +36,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import gsap from 'gsap'
 import CSSRulePlugin from 'gsap/CSSRulePlugin'
 import ScrollTrigger from 'gsap/ScrollTrigger'
@@ -48,6 +55,11 @@ export default {
     AppButton,
     Logo
   },
+  computed: {
+    ...mapGetters({
+      layout: 'layout'
+    })
+  },
   data() {
     return {
       menuItems,
@@ -55,16 +67,16 @@ export default {
     }
   },
   mounted() {
-    console.log('mounted')
-    this.handleDetectActiveNav()
     this.pinHeader()
-    this.scrollToSection()
+    if (this.layout === 'home') {
+      this.scrollToSection()
+      this.handleDetectActiveNav()
+    }
   },
   methods: {
     handleDetectActiveNav() {
       gsap.utils.toArray('section').forEach((section) => {
         const activeSection = section.id
-
         console.log(activeSection)
         const menuitem = 'menu__'.concat(activeSection)
         const menulink = document.getElementById(menuitem).querySelector('a')
@@ -113,7 +125,7 @@ export default {
       })
     },
     scrollToSection() {
-      gsap.utils.toArray('.link-style').forEach(function(a) {
+      gsap.utils.toArray('.js-scroll-to').forEach(function(a) {
         a.addEventListener('click', function(e) {
           e.preventDefault()
           gsap.to(window, {

@@ -1,18 +1,31 @@
-.loyalty-modal {
+.single-page {
+  padding-bottom: 130px;
+}
+.single-hero {
+  &-container {
+    width: 100%;
+    max-width: 1420px;
+    margin: 0 auto;
+  }
   &__top {
     max-width: 80%;
     text-align: center;
     margin: auto;
   }
   &__text {
-    margin-top: 32px;
+    max-width: 60%;
+    margin: 32px auto 0;
+  }
+  &__content {
+    background-color: $white;
+    border: 1px solid #f6f6f6;
+    border-radius: 24px;
+    padding: 80px 0;
   }
 }
-.loyalty-content {
+.single-hero-content {
   padding: 80px 230px 36px;
-  max-height: 500px;
-  overflow-y: scroll;
-  @include scrollbars(8px, #C0C5C8, #F6F6F6);
+  @include scrollbars(8px, #c0c5c8, #f6f6f6);
   &__header {
     font-size: 26px;
     font-weight: 700;
@@ -26,11 +39,12 @@
   }
 }
 
-.loyalty-list {
+.single-hero-list {
   &__item {
     position: relative;
-    margin-bottom: 24px;
+    margin-bottom: 18px;
     padding-left: 25px;
+    line-height: 32px;
     &::after {
       position: absolute;
       content: '';
@@ -49,7 +63,7 @@
 }
 
 .to-remember {
-  background-color: #F6F6F6;
+  background-color: #f6f6f6;
   padding: 40px;
   border-radius: 16px;
   margin-top: 56px;
@@ -60,11 +74,10 @@
   }
 }
 
-
 .number-list {
   //color: $dark;
   &__item {
-    margin-bottom: 16px;
+    margin-bottom: 24px;
     &:last-child {
       margin-bottom: 0;
     }

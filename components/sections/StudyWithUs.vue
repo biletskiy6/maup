@@ -44,7 +44,10 @@
             </p>
           </li>
         </ul>
-        <AppButton>
+        <AppButton
+          router
+          :to="{ name: 'discount', params: { test: 'test-param' } }"
+        >
           <span class="icon" v-html="arrowRight"></span>
           Дізнатися більше
         </AppButton>

@@ -4,32 +4,40 @@
       Наша <br />
       команда
     </div>
-    <swiper ref="team-slider" class="swiper" :options="swiperOptions">
-      <swiper-slide v-for="item in 5" :key="item">
-        <div class="our-team__content">
-          <img src="~/assets/images/girl1.png" alt="" />
-          <span class="our-team__overlay" v-html="SliderOverlay"></span>
-          <div class="our-team__description">
-            <h2>
-              Ім'я <br />
-              Фамілія
-            </h2>
-            <p>
-              Посада, за що відповідає приклад
-            </p>
+
+    <div class="our-team__container">
+      <!--      <span class="our-team__overlay-right" v-html="SliderOverlayRight"></span>-->
+      <swiper
+        ref="team-slider"
+        class="swiper swiper--team"
+        :class="{ isEnd: isSlideEnd }"
+        :options="swiperOptions"
+      >
+        <swiper-slide v-for="item in 10" :key="item">
+          <div class="our-team__content">
+            <img src="~/assets/images/girl1.png" alt="" />
+            <span class="our-team__overlay" v-html="SliderOverlay"></span>
+            <div class="our-team__description">
+              <h2>
+                Ім'я <br />
+                Фамілія
+              </h2>
+              <p>
+                Посада, за що відповідає приклад
+              </p>
+            </div>
           </div>
-          <span
-            class="our-team__overlay-right"
-            alt=""
-            v-html="SliderOverlayRight"
-          ></span>
+        </swiper-slide>
+        <div slot="pagination" class="our-team__pagination">
+          <button class="swiper-button-prev" v-html="arrowRight"></button>
+          <button class="swiper-button-next" v-html="arrowRight"></button>
+          <div class="swiper-pagination-counts">
+            <div class="swiper-pagination-current">{{ currentIndex }}</div>
+            <div class="swiper-pagination-total">{{ snaps }}</div>
+          </div>
         </div>
-      </swiper-slide>
-      <div slot="pagination" class="our-team__pagination">
-        <button class="swiper-button-prev" v-html="arrowRight"></button>
-        <button class="swiper-button-next" v-html="arrowRight"></button>
-      </div>
-    </swiper>
+      </swiper>
+    </div>
   </div>
 </template>
 
@@ -51,16 +59,21 @@ export default {
       arrowRight,
       SliderOverlay,
       SliderOverlayRight,
+      isSlideEnd: false,
+      currentIndex: 1,
+      snaps: 0,
       swiperOptions: {
         spaceBetween: 20,
         observer: true,
+        grabCursor: false,
+        touchRatio: 0,
         observeParents: true,
         breakpoints: {
           320: {
             slidesPerView: 1.5
           },
           992: {
-            slidesPerView: 2.5
+            slidesPerView: 3.0
           },
           1366: {
             slidesPerView: 3.5
@@ -72,9 +85,19 @@ export default {
           clickable: true
         },
         on: {
-          slideChange() {
-            console.log(this.realIndex)
+          init() {
+            console.log(this)
+            currentInstance.snaps = this.snapGrid.length - 1
+          },
+          snapIndexChange() {
+            // console.log(this.snapIndex)
             currentInstance.currentIndex = this.activeIndex + 1
+            this.isEnd
+              ? document.querySelector('.swiper--team').classList.add('end')
+              : document.querySelector('.swiper--team').classList.remove('end')
+          },
+          reachEnd() {
+            document.querySelector('.swiper--team').classList.add('end')
           }
         },
         navigation: {
@@ -83,16 +106,6 @@ export default {
         }
       }
     }
-  },
-  mounted() {
-    const ctx = this
-    window.addEventListener('resize', function(e) {
-      const width = this.innerWidth
-      if (width < 1100) {
-        ctx.swiperOptions.slidesPerView = 1
-      }
-      console.log(this)
-    })
   }
 }
 </script>

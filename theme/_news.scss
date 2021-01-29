@@ -1,5 +1,9 @@
 .breadcrumbs {
   display: flex;
+  //margin-bottom: 56px;
+  &__container {
+    margin-bottom: 56px;
+  }
   li {
     position: relative;
     margin-right: 36px;
@@ -25,24 +29,92 @@
   a {
     text-decoration: none;
     color: rgba($dark, 0.56);
+    font-size: 13px;
+    transition: color .25s ease;
+    &:hover {
+      color: rgba($dark, 1);
+      transition: color .25s ease;
+    }
   }
 }
 .news-container {
+  width: 100%;
   max-width: 1180px;
   margin: 0 auto;
 }
 .news-inner-container {
+  width: 100%;
   max-width: 940px;
   margin: 0 auto;
 }
+.pagination {
+  display: flex;
+  align-items: center;
+  margin-top: 64px;
+  li {
+    position: relative;
+    margin-right: 1px;
+    &:first-child, &:last-child {
+      font-size: 20px;
+      font-weight: 700;
+      color: $blue;
+      &::after {
+        position: absolute;
+        content: '';
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        background-color: #879197;
+      }
+      &.disabled {
+        color: #879197;
+      }
+    }
+  }
+  .page-item[data-v-82963a40] {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 700;
+    background-color: #e7e7e9;
+    color: #879197;
+    &:nth-child(2) {
+      border-top-left-radius: 16px;
+      border-bottom-left-radius: 16px;
+      margin-left: auto;
+    }
+    &:nth-last-of-type(-n + 2) {
+      border-top-right-radius: 16px;
+      border-bottom-right-radius: 16px;
+      margin-right: auto;
+    }
+    &.active {
+      background-color: $blue;
+      color: $white
+    }
+  }
+  a[data-v-82963a40] {
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 64px;
+    text-align: center;
+  }
+}
 .news {
+  //padding-top: 260px;
+  &__content {
+    padding-bottom: 130px;
+  }
   &-items {
     display: flex;
     flex-wrap: wrap;
     margin-top: 64px;
     margin-left: -10px;
     margin-right: -10px;
-    padding-bottom: 130px;
   }
   &-item {
     position: relative;
@@ -204,6 +276,9 @@
       object-fit: cover;
     }
   }
+  p {
+    margin-bottom: 30px;
+  }
 }
 .share {
   display: flex;
@@ -227,6 +302,20 @@
       font-size: 14px;
       font-weight: 700;
       margin-left: 12px;
+    }
+  }
+  &-list {
+    margin-left: 24px;
+    &-item {}
+    &-link {
+      display: flex;
+      align-items: center;
+      .a {
+        fill: none;
+      }
+      .b {
+        fill: $blue;
+      }
     }
   }
 }
