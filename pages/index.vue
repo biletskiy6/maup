@@ -1,6 +1,6 @@
 <template>
   <div class="home-page">
-    <Preloader v-if="false" />
+    <Preloader v-if="isPreloaderAnimationFinished" />
     <AppModal name="loyalty">
       <LoyaltyModal />
     </AppModal>
@@ -10,19 +10,21 @@
     </header>
     <StudyWithUs />
     <OnlineSchool />
+    <EducationProcess v-if="true" />
     <!--    <DemoAccess />-->
     <Gallery />
-    <EducationProcess />
-    <EnterSchool />
-    <EducationCost />
-    <AdditionalOpps />
-    <Consult />
+
+    <EnterSchool v-if="false" />
+    <EducationCost v-if="false" />
+    <AdditionalOpps v-if="false" />
+    <Consult v-if="false" />
   </div>
 </template>
 
 <script>
 import { gsap } from 'gsap'
 import { CSSRulePlugin } from 'gsap/CSSRulePlugin'
+import { mapGetters, mapMutations } from 'vuex'
 import Splitter from 'split-html-to-chars'
 import Preloader from '@/components/Preloader'
 import HeroSlider from '@/components/HeroSlider'
@@ -64,15 +66,23 @@ export default {
       isMenuOpened: false
     }
   },
+  computed: {
+    ...mapGetters({
+      isPreloaderAnimationFinished: 'preloader/animation'
+    })
+  },
   mounted() {
     // eslint-disable-next-line nuxt/no-env-in-hooks
     // this.splitText()
     const tl = gsap.timeline({ delay: 1, paused: false })
     // tl.add(this.animatePreloader())
-    // tl.add(this.animateTopLine())
-    tl.add(this.animateSlider())
+    tl.add(this.animateTopLine())
+    // tl.add(this.animateSlider())
   },
   methods: {
+    ...mapMutations({
+      preloaderAnimationFinished: 'preloader/animationFinished'
+    }),
     splitText() {
       const heroTitle = document.querySelectorAll('.js-splitme')
       ;[].forEach.call(heroTitle, function(el) {
@@ -82,7 +92,7 @@ export default {
       return heroTitle
     },
     animatePreloader() {
-      const tl = gsap.timeline({ delay: 1, paused: false })
+      const tl = gsap.timeline({ paused: false })
       const cont = { val: 0 }
       const newVal = 100
       const firstOverlayAfter = CSSRulePlugin.getRule(
@@ -139,6 +149,9 @@ export default {
           { y: '-100%', ease: 'expo.easeInOut', delay: 0.9 },
           'counterFinished'
         )
+        .eventCallback('onComplete', () => {
+          this.preloaderAnimationFinished()
+        })
       return tl
       // .to('.preloader', {
       //   autoAlpha: 0
@@ -148,29 +161,56 @@ export default {
     animateTopLine() {
       const tl = gsap.timeline()
       tl.fromTo(
-        '.app-header .logo',
-        { autoAlpha: 0, x: -20 },
-        { autoAlpha: 1, x: 0 },
+        '.top-bar a',
+        {
+          autoAlpha: 0,
+          x: -40
+        },
+        {
+          autoAlpha: 1,
+          x: 0
+        },
         0
       )
         .fromTo(
-          '.main-menu a',
+          '.top-bar .language-switcher li',
           {
             autoAlpha: 0,
-            y: -20
-          },
-          { autoAlpha: 1, y: 0, stagger: { each: 0.05 } },
-          0
-        )
-        .fromTo(
-          '.top-line__right',
-          {
-            autoAlpha: 0,
-            x: 20
+            x: 40
           },
           {
             autoAlpha: 1,
             x: 0
+          },
+          0
+        )
+        .fromTo(
+          '.app-header .logo',
+          { autoAlpha: 0, x: -20 },
+          { autoAlpha: 1, x: 0 },
+          0
+        )
+        .fromTo(
+          '.main-menu a',
+          {
+            autoAlpha: 0,
+            x: -30
+          },
+          { autoAlpha: 1, x: 0, stagger: { each: 0.09 } },
+          0
+        )
+        .fromTo(
+          '.top-line__right > *',
+          {
+            autoAlpha: 0,
+            x: 40
+          },
+          {
+            autoAlpha: 1,
+            x: 0,
+            stagger: {
+              each: 0.09
+            }
           },
           0
         )

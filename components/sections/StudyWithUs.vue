@@ -56,17 +56,17 @@
     <div class="study-intro default-left">
       <ul class="study-intro-list">
         <li class="study-intro-item">
-          <h4 class="section-title study-intro__header">1 000+</h4>
+          <h4 class="section-title study-intro__header"><span>1000</span>+</h4>
           <p class="study-intro__text">учнів навчається</p>
         </li>
         <li class="study-intro-item">
-          <h4 class="section-title study-intro__header">7 376</h4>
+          <h4 class="section-title study-intro__header"><span>7 376</span></h4>
           <p class="study-intro__text">
             з різних населених пунктів України потрібен лише інтернет
           </p>
         </li>
         <li class="study-intro-item">
-          <h4 class="section-title study-intro__header">1 300</h4>
+          <h4 class="section-title study-intro__header"><span>1 300</span></h4>
           <p class="study-intro__text">вчителів співпрацює з нами</p>
         </li>
       </ul>
@@ -96,53 +96,88 @@ export default {
     }
   },
   mounted() {
-    // eslint-disable-next-line no-unused-vars
-    const {
-      studyWithUs,
-      title,
-      revealOverlay,
-      revealImage,
-      studyProposals,
-      studyProposal
-    } = this.$refs
-    // eslint-disable-next-line no-unused-vars
-    const action = gsap
-      .timeline({
-        defaults: { duration: 1 },
-        scrollTrigger: {
-          trigger: studyWithUs,
-          start: 'top 120%',
-          end: 'bottom',
-          scrub: 1
-        }
-      })
-      .fromTo(title, { x: -120, autoAlpha: 0 }, { x: 0, autoAlpha: 1 }, 0)
-      .fromTo(
+    this.studyWithUsInitial()
+    this.studyWithUsIntro()
+  },
+  methods: {
+    studyWithUsInitial() {
+      const {
+        studyWithUs,
+        title,
+        revealImage,
         studyProposals,
-        { scale: 0.95, autoAlpha: 0 },
-        { scale: 1, autoAlpha: 1 },
-        0
-      )
-      .addLabel('studyProposals')
-      .fromTo(
-        studyProposal,
-        { autoAlpha: 0, y: -10 },
-        { autoAlpha: 1, y: 0, stagger: { each: 0.1 } },
-        'studyProposals-=0.9'
-      )
-      .fromTo(
-        revealOverlay,
-        { skewX: 30, scale: 1.5 },
-        {
-          skewX: 0,
-          xPercent: 190,
-          duration: 2,
-          transformOrigin: '0% 100%',
-          ease: 'power4.easeOut'
-        },
-        0
-      )
-      .fromTo(revealImage, { scale: 1.6 }, { scale: 1 }, 0)
+        studyProposal
+      } = this.$refs
+      // eslint-disable-next-line no-unused-vars
+      gsap
+        .timeline({
+          defaults: { duration: 1 },
+          scrollTrigger: {
+            trigger: studyWithUs,
+            start: 'top bottom'
+          }
+        })
+        .fromTo(title, { x: -120, autoAlpha: 0 }, { x: 0, autoAlpha: 1 }, 0)
+        .fromTo(studyProposals, { autoAlpha: 0 }, { autoAlpha: 1 }, 0)
+        .addLabel('studyProposals')
+        .fromTo(
+          studyProposal,
+          { autoAlpha: 0, y: -40 },
+          { autoAlpha: 1, y: 0, stagger: { each: 0.1 } },
+          0
+        )
+        .fromTo(
+          revealImage,
+          { scale: 1.6, autoAlpha: 0 },
+          { scale: 1, autoAlpha: 1 },
+          0
+        )
+    },
+    studyWithUsIntro() {
+      let counter = 0
+      const tl = gsap
+        .timeline({
+          defaults: { duration: 1 },
+          scrollTrigger: {
+            trigger: '.study-intro',
+            start: 'top bottom'
+          }
+        })
+        .fromTo(
+          '.study-intro-item',
+          { y: -40, autoAlpha: 0 },
+          {
+            y: 0,
+            autoAlpha: 1,
+            stagger: {
+              each: 0.3,
+              /* eslint-disable object-shorthand */
+              onStart: function() {
+                const cont = { val: 0 }
+                // let counter = 0
+                // const newVal = 100
+                const values = [1000, 7376, 1300]
+                const target = this.targets()[0]
+                const targetSpan = target.querySelector('span')
+                tl.to(
+                  cont,
+                  {
+                    val: values[counter],
+                    roundProps: 'val',
+                    duration: 2,
+                    onUpdate() {
+                      targetSpan.innerHTML = cont.val
+                    }
+                  },
+                  0
+                )
+                counter++
+              }
+            }
+          },
+          0
+        )
+    }
   }
 }
 </script>

@@ -5,27 +5,49 @@
         <div class="footer__content-main">
           <div class="logo logo--white" v-html="logo"></div>
           <div class="footer-items">
-            <div class="footer-item">
+            <div class="footer-item footer-item--contacts">
               <h4>Телефони для довідок:</h4>
               <ul class="footer-item__phones">
                 <li><a href="#">+38 044 490-95-05;</a></li>
                 <li><a href="#">+38 093 490-490-0</a></li>
               </ul>
+              <ul class="footer-item__lists">
+                <li>
+                  <span class="footer-link-style">Умови надання послуг</span>
+                </li>
+                <li>
+                  <span class="footer-link-style"
+                    >Політика конфіденційності</span
+                  >
+                </li>
+              </ul>
             </div>
             <div class="footer-item">
               <h4>Методи оплати:</h4>
               <ul class="footer-item__lists">
-                <li><span>Оплата кредитною карткою</span></li>
-                <li><span>Банківськи платежем</span></li>
-                <li><span>Оплата готівкою</span></li>
+                <li>
+                  <span class="footer-link-style"
+                    >Оплата кредитною карткою</span
+                  >
+                </li>
+                <li>
+                  <span class="footer-link-style">Банківськи платежем</span>
+                </li>
+                <li><span class="footer-link-style">Оплата готівкою</span></li>
               </ul>
             </div>
             <div class="footer-item">
               <h4>Корисно знати:</h4>
               <ul class="footer-item__lists">
-                <li>Новини</li>
-                <li>Всі знижки</li>
-                <li>Навчання з нами - це</li>
+                <li>
+                  <nuxt-link class="footer-link-style" to="/news"
+                    >Новини</nuxt-link
+                  >
+                </li>
+                <li><span class="footer-link-style">Всі знижки</span></li>
+                <li>
+                  <span class="footer-link-style">Навчання з нами - це</span>
+                </li>
               </ul>
             </div>
             <div class="footer-item">

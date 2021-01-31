@@ -37,7 +37,6 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    { src: '@/plugins/swiper.js', ssr: false },
     { src: '@/plugins/smooth-scrollbar.js', ssr: false },
     { src: '@/plugins/modal.js', ssr: false },
     { src: '@/plugins/vuelidate.js', ssr: true },
@@ -46,6 +45,7 @@ export default {
     { src: '@/plugins/youtube', ssr: false },
     { src: '@/plugins/notifications', ssr: false },
     { src: '@/plugins/clipboard', ssr: false },
+    { src: '@/plugins/swiper', ssr: false }
   ],
   /*
    ** Nuxt.js dev-modules

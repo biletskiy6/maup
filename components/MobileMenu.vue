@@ -7,10 +7,7 @@
       </div>
       <div class="mobile-menu__bar">
         <Logo />
-        <button
-          class="mobile-menu__close"
-          @click="$store.commit('menu/resetOpen')"
-        >
+        <button class="mobile-menu__close" @click="handleClose">
           <span></span>
           <span></span>
         </button>
@@ -18,8 +15,23 @@
     </div>
     <div class="mobile-menu__line">
       <ul class="mobile-menu__nav">
-        <li v-for="item in menuItems" :key="item.id">
-          <a class="link-style link-style--dark" href="#">{{ item.name }}</a>
+        <li
+          v-for="item in menuItems"
+          :id="`menu__${item.anchor}`"
+          :key="item.id"
+        >
+          <a
+            v-if="!item.router"
+            class="link-style link-style--dark js-scroll-to"
+            :href="`#${item.anchor}`"
+            >{{ item.name }}</a
+          >
+          <nuxt-link
+            class="link-style link-style--dark"
+            v-if="item.router"
+            :to="item.to"
+            >{{ item.name }}</nuxt-link
+          >
         </li>
       </ul>
     </div>
@@ -54,7 +66,10 @@ export default {
     }
   },
   methods: {
-    handleBurgerClick() {}
+    handleBurgerClick() {},
+    handleClose() {
+      this.$store.commit('menu/resetOpen')
+    }
   }
 }
 </script>

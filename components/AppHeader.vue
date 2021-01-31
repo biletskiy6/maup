@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import gsap from 'gsap'
 import CSSRulePlugin from 'gsap/CSSRulePlugin'
 import ScrollTrigger from 'gsap/ScrollTrigger'
@@ -55,16 +55,16 @@ export default {
     AppButton,
     Logo
   },
-  computed: {
-    ...mapGetters({
-      layout: 'layout'
-    })
-  },
   data() {
     return {
-      menuItems,
-      isOpen: false
+      menuItems
     }
+  },
+  computed: {
+    ...mapGetters({
+      layout: 'layout',
+      menuOpen: 'menu/isOpen'
+    })
   },
   mounted() {
     this.pinHeader()
@@ -74,10 +74,12 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({
+      closeMenu: 'menu/resetOpen'
+    }),
     handleDetectActiveNav() {
       gsap.utils.toArray('section').forEach((section) => {
         const activeSection = section.id
-        console.log(activeSection)
         const menuitem = 'menu__'.concat(activeSection)
         const menulink = document.getElementById(menuitem).querySelector('a')
         gsap.timeline({
@@ -95,7 +97,6 @@ export default {
                 : menulink.classList.remove('highlighted')
           }
         })
-        // const menuitem = 'menu__'.concat(activeSection);
       })
     },
     handleBurgerClick() {
@@ -125,9 +126,11 @@ export default {
       })
     },
     scrollToSection() {
+      const ctx = this
       gsap.utils.toArray('.js-scroll-to').forEach(function(a) {
         a.addEventListener('click', function(e) {
           e.preventDefault()
+          ctx.menuOpen && ctx.closeMenu()
           gsap.to(window, {
             duration: 1,
             scrollTo: {

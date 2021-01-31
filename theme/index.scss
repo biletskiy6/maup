@@ -386,7 +386,7 @@ button {
     height: 0;
     border-radius: 100%;
     transform: translate(-50%, -50%);
-    transition: width .5s, padding-top .5s;
+    transition: width 0.5s, padding-top 0.5s;
   }
   .icon {
     display: inline-flex;
@@ -456,7 +456,7 @@ button {
     .ripple {
       width: calc(100% * 2.25);
       padding-top: calc(100% * 2.25);
-      transition: width .5s, padding-top .5s;
+      transition: width 0.5s, padding-top 0.5s;
     }
   }
 }
@@ -746,6 +746,11 @@ body {
       left: $slider-phonex-gutter;
     }
   }
+  .swiper-button-next, .swiper-button-prev {
+    @include phonex-block() {
+      display: none;
+    }
+  }
   .swiper-pagination {
     text-align: inherit;
     .swiper-pagination-bullet {
@@ -831,9 +836,6 @@ body .swiper-button {
         font-size: 18px;
       }
     }
-    @include phonex-block() {
-      display: none;
-    }
     &:hover {
       background-color: $blue;
       transition: background-color 0.25s ease;
@@ -866,7 +868,6 @@ body .swiper-button {
     }
   }
 }
-
 .slide-content {
   position: relative;
   z-index: 1;
@@ -957,11 +958,15 @@ body .swiper-button {
   }
   @include tablet-block() {
     height: auto;
+    margin: 120px auto 130px;
+  }
+  @include tabletx-block() {
+    margin: 80px auto 80px;
   }
   &__content {
     position: relative;
     display: flex;
-    height: 100%;
+    min-height: 697px;
     .reveal {
       position: absolute;
       bottom: 0;
@@ -1001,6 +1006,9 @@ body .swiper-button {
       padding-right: 15px;
       .v-btn {
         align-self: flex-end;
+      }
+      @include tablet-block() {
+        padding-left: 15px;
       }
     }
     position: relative;
@@ -1086,6 +1094,9 @@ body .swiper-button {
   @include mdx-block() {
     padding-right: 80px;
   }
+  @include tablet-block() {
+    margin-top: 80px;
+  }
   @include tabletx-block() {
     padding-right: 40px;
   }
@@ -1143,6 +1154,7 @@ body .swiper-button {
 .reveal {
   overflow: hidden;
   &__overlay {
+    display: none;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -1191,6 +1203,15 @@ body .swiper-button {
   padding-left: 250px;
   @include lg-block() {
     padding-left: 140px;
+  }
+  @include mdl-block() {
+    padding-bottom: 200px;
+  }
+  @include md-block() {
+    padding-left: 100px;
+  }
+  @include mdx-block() {
+    padding-left: 70px;
   }
   @include tablet-block() {
     padding-left: 15px;
@@ -1372,6 +1393,11 @@ body .swiper-button {
   &-icon {
     position: absolute;
     top: 0;
+    height: 100%;
+    svg {
+      position: absolute;
+      height: 100%;
+    }
   }
   ul {
     padding-left: 19px;
@@ -1383,6 +1409,7 @@ body .swiper-button {
       font-weight: 700;
       color: $dark;
       margin-bottom: 17px;
+      cursor: pointer;
       &:last-child {
         margin-bottom: 0;
       }
@@ -1405,6 +1432,12 @@ body .swiper-button {
     @include md-block() {
       padding: 120px 70px 120px 90px;
     }
+    @include tablet-block() {
+      padding: 80px 40px 80px 40px;
+    }
+    @include tabletx-block() {
+      padding: 65px 25px 65px 25px;
+    }
   }
   &__inner {
     position: relative;
@@ -1413,10 +1446,29 @@ body .swiper-button {
     @include mdx-block() {
       flex-direction: column;
     }
+
+    @include mdx-block() {
+      .timeline {
+        position: relative;
+        margin-right: 0;
+        flex: none;
+        &-icon {
+          top: -30px;
+          left: 3px;
+        }
+      }
+    }
+
+    @include mdx-block() {
+      margin-bottom: 40px;
+    }
   }
   &__description {
     position: relative;
     flex: 1 1 auto;
+    @include mdx-block() {
+      margin-top: 50px;
+    }
   }
   &__info {
     position: absolute;
@@ -1439,6 +1491,7 @@ body .swiper-button {
     }
     h3 {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       font-weight: 900;
       font-family: $header-font;
@@ -1446,6 +1499,13 @@ body .swiper-button {
       margin-bottom: 32px;
     }
     p {
+    }
+    @include tabletx-block() {
+      padding: 35px 50px 22px 35px;
+      h3 {
+        margin-bottom: 22px;
+        font-size: 32px;
+      }
     }
   }
 }
@@ -1474,6 +1534,9 @@ body .swiper-button {
 }
 .our-team {
   padding-top: 130px;
+  @include mdx-block() {
+    padding-top: 330px;
+  }
   &__container {
     position: relative;
   }
@@ -2051,6 +2114,23 @@ body .swiper-button {
   color: #fff;
   padding-top: 130px;
   padding-bottom: 0;
+  &-link-style {
+    text-decoration: none;
+    font-style: italic;
+    color: $white;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+    &::after {
+      position: absolute;
+      content: '';
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
   &-items {
     @include row-flex();
     @include lg-block() {
@@ -2067,21 +2147,27 @@ body .swiper-button {
   }
   .logo {
     margin-bottom: 75px;
+    @include tabletx-block() {
+      margin-bottom: 45px;
+    }
   }
   &-item {
     @include col();
     @include size(3);
+    &--contacts {
+      .footer-item__lists {
+        margin-top: 56px;
+      }
+    }
     h4 {
       font-weight: 700;
-      margin-bottom: 24px;
+      margin-bottom: 34px;
     }
     &__phones {
-      display: flex;
-      align-items: center;
       li {
-        margin-right: 8px;
+        margin-bottom: 8px;
         &:last-child {
-          margin-right: 0;
+          margin-bottom: 0;
         }
       }
       a {
@@ -2104,23 +2190,6 @@ body .swiper-button {
       li {
         position: relative;
         margin-bottom: 26px;
-        font-style: italic;
-
-        span {
-          position: relative;
-          display: inline-block;
-          padding-bottom: 10px;
-          &::after {
-            position: absolute;
-            content: '';
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background-color: rgba(255, 255, 255, 0.05);
-          }
-        }
-
         &:last-child {
           margin-bottom: 0;
         }
@@ -2132,14 +2201,34 @@ body .swiper-button {
         font-style: italic;
       }
     }
+    .socials-container {
+      margin-top: 42px;
+    }
     @include md-block() {
       @include size(6);
       &:nth-child(3) {
         margin-top: 40px;
       }
     }
-    .socials-container {
-      margin-top: 42px;
+    @include tabletx-block() {
+      @include size(12);
+      margin-bottom: 16px;
+      &__lists {
+        li {
+          margin-bottom: 24px;
+        }
+      }
+      h4 {
+        margin-bottom: 18px;
+        font-weight: 700;
+        font-size: 24px;
+      }
+      &:nth-child(3) {
+        margin-top: 0;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 }

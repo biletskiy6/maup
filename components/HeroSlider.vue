@@ -1,6 +1,6 @@
 <template>
   <div class="hero-slider">
-    <swiper ref="heroSlider" class="swiper" :options="swiperOption">
+    <swiper class="swiper" :options="swiperOption">
       <swiper-slide>
         <div class="slide-content">
           <h2 class="slider-header js-splitme">
@@ -70,35 +70,21 @@ import AppButton from './AppButton'
 import arrowRight from '@/assets/icons/arrow-right.svg?raw'
 export default {
   name: 'HeroSlider',
-  title: '3D Cube effect',
   components: {
     AppButton
-  },
-  mounted() {
-    console.log(this.$refs.heroSlider.$swiper)
-    if (window.innerWidth <= 600) {
-      this.swiperOption.effect = 'fade'
-      this.swiperOption.cubeEffect = false
-    }
   },
   data() {
     return {
       arrowRight,
       swiperOption: {
-        effect: 'cube',
+        effect: 'fade',
         grabCursor: false,
         touchRatio: 0,
         direction: 'horizontal',
         paginationClickable: true,
         mousewheel: false,
         speed: 600,
-        autoHeight: true,
-        cubeEffect: {
-          shadow: false,
-          slideShadows: true,
-          shadowOffset: 20,
-          shadowScale: 0.94
-        },
+        autoHeight: false,
         on: {
           slideChange() {
             console.log(this)

@@ -14,6 +14,9 @@
   transform: translateY(0);
   opacity: 0;
   visibility: hidden;
+  @include phonex-block() {
+    padding: 16px 15px 0;
+  }
   &.active {
     opacity: 1;
     visibility: visible;
@@ -75,6 +78,9 @@
     &:last-child {
       align-self: center;
       padding-bottom: 64px;
+      @include phonex-block() {
+        padding-bottom: 15px;
+      }
     }
     .accent-link {
       margin-top: 40px;
