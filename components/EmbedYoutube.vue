@@ -4,11 +4,11 @@
       <CloseButton @click.native="handleCloseEmbed" />
       <youtube
         class="video"
-        @ready="ready"
         :video-id="videoId"
         player-width="100%"
         player-height="100%"
         :player-vars="{ autoplay: 0 }"
+        @ready="ready"
       ></youtube>
     </section>
   </transition>

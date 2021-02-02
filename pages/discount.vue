@@ -86,7 +86,7 @@
 <script>
 import AppButton from '@/components/AppButton'
 export default {
-  name: 'discount',
+  name: 'Discount',
   components: { AppButton },
   layout: 'news'
 }

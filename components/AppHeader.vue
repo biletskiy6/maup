@@ -16,7 +16,7 @@
                 :href="`#${item.anchor}`"
                 >{{ item.name }}</a
               >
-              <nuxt-link class="link-style" v-if="item.router" :to="item.to">{{
+              <nuxt-link v-if="item.router" class="link-style" :to="item.to">{{
                 item.name
               }}</nuxt-link>
             </li>
@@ -40,9 +40,9 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex'
 import gsap from 'gsap'
-import CSSRulePlugin from 'gsap/CSSRulePlugin'
-import ScrollTrigger from 'gsap/ScrollTrigger'
-import ScrollToPlugin from 'gsap/ScrollToPlugin'
+import { CSSRulePlugin } from 'gsap/CSSRulePlugin'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import AppButton from './AppButton'
 import MenuBurger from './MenuBurger'
 import Logo from '@/components/Logo'

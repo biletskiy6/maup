@@ -18,11 +18,11 @@
             />
             <div class="news-item__top">
               <div class="views">
-                <span v-html="EyeIcon" class="views__icon"></span>
+                <span class="views__icon" v-html="EyeIcon"></span>
                 <span class="views__text">240</span>
               </div>
               <div class="date">
-                <span v-html="EyeIcon" class="date__icon"></span>
+                <span class="date__icon" v-html="EyeIcon"></span>
                 <span class="date__text">25 січня</span>
               </div>
             </div>
@@ -30,7 +30,7 @@
               Всеукраїнська онлайн школа Libera School
             </h2>
             <div class="news-item__more">
-              <div v-html="ArrowRight" class="news-item__more-shape"></div>
+              <div class="news-item__more-shape" v-html="ArrowRight"></div>
               <div class="news-item__more-text">Дізнатися більше</div>
             </div>
           </nuxt-link>
@@ -57,10 +57,17 @@ import CalendarIcon from '@/assets/icons/calender.svg?raw'
 import ArrowRight from '@/assets/icons/arrow-right.svg?raw'
 import Paginate from '@/components/Paginate'
 export default {
-  name: 'news',
+  name: 'News',
   layout: 'news',
   components: {
     Paginate
+  },
+  data() {
+    return {
+      EyeIcon,
+      CalendarIcon,
+      ArrowRight
+    }
   },
   computed: {
     prevText() {
@@ -68,13 +75,6 @@ export default {
     },
     nextText() {
       return `<p>Наступна сторінка</p>`
-    }
-  },
-  data() {
-    return {
-      EyeIcon,
-      CalendarIcon,
-      ArrowRight
     }
   },
   methods: {

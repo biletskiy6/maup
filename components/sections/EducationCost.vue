@@ -48,9 +48,9 @@
                   <div class="timeline__header">Період</div>
                   <ul>
                     <li
-                      @click="setActiveEconomy(item)"
                       v-for="item in economies"
                       :key="item.id"
+                      @click="setActiveEconomy(item)"
                     >
                       <div class="">
                         <span class="round" :class="{ active: item.active }"

@@ -71,11 +71,6 @@ import downIcon from '@/assets/icons/down.svg?raw'
 export default {
   name: 'AdditionalOpps',
   components: { SelectCurrency },
-  computed: {
-    activeCurrency() {
-      return this.currencies.find((i) => i.isActive)
-    }
-  },
   data() {
     return {
       doneIcon,
@@ -143,6 +138,11 @@ export default {
           rate: 0.029
         }
       ]
+    }
+  },
+  computed: {
+    activeCurrency() {
+      return this.currencies.find((i) => i.isActive)
     }
   },
   methods: {

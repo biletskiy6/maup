@@ -27,8 +27,8 @@
             >{{ item.name }}</a
           >
           <nuxt-link
-            class="link-style link-style--dark"
             v-if="item.router"
+            class="link-style link-style--dark"
             :to="item.to"
             >{{ item.name }}</nuxt-link
           >

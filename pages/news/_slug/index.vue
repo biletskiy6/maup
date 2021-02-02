@@ -4,26 +4,26 @@
       <div class="single-news__top">
         <div class="single-news__top-left">
           <div class="views">
-            <span v-html="EyeIcon" class="views__icon"></span>
+            <span class="views__icon" v-html="EyeIcon"></span>
             <span class="views__text">240</span>
           </div>
           <div class="date">
-            <span v-html="CalendarIcon" class="date__icon"></span>
+            <span class="date__icon" v-html="CalendarIcon"></span>
             <span class="date__text">25 січня</span>
           </div>
         </div>
         <div class="single-news__top-right">
           <div class="share">
             <div class="share-action">
-              <div v-html="ShareIcon" class="share-action__shape"></div>
+              <div class="share-action__shape" v-html="ShareIcon"></div>
               <div class="share-action__text">Поділитись:</div>
               <ul class="share-list">
                 <li class="share-list-item">
                   <a
-                    @click.prevent="handleShareClick"
-                    v-html="LinkIcon"
                     class="share-list-link"
                     href="#"
+                    @click.prevent="handleShareClick"
+                    v-html="LinkIcon"
                   ></a>
                 </li>
               </ul>
@@ -55,7 +55,7 @@ import CalendarIcon from '@/assets/icons/calender.svg?raw'
 import ShareIcon from '@/assets/icons/share.svg?raw'
 import LinkIcon from '@/assets/icons/link.svg?raw'
 export default {
-  name: 'index',
+  name: 'Index',
   layout: 'news',
   meta: {
     test: 'tester'

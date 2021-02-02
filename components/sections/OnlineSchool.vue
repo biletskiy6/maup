@@ -29,16 +29,16 @@
         <client-only>
           <AppModal name="youtube">
             <EmbedYoutube
-              :embedYoutube="embedYoutube"
-              :readyState="readyState"
-              videoId="FvKzGwg3UwE"
+              :embed-youtube="embedYoutube"
+              :ready-state="readyState"
+              video-id="FvKzGwg3UwE"
               @handleCloseVideoTrailer="handleCloseVideoTrailer"
               @handleReadyVideoTrailer="handleReadyVideoTrailer"
             />
           </AppModal>
         </client-only>
         <img src="~@/assets/images/online-school.png" alt="" />
-        <div @click="handleOpenVideoTrailer" class="play">
+        <div class="play" @click="handleOpenVideoTrailer">
           <div class="pulse pulse-1"></div>
           <div class="pulse pulse-2"></div>
           <button class="play-btn">
@@ -62,17 +62,17 @@ gsap.registerPlugin(ScrollTrigger)
 export default {
   name: 'OnlineSchool',
   components: { AppModal, EmbedYoutube, AppButton },
+  data() {
+    return {
+      play
+    }
+  },
   computed: {
     embedYoutube() {
       return this.$store.getters['embedYoutube/embedYoutube']
     },
     readyState() {
       return this.$store.getters['embedYoutube/readyState']
-    }
-  },
-  data() {
-    return {
-      play
     }
   },
   mounted() {

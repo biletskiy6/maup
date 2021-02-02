@@ -9,8 +9,8 @@
           <div class="single-hero-content__item">
             <ul class="single-hero-list">
               <li
-                v-for="item in items"
-                :key="item"
+                v-for="(item, index) in items"
+                :key="index"
                 class="single-hero-list__item"
               >
                 {{ item.text }}
@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: 'study-with-us',
+  name: 'StudyWithUs',
   layout: 'news',
   data() {
     return {

@@ -1,6 +1,6 @@
 <template>
   <div class="to-top" :class="{ active: isActive }">
-    <div v-html="TopArrow" class="to-top__icon"></div>
+    <div class="to-top__icon" v-html="TopArrow"></div>
   </div>
 </template>
 

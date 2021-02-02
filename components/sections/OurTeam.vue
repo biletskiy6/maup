@@ -54,32 +54,6 @@ export default {
     Swiper,
     SwiperSlide
   },
-  mounted() {
-    // ScrollTrigger.matchMedia({
-    //   /* eslint-disable object-shorthand */
-    //   '(min-width: 1350px)': function() {
-    //     gsap
-    //       .timeline({
-    //         paused: true,
-    //         scrollTrigger: {
-    //           trigger: '.our-team',
-    //           start: 'top 50%'
-    //         }
-    //       })
-    //       .fromTo(
-    //         '.our-team .section-title',
-    //         { x: -120, autoAlpha: 0 },
-    //         { x: 0, autoAlpha: 1 },
-    //         0
-    //       )
-    //       .fromTo(
-    //         '.our-team .swiper-slide',
-    //         { autoAlpha: 0 },
-    //         { autoAlpha: 1, stagger: { each: 0.15 } }
-    //       )
-    //   }
-    // })
-  },
   data() {
     const currentInstance = this
     return {
@@ -136,6 +110,32 @@ export default {
         }
       }
     }
+  },
+  mounted() {
+    // ScrollTrigger.matchMedia({
+    //   /* eslint-disable object-shorthand */
+    //   '(min-width: 1350px)': function() {
+    //     gsap
+    //       .timeline({
+    //         paused: true,
+    //         scrollTrigger: {
+    //           trigger: '.our-team',
+    //           start: 'top 50%'
+    //         }
+    //       })
+    //       .fromTo(
+    //         '.our-team .section-title',
+    //         { x: -120, autoAlpha: 0 },
+    //         { x: 0, autoAlpha: 1 },
+    //         0
+    //       )
+    //       .fromTo(
+    //         '.our-team .swiper-slide',
+    //         { autoAlpha: 0 },
+    //         { autoAlpha: 1, stagger: { each: 0.15 } }
+    //       )
+    //   }
+    // })
   }
 }
 </script>
