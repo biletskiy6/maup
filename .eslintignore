@@ -1,1 +1,3 @@
 components/Paginate.vue
+components/Select.vue
+components/utils/**

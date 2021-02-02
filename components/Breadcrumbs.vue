@@ -16,7 +16,6 @@ export default {
   name: 'Breadcrumbs',
   computed: {
     crumbs() {
-      console.log(this.$route)
       const pathArray = this.$route.path.split('/')
       pathArray.shift()
       const breadcrumbs = pathArray.reduce((breadcrumbArray, path, idx) => {

@@ -1,5 +1,13 @@
 <template>
   <div class="single-page single-hero">
+    <Select
+      autocomplete
+      @input-change="autoCompleteFunc"
+      class="selectExample"
+      label="Figuras"
+      :options="options1"
+      v-model="select1"
+    />
     <div class="single-hero-container">
       <div class="single-hero__content">
         <div class="single-hero__top">
@@ -24,11 +32,19 @@
 </template>
 
 <script>
+import Select from '@/components/Select'
 export default {
   name: 'study-with-us',
   layout: 'news',
+  components: { Select },
   data() {
     return {
+      select1: 3,
+      options1: [
+        { text: 'IT', value: 0 },
+        { text: 'Blade Runner', value: 2 },
+        { text: 'Thor Ragnarok', value: 3 }
+      ],
       items: [
         {
           text:
@@ -69,6 +85,11 @@ export default {
             'Участь у шкільних олімпідах та конкурсах Малої академії наук України.'
         }
       ]
+    }
+  },
+  methods: {
+    autoCompleteFunc() {
+      console.log('test')
     }
   }
 }
