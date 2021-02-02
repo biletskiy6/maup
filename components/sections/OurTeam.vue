@@ -20,7 +20,7 @@
             <div class="our-team__description">
               <h2>
                 Ім'я <br />
-                Фамілія
+                Прізвище
               </h2>
               <p>
                 Посада, за що відповідає приклад
@@ -42,9 +42,10 @@
 </template>
 
 <script>
+// import { ScrollTrigger } from 'gsap/ScrollTrigger'
+// import gsap from 'gsap'
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import arrowRight from '~/assets/icons/arrow-right.svg?raw'
-// import 'swiper/css/swiper.css'
 import SliderOverlay from '~/assets/icons/slider-overlay.svg?raw'
 import SliderOverlayRight from '~/assets/icons/slider-overlay-right.svg?raw'
 export default {
@@ -52,6 +53,32 @@ export default {
   components: {
     Swiper,
     SwiperSlide
+  },
+  mounted() {
+    // ScrollTrigger.matchMedia({
+    //   /* eslint-disable object-shorthand */
+    //   '(min-width: 1350px)': function() {
+    //     gsap
+    //       .timeline({
+    //         paused: true,
+    //         scrollTrigger: {
+    //           trigger: '.our-team',
+    //           start: 'top 50%'
+    //         }
+    //       })
+    //       .fromTo(
+    //         '.our-team .section-title',
+    //         { x: -120, autoAlpha: 0 },
+    //         { x: 0, autoAlpha: 1 },
+    //         0
+    //       )
+    //       .fromTo(
+    //         '.our-team .swiper-slide',
+    //         { autoAlpha: 0 },
+    //         { autoAlpha: 1, stagger: { each: 0.15 } }
+    //       )
+    //   }
+    // })
   },
   data() {
     const currentInstance = this
@@ -70,10 +97,13 @@ export default {
         observeParents: true,
         breakpoints: {
           320: {
-            slidesPerView: 1
+            slidesPerView: 1.1
           },
-          992: {
-            slidesPerView: 3.0
+          576: {
+            slidesPerView: 1.5
+          },
+          768: {
+            slidesPerView: 2.5
           },
           1366: {
             slidesPerView: 3.5

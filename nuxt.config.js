@@ -21,7 +21,7 @@ export default {
       {
         rel: 'stylesheet',
         href:
-          'https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Open+Sans:wght@400;700&display=swap'
+          'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;900&family=Open+Sans:wght@400;700&display=swap'
       }
     ]
   },
@@ -41,11 +41,12 @@ export default {
     { src: '@/plugins/modal.js', ssr: false },
     { src: '@/plugins/vuelidate.js', ssr: true },
     { src: '@/plugins/vue-select', ssr: false },
-    { src: '@/plugins/vue-paginate', ssr: false },
+    // { src: '@/plugins/vue-paginate', ssr: false },
     { src: '@/plugins/youtube', ssr: false },
     { src: '@/plugins/notifications', ssr: false },
     { src: '@/plugins/clipboard', ssr: false },
-    { src: '@/plugins/swiper', ssr: false }
+    { src: '@/plugins/swiper', ssr: false },
+    { src: '@/filters/trim', ssr: false }
   ],
   /*
    ** Nuxt.js dev-modules

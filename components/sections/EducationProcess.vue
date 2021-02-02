@@ -56,6 +56,7 @@ export default {
     return {
       timelineIcon,
       presentaionIcon,
+      containerHeight: 0,
       educationItems: [
         {
           id: 'video',
@@ -79,6 +80,44 @@ export default {
     }
   },
   mounted() {
+    this.calculateContainerHeight()
+    // ScrollTrigger.matchMedia({
+    //   /* eslint-disable object-shorthand */
+    //   '(min-width: 1350px)': function() {
+    //     gsap
+    //       .timeline({
+    //         paused: true,
+    //         scrollTrigger: {
+    //           trigger: '.education-process',
+    //           start: 'top 50%'
+    //         }
+    //       })
+    //       .fromTo(
+    //         '.education-process__wrapper .section-title',
+    //         { x: -120, autoAlpha: 0 },
+    //         { x: 0, autoAlpha: 1 },
+    //         0
+    //       )
+    //       .fromTo(
+    //         '.education-process .timeline-icon',
+    //         { autoAlpha: 0, x: -20 },
+    //         { autoAlpha: 1, x: 0 },
+    //         0
+    //       )
+    //       .fromTo(
+    //         '.education-process li',
+    //         { y: -40, autoAlpha: 0 },
+    //         { y: 0, autoAlpha: 1, stagger: { each: 0.1 } },
+    //         0
+    //       )
+    //       .fromTo(
+    //         '.education-process__description',
+    //         { x: 50, autoAlpha: 0 },
+    //         { x: 0, autoAlpha: 1 },
+    //         0
+    //       )
+    //   }
+    // })
     // gsap.defaults({ overwrite: 'auto' })
     // gsap.set('.education-process__description > *', {
     //   xPercent: -50,
@@ -93,6 +132,20 @@ export default {
     // })
   },
   methods: {
+    calculateContainerHeight() {
+      const educationBlocks = document.querySelectorAll(
+        '.education-process__info'
+      )
+      const educationContainer = document.querySelector(
+        '.education-process__description'
+      )
+      educationBlocks.forEach((block) => {
+        if (block.offsetHeight > this.containerHeight) {
+          this.containerHeight = block.offsetHeight
+        }
+      })
+      educationContainer.style.height = `${this.containerHeight}px`
+    },
     getCurrentSection() {},
     handleSetProcess(id) {
       this.educationItems.forEach((i) => (i.isActive = false))

@@ -23,14 +23,20 @@
   //transform: translate3d(-100%, 0, 0);
   @include scrollbars(8px, rgba($dark, 0.8), rgba($dark, 0.2));
   &-inner {
-    position: relative;
     display: flex;
-    max-width: 75%;
+    //max-width: 75%;
     margin: 0 auto;
     .close-button {
       position: absolute;
       top: 56px;
-      right: 56px;
+      right: 28px;
+      @include mdx-block() {
+        right: 22px;
+        top: 18px;
+      }
+      @include phonex-block() {
+        right: 12px;
+      }
     }
     //background: red;
   }
@@ -47,7 +53,7 @@
     background-color: rgba($dark, .56);
     padding: 0;
     .app-modal-inner {
-      width: 90vw;
+      width: 85vw;
       height: 80vh;
       //padding: 80px 230px 36px;
       border-radius: 24px;
@@ -57,6 +63,12 @@
       }
       .video {
         height: 100%;
+      }
+      @include md-block() {
+        //width: 95vw;
+      }
+      @include tabletx-block() {
+        width: 100vw;
       }
     }
   }

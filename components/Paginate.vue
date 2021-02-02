@@ -25,35 +25,36 @@
         v-html="prevText"
       ></a>
     </li>
-
-    <li
-      v-for="page in pages"
-      :key="page"
-      :class="[
-        pageClass,
-        page.selected ? activeClass : '',
-        page.disabled ? disabledClass : '',
-        page.breakView ? breakViewClass : ''
-      ]"
-    >
-      <a
-        v-if="page.breakView"
-        :class="[pageLinkClass, breakViewLinkClass]"
-        tabindex="0"
-        ><slot name="breakViewContent">{{ breakViewText }}</slot></a
+    <span class="paginate-pages-container">
+      <li
+        v-for="page in pages"
+        :key="page"
+        :class="[
+          pageClass,
+          page.selected ? activeClass : '',
+          page.disabled ? disabledClass : '',
+          page.breakView ? breakViewClass : ''
+        ]"
       >
-      <a v-else-if="page.disabled" :class="pageLinkClass" tabindex="0">{{
-        page.content
-      }}</a>
-      <a
-        v-else
-        @click="handlePageSelected(page.index + 1)"
-        @keyup.enter="handlePageSelected(page.index + 1)"
-        :class="pageLinkClass"
-        tabindex="0"
-        >{{ page.content }}</a
-      >
-    </li>
+        <a
+          v-if="page.breakView"
+          :class="[pageLinkClass, breakViewLinkClass]"
+          tabindex="0"
+          ><slot name="breakViewContent">{{ breakViewText }}</slot></a
+        >
+        <a v-else-if="page.disabled" :class="pageLinkClass" tabindex="0">{{
+          page.content
+        }}</a>
+        <a
+          v-else
+          @click="handlePageSelected(page.index + 1)"
+          @keyup.enter="handlePageSelected(page.index + 1)"
+          :class="pageLinkClass"
+          tabindex="0"
+          >{{ page.content }}</a
+        >
+      </li>
+    </span>
 
     <li
       v-if="!(lastPageSelected() && hidePrevNext)"
@@ -195,13 +196,15 @@ export default {
       type: String
     },
     prevClass: {
-      type: String
+      type: String,
+      default: 'prev-class'
     },
     prevLinkClass: {
       type: String
     },
     nextClass: {
-      type: String
+      type: String,
+      default: 'next-class'
     },
     nextLinkClass: {
       type: String

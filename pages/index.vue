@@ -10,14 +10,14 @@
     </header>
     <StudyWithUs />
     <OnlineSchool />
-    <EducationProcess v-if="true" />
+    <EducationProcess />
     <!--    <DemoAccess />-->
     <Gallery />
 
-    <EnterSchool v-if="false" />
-    <EducationCost v-if="false" />
-    <AdditionalOpps v-if="false" />
-    <Consult v-if="false" />
+    <EnterSchool />
+    <EducationCost />
+    <AdditionalOpps />
+    <Consult />
   </div>
 </template>
 
@@ -75,8 +75,8 @@ export default {
     // eslint-disable-next-line nuxt/no-env-in-hooks
     // this.splitText()
     const tl = gsap.timeline({ delay: 1, paused: false })
-    // tl.add(this.animatePreloader())
-    tl.add(this.animateTopLine())
+    tl.add(this.animatePreloader())
+    // tl.add(this.animateTopLine())
     // tl.add(this.animateSlider())
   },
   methods: {
@@ -92,6 +92,8 @@ export default {
       return heroTitle
     },
     animatePreloader() {
+      const preloader = document.querySelector('.preloader')
+      if (!preloader) return
       const tl = gsap.timeline({ paused: false })
       const cont = { val: 0 }
       const newVal = 100

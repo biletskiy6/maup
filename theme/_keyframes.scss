@@ -11,3 +11,18 @@
     transform: translate(-50%, -50%) scale(0.96);
   }
 }
+@keyframes slide-in {
+  0% {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+.slide-in {
+  animation: slide-in 1s 2s ease forwards;
+}

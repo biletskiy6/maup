@@ -44,10 +44,7 @@
             </p>
           </li>
         </ul>
-        <AppButton
-          router
-          :to="{ name: 'discount', params: { test: 'test-param' } }"
-        >
+        <AppButton router :to="{ name: 'study-with-us' }">
           <span class="icon" v-html="arrowRight"></span>
           Дізнатися більше
         </AppButton>
@@ -96,25 +93,20 @@ export default {
     }
   },
   mounted() {
-    this.studyWithUsInitial()
-    this.studyWithUsIntro()
+    // this.studyWithUsInitial()
+    // this.studyWithUsIntro()
   },
   methods: {
     studyWithUsInitial() {
-      const {
-        studyWithUs,
-        title,
-        revealImage,
-        studyProposals,
-        studyProposal
-      } = this.$refs
+      const { title, revealImage, studyProposals, studyProposal } = this.$refs
       // eslint-disable-next-line no-unused-vars
       gsap
         .timeline({
-          defaults: { duration: 1 },
           scrollTrigger: {
-            trigger: studyWithUs,
-            start: 'top bottom'
+            trigger: '.study-with-us__content',
+            start: 'top bottom',
+            end: 'bottom 100%',
+            scrub: 1
           }
         })
         .fromTo(title, { x: -120, autoAlpha: 0 }, { x: 0, autoAlpha: 1 }, 0)

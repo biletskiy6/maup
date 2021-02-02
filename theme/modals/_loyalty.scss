@@ -15,6 +15,12 @@
   &__text {
     max-width: 60%;
     margin: 32px auto 0;
+    @include tablet-block() {
+      max-width: 80%;
+    }
+    @include tabletx-block() {
+      max-width: 100%;
+    }
   }
   &__content {
     background-color: $white;
@@ -24,8 +30,20 @@
   }
 }
 .single-hero-content {
-  padding: 80px 230px 36px;
+  padding: 80px 230px 0px;
   @include scrollbars(8px, #c0c5c8, #f6f6f6);
+  @include mdx-block() {
+    padding: 80px 170px 36px;
+  }
+  @include tablet-block() {
+    padding: 80px 120px 36px;
+  }
+  @include tabletx-block() {
+    padding: 80px 70px 36px;
+  }
+  @include phonex-block() {
+    padding: 80px 15px 0px;
+  }
   &__header {
     font-size: 26px;
     font-weight: 700;
@@ -77,7 +95,7 @@
 .number-list {
   //color: $dark;
   &__item {
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     &:last-child {
       margin-bottom: 0;
     }

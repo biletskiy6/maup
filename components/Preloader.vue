@@ -12,6 +12,12 @@
 
 <script>
 export default {
-  name: 'Preloader'
+  name: 'Preloader',
+  beforeMount() {
+    document.body.style.setProperty('overflow', 'hidden')
+  },
+  beforeDestroy() {
+    document.body.style.removeProperty('overflow')
+  }
 }
 </script>

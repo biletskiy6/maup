@@ -57,6 +57,9 @@ import LinkIcon from '@/assets/icons/link.svg?raw'
 export default {
   name: 'index',
   layout: 'news',
+  meta: {
+    test: 'tester'
+  },
   data() {
     return {
       EyeIcon,

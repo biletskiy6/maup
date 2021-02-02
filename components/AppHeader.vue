@@ -24,7 +24,9 @@
         </div>
         <div class="top-line__right">
           <div id="menu__consult">
-            <a class="link-style" href="#consult">Зв'язатися з нами</a>
+            <a class="link-style js-scroll-to" href="#consult"
+              >Зв'язатися з нами</a
+            >
           </div>
 
           <AppButton theme="white" size="small">Вхід</AppButton>
@@ -88,7 +90,7 @@ export default {
           scrollTrigger: {
             // markers: true,
             trigger: section,
-            start: 'top 200px',
+            start: 'top 20%',
             end: 'bottom 0%',
             toggleActions: 'play reverse play reverse',
             onToggle: (self) =>

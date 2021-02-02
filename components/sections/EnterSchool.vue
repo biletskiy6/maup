@@ -14,10 +14,12 @@
           class="enter-school__image"
         />
         <div class="enter-school__tooltip">
-          Якщо Ви знаходитесь <b>за межами України</b> або на
-          <b>тимчасово окупованій українській території </b> – вступити до школи
-          можливо без фізичної присутності заявника, використовуючи сучасні
-          засоби електронного та поштового зв`язку.
+          <p>
+            Якщо Ви знаходитесь <b>за межами України</b> або на
+            <b>тимчасово окупованій українській території </b> – вступити до
+            школи можливо без фізичної присутності заявника, використовуючи
+            сучасні засоби електронного та поштового зв`язку.
+          </p>
         </div>
         <div class="circle">
           <div class="circle__round"></div>
@@ -46,11 +48,72 @@
 </template>
 
 <script>
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import AppButton from '@/components/AppButton'
+gsap.registerPlugin(ScrollTrigger)
 export default {
   name: 'EnterSchool',
   components: {
     AppButton
+  },
+  mounted() {
+    // ScrollTrigger.matchMedia({
+    //   /* eslint-disable object-shorthand */
+    //   '(min-width: 1350px)': function() {
+    //     gsap
+    //       .timeline({
+    //         paused: true,
+    //         scrollTrigger: {
+    //           trigger: '.enter-school',
+    //           start: 'top 50%'
+    //         }
+    //       })
+    //       .fromTo(
+    //         '.enter-school .section-title',
+    //         { x: -120, autoAlpha: 0 },
+    //         { x: 0, autoAlpha: 1 },
+    //         0
+    //       )
+    //       .fromTo(
+    //         '.enter-school .section-text',
+    //         { x: -120, autoAlpha: 0 },
+    //         { x: 0, autoAlpha: 1 },
+    //         0
+    //       )
+    //       .fromTo('.enter-school img', { autoAlpha: 0 }, { autoAlpha: 1 }, 0)
+    //       .fromTo(
+    //         '.enter-school__tooltip',
+    //         {
+    //           y: -20,
+    //           x: -20
+    //         },
+    //         { x: 0, y: 0 },
+    //         0
+    //       )
+    //       .fromTo(
+    //         '.enter-school .section-subtitle',
+    //         {
+    //           y: -40,
+    //           autoAlpha: 0
+    //         },
+    //         { y: 0, autoAlpha: 1 },
+    //         0
+    //       )
+    //       .fromTo(
+    //         '.enter-school li',
+    //         { y: -25, autoAlpha: 0 },
+    //         { y: 0, autoAlpha: 1, stagger: { each: 0.1 } },
+    //         0
+    //       )
+    //       .fromTo(
+    //         '.enter-school .v-btn',
+    //         { y: 25, autoAlpha: 0 },
+    //         { y: 0, autoAlpha: 1 },
+    //         0
+    //       )
+    //   }
+    // })
   },
   data() {
     return {

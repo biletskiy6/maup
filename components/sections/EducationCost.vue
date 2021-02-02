@@ -38,19 +38,25 @@
         </div>
         <ul class="school-plans">
           <li class="school-plan school-plan--proposal">
-            <h4>Економія при оплаті</h4>
+            <h4 class="section-subtitle section-subtitle--medium">
+              Економія при оплаті
+            </h4>
             <div class="timeline timeline--education-cost">
               <div class="timeline__container">
                 <div class="timeline-icon" v-html="timelineIcon"></div>
                 <div class="timeline__period">
                   <div class="timeline__header">Період</div>
                   <ul>
-                    <li v-for="item in 5" :key="item">
+                    <li
+                      @click="setActiveEconomy(item)"
+                      v-for="item in economies"
+                      :key="item.id"
+                    >
                       <div class="">
-                        <span class="round active"
+                        <span class="round" :class="{ active: item.active }"
                           ><span class="round-inner"></span
                         ></span>
-                        <span>12 місяців</span>
+                        <span>{{ item.name }}</span>
                       </div>
                     </li>
                   </ul>
@@ -58,15 +64,17 @@
                 <div class="timeline__economy">
                   <div class="timeline__header">Економія</div>
                   <ul>
-                    <li v-for="item in 5" :key="item">
+                    <li v-for="item in economies" :key="item.id">
                       <div class="">
-                        <span>0%</span>
+                        <span>{{ item.percent }}%</span>
                       </div>
                     </li>
                   </ul>
                 </div>
               </div>
-              <AppButton theme="white" block>Всі знижки</AppButton>
+              <AppButton theme="white" block router :to="{ name: 'discount' }"
+                >Всі знижки</AppButton
+              >
             </div>
           </li>
           <li
@@ -75,15 +83,25 @@
             class="school-plan school-plan--standard"
           >
             <h5 class="school-plan__header">«Державний стандарт»</h5>
-            <h6 class="plan-price"><span>2 500 ₴</span> в місяць</h6>
+            <h6 class="plan-price">
+              <span>{{ getPrice(2000) }}</span> в місяць
+            </h6>
             <ul class="school-plan__items">
-              <li v-for="item in 7" :key="item" class="school-plan__item">
-                <div class="access available" v-html="doneIcon"></div>
+              <li
+                v-for="(item, index) in 7"
+                :key="item"
+                class="school-plan__item"
+              >
+                <div
+                  class="access"
+                  :class="{ available: index % 2 === 0 }"
+                  v-html="doneIcon"
+                ></div>
                 <span class="school-plan__item-text">Тестування</span>
               </li>
             </ul>
             <AppButton block>
-              Обрати
+              Вступити
             </AppButton>
           </li>
         </ul>
@@ -110,11 +128,31 @@ export default {
       downIcon,
       doneIcon,
       isActive: false,
+      percentToGet: 0,
       currency: 'uah',
+      economies: [
+        { id: 1, name: '1 місяць', percent: 0, active: true },
+        { id: 2, name: '3 місяці', percent: 1.5, active: false },
+        { id: 3, name: '6 місяців', percent: 2.5, active: false },
+        { id: 4, name: '9 місяців', percent: 3.5, active: false },
+        { id: 5, name: '12 місяців', percent: 5, active: false }
+      ],
       currencies: [
-        { slug: 'uah', name: 'грн', isActive: true },
-        { slug: 'usd', name: 'usd', isActive: false },
-        { slug: 'euro', name: 'евро', isActive: false }
+        { slug: 'uah', format: 'uk-UA', name: 'грн', isActive: true, rate: 1 },
+        {
+          slug: 'usd',
+          format: 'en-US',
+          name: 'usd',
+          isActive: false,
+          rate: 0.036 // 28
+        },
+        {
+          slug: 'eur',
+          format: 'de-DE',
+          name: 'евро',
+          isActive: false,
+          rate: 0.029 // 31
+        }
       ]
     }
   },
@@ -128,6 +166,19 @@ export default {
       this.currencies.forEach((i) => (i.isActive = false))
       const item = this.currencies.find((i) => i.slug === slug)
       return item ? (item.isActive = true) : null
+    },
+    getPrice(price) {
+      const percent = (this.percentToGet / 100) * price
+      const finalPrice = price - percent
+      return new Intl.NumberFormat(this.activeCurrency.format, {
+        style: 'currency',
+        currency: this.activeCurrency.slug
+      }).format(finalPrice * this.activeCurrency.rate)
+    },
+    setActiveEconomy(item) {
+      this.economies.forEach((i) => (i.active = false))
+      this.economies.find((i) => i.id === item.id).active = true
+      this.percentToGet = item.percent
     }
   }
 }

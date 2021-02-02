@@ -31,7 +31,7 @@
                   >
                 </li>
                 <li>
-                  <span class="footer-link-style">Банківськи платежем</span>
+                  <span class="footer-link-style">Банківським платежем</span>
                 </li>
                 <li><span class="footer-link-style">Оплата готівкою</span></li>
               </ul>

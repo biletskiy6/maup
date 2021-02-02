@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   &__container {
+    position: relative;
     width: 40px;
     height: 40px;
     display: inline-flex;
@@ -25,7 +26,6 @@
     transform: translate(-50%, -50%);
     width: 16px;
     height: 16px;
-    left: 20px;
     font-weight: 900;
     opacity: 1;
     visibility: visible;

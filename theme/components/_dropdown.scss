@@ -33,6 +33,7 @@
   }
 }
 .dropdown {
+  position: relative;
   &-list {
     display: flex;
     flex-direction: column;
@@ -112,6 +113,11 @@
   }
   &-menu {
     position: absolute;
+    top: 160%;
+    z-index: 1001;
+    @include tabletx-block() {
+      right: 0;
+    }
   }
 }
 .translate-fade-down-enter-active,

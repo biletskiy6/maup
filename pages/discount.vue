@@ -72,6 +72,11 @@
               </ul>
             </div>
           </div>
+          <div class="controls">
+            <AppButton theme="white" size="small" router :to="{ name: 'index' }"
+              >Повернутися назад</AppButton
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -79,8 +84,10 @@
 </template>
 
 <script>
+import AppButton from '@/components/AppButton'
 export default {
   name: 'discount',
+  components: { AppButton },
   layout: 'news'
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="breadcrumbs">
     <div class="single-hero-container breadcrumbs__container">
-      <ul class="breadcrumbs">
+      <ul class="breadcrumbs-list">
         <li v-for="crumb in crumbs" :key="crumb.to">
           <nuxt-link :to="crumb.to">{{ crumb.title }}</nuxt-link>
         </li>
@@ -16,6 +16,7 @@ export default {
   name: 'Breadcrumbs',
   computed: {
     crumbs() {
+      console.log(this.$route)
       const pathArray = this.$route.path.split('/')
       pathArray.shift()
       const breadcrumbs = pathArray.reduce((breadcrumbArray, path, idx) => {

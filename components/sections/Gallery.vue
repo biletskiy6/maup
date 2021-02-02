@@ -57,6 +57,38 @@
         </li>
       </ul>
     </div>
+    <div class="demo-gallery">
+      <ul class="wrapper">
+        <li>
+          <img
+            height="874"
+            src="https://images.pexels.com/photos/5088017/pexels-photo-5088017.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            width="1240"
+          />
+        </li>
+        <li>
+          <img
+            height="874"
+            src="https://images.pexels.com/photos/4145354/pexels-photo-4145354.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            width="1240"
+          />
+        </li>
+        <li>
+          <img
+            height="874"
+            src="https://images.pexels.com/photos/5088186/pexels-photo-5088186.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            width="1240"
+          />
+        </li>
+        <li>
+          <img
+            height="874"
+            src="https://images.pexels.com/photos/5212703/pexels-photo-5212703.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            width="1240"
+          />
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 

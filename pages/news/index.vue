@@ -55,12 +55,12 @@
 import EyeIcon from '@/assets/icons/eye.svg?raw'
 import CalendarIcon from '@/assets/icons/calender.svg?raw'
 import ArrowRight from '@/assets/icons/arrow-right.svg?raw'
-// import Paginate from '@/components/Paginate'
+import Paginate from '@/components/Paginate'
 export default {
   name: 'news',
   layout: 'news',
   components: {
-    // Paginate
+    Paginate
   },
   computed: {
     prevText() {

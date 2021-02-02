@@ -24,10 +24,21 @@ body {
   overflow-x: hidden;
   background-color: $grey;
   color: $dark;
-  @include scrollbars(8px, $grey, $dark);
+  @include scrollbars(6px, $grey, $dark);
   &.news {
     padding-top: 160px;
+    .main-menu {
+      li:not(:last-child) {
+        display: none;
+      }
+    }
+    #menu__consult {
+      display: none;
+    }
   }
+}
+.italic {
+  //font-style: italic;
 }
 .page-enter-active,
 .page-leave-active {
@@ -56,6 +67,7 @@ body {
 @import 'components/dropdown';
 @import 'components/youtube';
 @import 'components/notifications';
+@import 'components/to-top';
 @import 'modals/loyalty';
 
 a {
@@ -380,8 +392,8 @@ button {
     display: block;
     content: '';
     z-index: 10;
-    top: 50%;
-    left: 50%;
+    top: 0;
+    left: 0;
     width: 0;
     height: 0;
     border-radius: 100%;
@@ -419,7 +431,7 @@ button {
     .ripple {
       background: #fff;
     }
-    &:hover {
+    @include hover-supported() {
       color: $dark;
       i {
         color: $white;
@@ -432,7 +444,7 @@ button {
     .ripple {
       background-color: $blue;
     }
-    &:hover {
+    @include hover-supported() {
       color: $white;
     }
   }
@@ -443,6 +455,9 @@ button {
   }
   &.v-size--default {
     padding: 19px 24px 19px 24px;
+    @include phonex-block() {
+      padding: 19px 17px 19px 17px;
+    }
   }
   &.v-size--small {
     padding: 17px 52px;
@@ -452,7 +467,7 @@ button {
     display: inline-block;
     z-index: 20;
   }
-  &:hover {
+  @include hover-supported() {
     .ripple {
       width: calc(100% * 2.25);
       padding-top: calc(100% * 2.25);
@@ -488,7 +503,12 @@ body {
     .hero-slider .swiper .swiper-slide {
       color: $dark;
     }
-    .logo {
+    .top-bar .socials {
+      path {
+        fill: $dark;
+      }
+    }
+    .top-header .logo {
       svg {
         path {
           fill: $blue;
@@ -503,11 +523,12 @@ body {
         }
       }
     }
-    .socials {
-      path {
-        fill: $dark;
+    .burger__open {
+      span {
+        background-color: $dark;
       }
     }
+
     .hero-slider .swiper-pagination {
       .swiper-pagination-bullet {
         border: 2px solid rgba($dark, 0.24);
@@ -546,6 +567,11 @@ body {
       .link-style {
         color: $dark !important;
       }
+      .burger__open {
+        span {
+          background-color: $dark;
+        }
+      }
     }
   }
 }
@@ -556,6 +582,7 @@ body {
     .swiper-pagination-bullet {
       border: 2px solid rgba($white, 0.56);
       outline: none;
+      margin: 0 10px;
     }
     .swiper-pagination-bullet-active {
       border: 4px solid $white;
@@ -734,7 +761,7 @@ body {
   .swiper-container-horizontal > .swiper-pagination-bullets {
     display: flex;
     align-items: center;
-    left: 280px;
+    left: 250px;
     bottom: 60px;
     @include lg-block() {
       left: $slider-lg-gutter;
@@ -746,7 +773,8 @@ body {
       left: $slider-phonex-gutter;
     }
   }
-  .swiper-button-next, .swiper-button-prev {
+  .swiper-button-next,
+  .swiper-button-prev {
     @include phonex-block() {
       display: none;
     }
@@ -836,7 +864,7 @@ body .swiper-button {
         font-size: 18px;
       }
     }
-    &:hover {
+    @include hover-supported() {
       background-color: $blue;
       transition: background-color 0.25s ease;
     }
@@ -844,7 +872,7 @@ body .swiper-button {
   &-prev {
     //border: 1px solid #c0c5c8;
     background-color: $dark;
-    left: 32px;
+    left: 38px;
     svg {
       transform: rotate(-180deg);
     }
@@ -858,7 +886,7 @@ body .swiper-button {
   }
   &-next {
     background-color: $dark;
-    right: 32px;
+    right: 48px;
     @include tabletx-block() {
       right: 16px;
     }
@@ -873,7 +901,7 @@ body .swiper-button {
   z-index: 1;
   width: 100%;
   max-width: 100%;
-  padding-left: 280px;
+  padding-left: 250px;
   @include lg-block() {
     padding-left: $slider-lg-gutter;
     padding-right: $slider-lg-gutter;
@@ -914,7 +942,7 @@ body .swiper-button {
     font-size: $slider-header-phonex-size;
   }
   @include phone-block() {
-    font-size: $slider-header-phone-size;
+    //font-size: $slider-header-phone-size;
   }
 }
 .slider-title {
@@ -930,10 +958,22 @@ body .swiper-button {
 .section-title {
   font-size: 56px;
   font-family: $header-font;
+  line-height: 64px;
   font-weight: 900;
   color: $dark;
   &.inverse {
     color: $white;
+  }
+  @include mdx-block() {
+    font-size: 48px;
+  }
+  @include tabletl-block() {
+    font-size: 42px;
+    line-height: 58px;
+  }
+  @include phonex-block() {
+    font-size: 36px;
+    line-height: 48px;
   }
 }
 .section-subtitle {
@@ -941,6 +981,15 @@ body .swiper-button {
   font-family: $header-font;
   font-weight: 900;
   color: $dark;
+  &--medium {
+    font-weight: 500;
+  }
+  @include mdx-block() {
+    font-size: 32px;
+  }
+  @include phonex-block() {
+    font-size: 26px;
+  }
 }
 .test {
   font-family: 'OpenSansBold', sans-serif;
@@ -949,10 +998,13 @@ body .swiper-button {
   position: relative;
   z-index: 1;
   max-width: 1560px;
-  margin: 135px auto 130px;
+  margin: 216px auto 130px;
   background-repeat: no-repeat;
   background-position: bottom;
   min-height: 688px;
+  .reveal__overlay {
+    display: none;
+  }
   @include md-block() {
     margin: 170px auto 130px;
   }
@@ -1113,6 +1165,10 @@ body .swiper-button {
       justify-content: center;
       //grid-template-columns: repeat(2, 1fr);
     }
+    @include phonex-block() {
+      margin-left: -15px;
+      margin-right: -15px;
+    }
   }
   &-item {
     text-align: center;
@@ -1134,7 +1190,9 @@ body .swiper-button {
       width: calc(50% - 80px);
     }
     @include phonex-block() {
-      width: calc(100% - 80px);
+      width: calc(100% - 30px);
+      margin-left: 15px;
+      margin-right: 15px;
       margin-bottom: 40px;
       &:first-child {
         text-align: center;
@@ -1154,7 +1212,7 @@ body .swiper-button {
 .reveal {
   overflow: hidden;
   &__overlay {
-    display: none;
+    //display: none;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -1195,7 +1253,16 @@ body .swiper-button {
   padding-bottom: 275px;
 }
 .additional-opps {
-  padding-top: 130px;
+  margin-top: 216px;
+  @include md-block() {
+    margin-top: 156px;
+  }
+  @include tabletl-block() {
+    margin-top: 126px;
+  }
+  @include phonex-block() {
+    margin-top: 100px;
+  }
 }
 .online-school {
   background-color: $dark;
@@ -1242,6 +1309,7 @@ body .swiper-button {
     }
   }
   &__right {
+    overflow: hidden;
     position: relative;
     flex: 1 1 62%;
     .play {
@@ -1256,7 +1324,7 @@ body .swiper-button {
   }
   p {
     margin-bottom: 20px;
-    font-style: italic;
+    //font-style: italic;
     &:last-child {
       margin-bottom: 0;
     }
@@ -1366,12 +1434,14 @@ body .swiper-button {
     height: 16px;
     border-radius: 50%;
     border: 2px solid rgba($dark, 0.24);
+    transition: all .35s ease;
   }
   &.active {
     .round-inner {
       border: 4px solid $blue;
       width: 24px;
       height: 24px;
+      transition: all .35s ease;
       &::after {
         position: absolute;
         content: '';
@@ -1382,6 +1452,7 @@ body .swiper-button {
         height: 8px;
         border-radius: 50%;
         background-color: $blue;
+        transition: all .35s ease;
       }
     }
   }
@@ -1394,6 +1465,9 @@ body .swiper-button {
     position: absolute;
     top: 0;
     height: 100%;
+    @include phonex-block() {
+      left: -16px;
+    }
     svg {
       position: absolute;
       height: 100%;
@@ -1401,6 +1475,9 @@ body .swiper-button {
   }
   ul {
     padding-left: 19px;
+    @include phonex-block() {
+      padding-left: 0;
+    }
     li {
       display: flex;
       align-items: center;
@@ -1417,18 +1494,21 @@ body .swiper-button {
         margin-right: 8px;
         background-color: #fff;
       }
+      @include phonex-block() {
+        font-size: 22px;
+      }
     }
   }
 }
 
 .education-process {
   position: relative;
-  margin-top: -130px;
+  margin-top: -140px;
   margin-bottom: 130px;
   &__content {
     background-color: #fff;
     border-radius: 24px;
-    padding: 130px 120px;
+    padding: 120px;
     @include md-block() {
       padding: 120px 70px 120px 90px;
     }
@@ -1462,6 +1542,15 @@ body .swiper-button {
     @include mdx-block() {
       margin-bottom: 40px;
     }
+
+    @include phone-block() {
+      .timeline {
+        &-icon {
+          top: -35px;
+          left: -16px;
+        }
+      }
+    }
   }
   &__description {
     position: relative;
@@ -1491,12 +1580,14 @@ body .swiper-button {
     }
     h3 {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       font-weight: 900;
       font-family: $header-font;
       font-size: 39px;
       margin-bottom: 32px;
+      @include tabletx-block() {
+        flex-wrap: wrap;
+      }
     }
     p {
     }
@@ -1515,7 +1606,7 @@ body .swiper-button {
     position: absolute;
     content: '';
     background-image: url('~@/assets/icons/slider-overlay-right.svg');
-    right: 0;
+    right: -3px;
     top: 0;
     width: 220px;
     height: 100%;
@@ -1523,6 +1614,9 @@ body .swiper-button {
     z-index: 1;
     @include md-block() {
       width: 155px;
+    }
+    @include tabletl-block() {
+      width: 100px;
     }
   }
   &.end {
@@ -1533,10 +1627,7 @@ body .swiper-button {
   }
 }
 .our-team {
-  padding-top: 130px;
-  @include mdx-block() {
-    padding-top: 330px;
-  }
+  padding-top: 115px;
   &__container {
     position: relative;
   }
@@ -1545,13 +1636,45 @@ body .swiper-button {
   }
   &__content {
     position: relative;
+    img {
+      width: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    @include hover-supported() {
+      .our-team__description {
+        h2 {
+          transform: translateY(-40px);
+          color: $blue;
+          transition: transform .25s ease;
+        }
+        p {
+          transform: translateY(-40px);
+          transition: transform .25s ease;
+        }
+      }
+    }
   }
   &__overlay {
     position: absolute;
-    bottom: -1px;
+    bottom: -5px;
     left: 0;
     right: 0;
     z-index: 1;
+    width: 100%;
+    background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 0)
+    );
+    height: 200px;
+    svg {
+      display: none;
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+    }
     &-right {
       position: absolute;
       z-index: 9;
@@ -1575,6 +1698,7 @@ body .swiper-button {
       font-weight: 700;
       color: $dark;
       margin-bottom: 16px;
+      transition: transform .25s ease;
     }
     p {
       color: $dark;
@@ -1582,7 +1706,8 @@ body .swiper-button {
       line-height: 24px;
       max-width: 80%;
       margin: 0 auto;
-      font-style: italic;
+      transition: transform .25s ease;
+      //font-style: italic;
     }
   }
   &__pagination {
@@ -1624,7 +1749,7 @@ body .swiper-button {
         font-family: $header-font;
         position: absolute;
         color: #879197;
-        bottom: 0;
+        bottom: 100px;
         font-weight: 400;
         z-index: 10;
       }
@@ -1696,7 +1821,6 @@ body .swiper-button {
           justify-content: flex-start;
           color: $accent;
           min-height: 40px;
-          padding-top: 8px;
           .round {
             background-color: transparent;
             border: none;
@@ -1734,11 +1858,18 @@ body .swiper-button {
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+  @include tabletl-block() {
+    grid-template-rows: repeat(3, auto);
+  }
+  @include phonex-block() {
+    grid-template-rows: repeat(4, auto);
+  }
   .school-plan {
     display: flex;
     flex-direction: column;
     border-radius: 24px;
     padding: 56px 32px 60px;
+    min-height: 690px;
     .plan-price {
       text-align: center;
     }
@@ -1750,13 +1881,18 @@ body .swiper-button {
       @include mdl-block() {
         max-width: 100%;
       }
+      //@include
     }
     &--proposal {
       h4 {
-        font-family: $header-font;
-        font-size: 39px;
         font-weight: 500;
         margin-bottom: 56px;
+      }
+      .timeline {
+        li > div {
+          display: flex;
+          align-items: center;
+        }
       }
     }
     &__header {
@@ -1776,7 +1912,7 @@ body .swiper-button {
       display: flex;
       align-items: center;
       margin-bottom: 28px;
-      font-style: italic;
+      //font-style: italic;
       &:last-child {
         margin-bottom: 0;
       }
@@ -1784,6 +1920,8 @@ body .swiper-button {
         margin-right: 16px;
       }
       &-text {
+        display: inline-block;
+        max-width: 100%;
       }
     }
     .v-btn {
@@ -1795,12 +1933,18 @@ body .swiper-button {
         grid-column-start: 1;
         grid-column-end: 3;
       }
+      @include tabletx-block() {
+        grid-column: span 4;
+      }
     }
     &:nth-child(2) {
       @include mdl-block() {
         grid-row-start: 2;
         grid-column-start: 1;
         grid-column-end: 3;
+      }
+      @include phonex-block() {
+        grid-column: span 4;
       }
     }
     &:nth-child(3) {
@@ -1809,6 +1953,10 @@ body .swiper-button {
         grid-column-start: 3;
         grid-column-end: 5;
       }
+      @include phonex-block() {
+        grid-row-start: 3;
+        grid-column: 1 / span 4;
+      }
     }
     &:nth-child(4) {
       @include mdl-block() {
@@ -1816,6 +1964,16 @@ body .swiper-button {
         grid-column-start: 3;
         grid-column-end: 5;
       }
+      @include tabletx-block() {
+        grid-row-start: 3;
+        grid-column: 1 / span 4;
+      }
+      @include phonex-block() {
+        grid-row-start: 4;
+      }
+    }
+    @include phonex-block() {
+      padding: 56px 15px 60px;
     }
   }
 }
@@ -1824,6 +1982,7 @@ body .swiper-button {
   display: inline-flex;
   width: 20px;
   height: 20px;
+  flex: none;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
@@ -1840,13 +1999,16 @@ body .swiper-button {
 }
 
 .education-cost {
-  padding-top: 246px;
-  padding-bottom: 216px;
+  margin-top: 246px;
   &__top {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 64px;
+    @include tabletl-block() {
+      flex-direction: column;
+      margin-bottom: 0;
+    }
     &-wrapper {
       display: flex;
       align-items: center;
@@ -1857,15 +2019,28 @@ body .swiper-button {
   }
   &__classes {
     padding-left: 15px;
+    @include tabletl-block() {
+      padding-left: 0;
+      margin-top: 16px;
+    }
   }
   &__class {
     background-color: $blue;
     color: #fff;
     font-size: 20px;
     font-weight: 700;
-    padding: 12px 16px;
+    padding: 20px 16px;
     border-top-right-radius: 16px;
     border-bottom-right-radius: 16px;
+  }
+  @include md-block() {
+    margin-top: 156px;
+  }
+  @include tabletl-block() {
+    margin-top: 126px;
+  }
+  @include phonex-block() {
+    margin-top: 100px;
   }
 }
 
@@ -1899,7 +2074,7 @@ body .swiper-button {
 .enter-school {
   margin-top: 130px;
   .section-text {
-    margin-top: 32px;
+    margin-top: 20px;
     margin-bottom: 64px;
   }
   &__content {
@@ -1912,7 +2087,7 @@ body .swiper-button {
   }
   &__left {
     position: relative;
-    align-self: flex-start;
+    //align-self: flex-start;
     flex: 1;
     margin-right: 140px;
     min-height: 665px;
@@ -1933,12 +2108,17 @@ body .swiper-button {
       @include lgm-block() {
         max-width: 90%;
       }
+      @include phonex-block() {
+        padding-right: 0;
+        max-width: 100%;
+      }
     }
   }
   &__image {
     display: block;
     object-fit: cover;
     height: 100%;
+    border-top-right-radius: 24px;
   }
   .number-list {
     margin-top: 32px;
@@ -1958,9 +2138,15 @@ body .swiper-button {
     width: 100%;
     max-width: 380px;
     border-radius: 16px 16px 0px 16px;
-    padding: 40px 32px;
-    line-height: 24px;
+    padding: 32px 40px;
     background-color: $white;
+    p {
+      line-height: 24px;
+      font-size: 15px;
+    }
+    @include phonex-block() {
+      left: 0;
+    }
   }
   .circle {
     position: absolute;
@@ -1968,6 +2154,9 @@ body .swiper-button {
     bottom: -20px;
     &__round {
       transform: translate(6px, 6px);
+    }
+    @include phonex-block() {
+      display: none;
     }
   }
 }
@@ -1979,6 +2168,18 @@ body .swiper-button {
   font-weight: 700;
 }
 .additional-opps {
+  &__top {
+    display: flex;
+    align-items: flex-end;
+    max-width: 400px;
+    .select-currency {
+      margin-bottom: 8px;
+    }
+    @include phonex-block() {
+      max-width: 100%;
+      flex-wrap: wrap;
+    }
+  }
   &__content {
   }
   &-list {
@@ -1993,6 +2194,8 @@ body .swiper-button {
       grid-template-columns: repeat(1, 1fr);
     }
     &__item {
+      display: flex;
+      flex-direction: column;
       position: relative;
       z-index: 10;
       border-radius: 24px;
@@ -2010,7 +2213,7 @@ body .swiper-button {
         background-color: $blue;
         transition: height 0.25s ease;
       }
-      &:hover {
+      @include hover-supported() {
         &::before {
           height: 100%;
           transition: height 0.25s ease;
@@ -2032,6 +2235,9 @@ body .swiper-button {
           }
         }
       }
+      @include phonex-block() {
+        padding: 42px 16px;
+      }
     }
     &__top {
       display: flex;
@@ -2041,6 +2247,7 @@ body .swiper-button {
         font-family: $header-font;
         font-weight: 900;
         font-size: 26px;
+        padding-right: 15px;
       }
       img {
         display: block;
@@ -2049,15 +2256,28 @@ body .swiper-button {
         object-fit: cover;
         border-radius: 8px;
       }
+      @include phonex-block() {
+        flex-direction: column;
+        h4 {
+          margin-bottom: 16px;
+        }
+      }
     }
     &__bottom {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 32px;
+      margin-top: auto;
+      @include phonex-block() {
+        flex-direction: column;
+        .plan-price {
+          margin-bottom: 8px;
+        }
+      }
     }
     &__text {
       color: #879197;
+      margin-bottom: 32px;
     }
     &__top,
     &__middle,
@@ -2065,6 +2285,9 @@ body .swiper-button {
       position: relative;
       z-index: 10;
     }
+  }
+  .section-title {
+    margin-right: 16px;
   }
 }
 
@@ -2116,7 +2339,7 @@ body .swiper-button {
   padding-bottom: 0;
   &-link-style {
     text-decoration: none;
-    font-style: italic;
+    //font-style: italic;
     color: $white;
     position: relative;
     display: inline-block;
@@ -2198,7 +2421,7 @@ body .swiper-button {
     &__news {
       p {
         color: #879197;
-        font-style: italic;
+        //font-style: italic;
       }
     }
     .socials-container {
@@ -2253,7 +2476,7 @@ body .swiper-button {
     background-color: transparent;
     width: 100%;
     border: none;
-    padding: 20px 52px 20px 26px;
+    padding: 20px 52px 20px 35px;
     border-bottom: 1px solid #879197;
     color: #fff;
     //padding-bottom: 8px;
@@ -2286,7 +2509,7 @@ body .swiper-button {
   &__icon {
     margin-right: 16px;
     left: 0;
-    top: 50%;
+    top: 47%;
     transform: translateY(-50%);
   }
 }
@@ -2409,6 +2632,7 @@ body .swiper-button {
   padding: 54px 0;
   margin-top: 64px;
   border-top: 1px solid #879197;
+  font-size: 15px;
   &__left {
     padding-right: 20px;
   }
@@ -2418,8 +2642,11 @@ body .swiper-button {
       align-items: center;
       span {
         display: inline-block;
-        margin-right: 28px;
+        margin-right: 20px;
       }
+    }
+    a {
+      display: inline-flex;
     }
   }
 }
