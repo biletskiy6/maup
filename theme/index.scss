@@ -93,6 +93,10 @@ a {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    &__number {
+      display: inline-block;
+      margin-right: 8px;
+    }
   }
   .overlay {
     height: 100%;
@@ -129,6 +133,18 @@ a {
         right: 0;
         bottom: 0;
         height: 100%;
+      }
+    }
+    @include phonex-block() {
+      &.first,
+      &.second {
+        &::after {
+          display: none;
+        }
+      }
+      &.second,
+      &.third {
+        display: none;
       }
     }
   }
@@ -499,6 +515,19 @@ body {
   &.dark {
     .link-style {
       color: $dark !important;
+      &.nuxt-link-active {
+        color: $blue !important;
+        position: relative;
+        &::before {
+          content: '';
+          position: absolute;
+          top: -32px;
+          width: 100%;
+          height: 8px;
+          background-color: $blue;
+          transition: width 0.25s ease;
+        }
+      }
     }
     .hero-slider .swiper .swiper-slide {
       color: $dark;
@@ -566,6 +595,9 @@ body {
       }
       .link-style {
         color: $dark !important;
+        &.highlighted {
+          color: $blue !important;
+        }
       }
       .burger__open {
         span {
@@ -736,15 +768,15 @@ body {
       color: $dark;
       &:nth-child(1) {
         background-image: url('~@/assets/images/slide-1.png');
-        &::after {
-          position: absolute;
-          content: '';
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(#000, 0.16);
-        }
+        //&::after {
+        //  position: absolute;
+        //  content: '';
+        //  top: 0;
+        //  left: 0;
+        //  width: 100%;
+        //  height: 100%;
+        //  background-color: rgba(#000, 0.16);
+        //}
       }
       &:nth-child(2) {
         //background-color: #fec10d;
@@ -1434,14 +1466,14 @@ body .swiper-button {
     height: 16px;
     border-radius: 50%;
     border: 2px solid rgba($dark, 0.24);
-    transition: all .35s ease;
+    transition: all 0.35s ease;
   }
   &.active {
     .round-inner {
       border: 4px solid $blue;
       width: 24px;
       height: 24px;
-      transition: all .35s ease;
+      transition: all 0.35s ease;
       &::after {
         position: absolute;
         content: '';
@@ -1452,7 +1484,7 @@ body .swiper-button {
         height: 8px;
         border-radius: 50%;
         background-color: $blue;
-        transition: all .35s ease;
+        transition: all 0.35s ease;
       }
     }
   }
@@ -1576,6 +1608,7 @@ body .swiper-button {
       transition: opacity 0.45s ease;
     }
     span {
+      display: flex;
       margin-right: 24px;
     }
     h3 {
@@ -1608,7 +1641,7 @@ body .swiper-button {
     background-image: url('~@/assets/icons/slider-overlay-right.svg');
     right: -3px;
     top: 0;
-    width: 220px;
+    width: 120px;
     height: 100%;
     transition: 0.25s ease;
     z-index: 1;
@@ -1646,11 +1679,11 @@ body .swiper-button {
         h2 {
           transform: translateY(-40px);
           color: $blue;
-          transition: transform .25s ease;
+          transition: transform 0.25s ease;
         }
         p {
           transform: translateY(-40px);
-          transition: transform .25s ease;
+          transition: transform 0.25s ease;
         }
       }
     }
@@ -1698,7 +1731,7 @@ body .swiper-button {
       font-weight: 700;
       color: $dark;
       margin-bottom: 16px;
-      transition: transform .25s ease;
+      transition: transform 0.25s ease;
     }
     p {
       color: $dark;
@@ -1706,7 +1739,7 @@ body .swiper-button {
       line-height: 24px;
       max-width: 80%;
       margin: 0 auto;
-      transition: transform .25s ease;
+      transition: transform 0.25s ease;
       //font-style: italic;
     }
   }
@@ -1764,6 +1797,9 @@ body .swiper-button {
           background-color: #879197;
           right: -17px;
         }
+      }
+      &-total {
+        color: $dark;
       }
     }
   }
@@ -1842,12 +1878,12 @@ body .swiper-button {
 }
 .plan-price {
   color: $blue;
-  font-size: 26px;
+  font-size: 24px;
   span {
     font-weight: 900;
   }
   &--sm {
-    font-size: 24px;
+    font-size: 22px;
   }
 }
 .school-plans {
@@ -2163,9 +2199,30 @@ body .swiper-button {
 
 // Additional Opps
 .simple-btn {
+  display: flex;
+  align-items: center;
+  position: relative;
   color: $blue;
   font-size: 20px;
   font-weight: 700;
+  &__text {
+    transition: transform 0.25s ease;
+    display: inline-block;
+  }
+  &__icon {
+    position: absolute;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease;
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+    path {
+      fill: #fff;
+    }
+  }
 }
 .additional-opps {
   &__top {
@@ -2229,6 +2286,17 @@ body .swiper-button {
             .simple-btn {
               color: $white;
             }
+            .simple-btn {
+              &__text {
+                transform: translateX(-24px);
+                transition: transform 0.25s ease;
+              }
+              &__icon {
+                opacity: 1;
+                visibility: visible;
+                transition: opacity 0.25s ease;
+              }
+            }
           }
           &__text {
             color: #fff;
@@ -2265,13 +2333,13 @@ body .swiper-button {
     }
     &__bottom {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       justify-content: space-between;
       margin-top: auto;
       @include phonex-block() {
         flex-direction: column;
         .plan-price {
-          margin-bottom: 8px;
+          margin-bottom: 12px;
         }
       }
     }
@@ -2388,7 +2456,7 @@ body .swiper-button {
     }
     &__phones {
       li {
-        margin-bottom: 8px;
+        margin-bottom: 16px;
         &:last-child {
           margin-bottom: 0;
         }

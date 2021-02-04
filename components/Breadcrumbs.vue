@@ -16,14 +16,11 @@ export default {
   name: 'Breadcrumbs',
   computed: {
     crumbs() {
-      console.log(this.$route)
       const pathArray = this.$route.path.split('/')
       pathArray.shift()
       const breadcrumbs = pathArray.reduce((breadcrumbArray, path, idx) => {
         breadcrumbArray.push({
-          to: breadcrumbArray[idx - 1]
-            ? '/' + breadcrumbArray[idx - 1].path + '/' + path
-            : '/' + path,
+          to: path,
           title: startCase(path)
         })
         return breadcrumbArray

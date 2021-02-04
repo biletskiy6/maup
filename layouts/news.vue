@@ -17,11 +17,12 @@ import TopBar from '@/components/TopBar'
 import TopHeader from '@/components/TopHeader'
 
 export default {
-  name: 'news',
+  name: 'News',
   components: { TopHeader, TopBar, Breadcrumbs, Footer },
   beforeMount() {
     this.setLayout('news')
   },
+  mounted() {},
   methods: {
     ...mapMutations({
       setLayout: 'setLayout'
@@ -31,7 +32,6 @@ export default {
     bodyAttrs: {
       class: 'dark news'
     }
-  },
-  mounted() {}
+  }
 }
 </script>

@@ -90,11 +90,9 @@ export default {
         },
         on: {
           init() {
-            console.log(this)
             currentInstance.snaps = this.snapGrid.length - 1
           },
           snapIndexChange() {
-            // console.log(this.snapIndex)
             currentInstance.currentIndex = this.activeIndex + 1
             this.isEnd
               ? document.querySelector('.swiper--team').classList.add('end')

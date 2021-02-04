@@ -16,11 +16,6 @@ import youtube from '@/assets/icons/youtube.svg?raw'
 import facebook from '@/assets/icons/facebook.svg?raw'
 export default {
   name: 'Socials',
-  computed: {
-    ...mapGetters({
-      socials: 'socials/socials'
-    })
-  },
   props: {
     label: {
       type: Boolean,
@@ -41,6 +36,11 @@ export default {
     return {
       icons: { instagram, youtube, facebook }
     }
+  },
+  computed: {
+    ...mapGetters({
+      socials: 'socials/socials'
+    })
   }
 }
 </script>

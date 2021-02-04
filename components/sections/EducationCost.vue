@@ -19,14 +19,16 @@
               </button>
               <div slot="dropdown" class="dropdown-list">
                 <a
-                  v-for="currency in currencies"
-                  :key="currency.slug"
+                  v-for="currencyItem in currencies"
+                  :key="currencyItem.slug"
                   class="dropdown-item"
-                  :class="{ active: activeCurrency.slug === currency.slug }"
+                  :class="{ active: activeCurrency.slug === currencyItem.slug }"
                   href="#"
-                  @click.prevent="setCurrency(currency.slug)"
+                  @click.prevent="setCurrency(currencyItem.slug)"
                 >
-                  <span class="dropdown-item__text">{{ currency.name }}</span>
+                  <span class="dropdown-item__text">{{
+                    currencyItem.name
+                  }}</span>
                   <span class="dropdown-list__icon" v-html="doneIcon"></span>
                 </a>
               </div>
@@ -48,15 +50,17 @@
                   <div class="timeline__header">Період</div>
                   <ul>
                     <li
-                      v-for="item in economies"
-                      :key="item.id"
-                      @click="setActiveEconomy(item)"
+                      v-for="economyItem in economies"
+                      :key="economyItem.id"
+                      @click="setActiveEconomy(economyItem)"
                     >
                       <div class="">
-                        <span class="round" :class="{ active: item.active }"
+                        <span
+                          class="round"
+                          :class="{ active: economyItem.active }"
                           ><span class="round-inner"></span
                         ></span>
-                        <span>{{ item.name }}</span>
+                        <span>{{ economyItem.name }}</span>
                       </div>
                     </li>
                   </ul>
@@ -64,9 +68,9 @@
                 <div class="timeline__economy">
                   <div class="timeline__header">Економія</div>
                   <ul>
-                    <li v-for="item in economies" :key="item.id">
+                    <li v-for="itemEconomy in economies" :key="itemEconomy.id">
                       <div class="">
-                        <span>{{ item.percent }}%</span>
+                        <span>{{ itemEconomy.percent }}%</span>
                       </div>
                     </li>
                   </ul>
@@ -88,8 +92,8 @@
             </h6>
             <ul class="school-plan__items">
               <li
-                v-for="(item, index) in 7"
-                :key="item"
+                v-for="(itemPlan, index) in 7"
+                :key="itemPlan"
                 class="school-plan__item"
               >
                 <div

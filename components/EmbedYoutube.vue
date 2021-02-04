@@ -19,7 +19,22 @@ import CloseButton from '@/components/CloseButton'
 export default {
   name: 'EmbedYoutube',
   components: { CloseButton },
-  props: ['embedYoutube', 'videoId', 'trailerName', 'readyState'],
+  // props: ['embedYoutube', 'videoId', 'trailerName', 'readyState'],
+  props: {
+    embedYoutube: {
+      type: Boolean,
+      required: false
+    },
+    videoId: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    readyState: {
+      type: Boolean,
+      required: false
+    }
+  },
   methods: {
     ready(event) {
       // this.player = event.target

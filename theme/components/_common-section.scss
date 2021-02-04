@@ -31,6 +31,10 @@
       padding: 66px 15px 94px 15px;
     }
   }
+  &__description {
+    margin: 32px auto 0;
+    line-height: 32px;
+  }
   &__header,
   &__description {
     text-align: center;

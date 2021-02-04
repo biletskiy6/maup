@@ -78,9 +78,7 @@ export default {
           title: 'Посилання скопійоване!',
           type: 'success'
         })
-      } catch (e) {
-        console.error(e)
-      }
+      } catch (e) {}
     }
   }
 }

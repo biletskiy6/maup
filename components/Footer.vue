@@ -8,8 +8,8 @@
             <div class="footer-item footer-item--contacts">
               <h4>Телефони для довідок:</h4>
               <ul class="footer-item__phones">
-                <li><a href="#">+38 044 490-95-05;</a></li>
-                <li><a href="#">+38 093 490-490-0</a></li>
+                <li><a href="tel:380444909505">+38 044 490-95-05;</a></li>
+                <li><a href="tel:380934904900">+38 093 490-490-0</a></li>
               </ul>
               <ul class="footer-item__lists">
                 <li>
@@ -70,7 +70,12 @@
           <div class="copyrights__right">
             <p>
               <span>By</span>
-              <a href="#" v-html="TangramLogo"></a>
+              <a
+                title="Internet Agency 'Tangram' — Web Development, E-commerce solutions, Web Design, Creative Design, Internet marketing"
+                href="https://tangram-studio.com/"
+                target="_blank"
+                v-html="TangramLogo"
+              ></a>
             </p>
           </div>
         </div>

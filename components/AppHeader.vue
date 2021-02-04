@@ -29,7 +29,9 @@
             >
           </div>
 
-          <AppButton theme="white" size="small">Вхід</AppButton>
+          <AppButton theme="white" size="small" @click="handleEnterClick"
+            >Вхід</AppButton
+          >
           <MenuBurger />
         </div>
       </div>
@@ -79,6 +81,9 @@ export default {
     ...mapMutations({
       closeMenu: 'menu/resetOpen'
     }),
+    handleEnterClick() {
+      window.open('http://maup-admin.tangram-studio.com/', '_blank')
+    },
     handleDetectActiveNav() {
       gsap.utils.toArray('section').forEach((section) => {
         const activeSection = section.id

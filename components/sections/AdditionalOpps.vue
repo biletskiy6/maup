@@ -54,7 +54,8 @@
                 <span>{{ getPrice(item.price) }}</span> в місяць
               </h6>
               <button class="simple-btn">
-                Замовити
+                <span class="simple-btn__text">Замовити</span>
+                <span class="simple-btn__icon" v-html="rightIcon"></span>
               </button>
             </div>
           </li>
@@ -68,6 +69,7 @@
 import SelectCurrency from '@/components/SelectCurrency'
 import doneIcon from '@/assets/icons/done-2.svg?raw'
 import downIcon from '@/assets/icons/down.svg?raw'
+import rightIcon from '@/assets/icons/arrow-right.svg?raw'
 export default {
   name: 'AdditionalOpps',
   components: { SelectCurrency },
@@ -75,6 +77,7 @@ export default {
     return {
       doneIcon,
       downIcon,
+      rightIcon,
       isActive: false,
       opps: [
         {

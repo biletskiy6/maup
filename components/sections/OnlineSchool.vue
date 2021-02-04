@@ -20,7 +20,7 @@
           онлайн.
         </p>
         <div class="controls">
-          <AppButton theme="white">
+          <AppButton theme="white" @click="scrollToSection('#consult')">
             Замовити консультацію
           </AppButton>
         </div>
@@ -31,7 +31,7 @@
             <EmbedYoutube
               :embed-youtube="embedYoutube"
               :ready-state="readyState"
-              video-id="FvKzGwg3UwE"
+              video-id="rj73lCWeZQw"
               @handleCloseVideoTrailer="handleCloseVideoTrailer"
               @handleReadyVideoTrailer="handleReadyVideoTrailer"
             />
@@ -131,6 +131,15 @@ export default {
     // })
   },
   methods: {
+    scrollToSection(sectionId) {
+      gsap.to(window, {
+        duration: 1,
+        scrollTo: {
+          y: sectionId,
+          offsetY: 150
+        }
+      })
+    },
     handleReadyVideoTrailer() {
       this.$store.commit('embedYoutube/setReadyVideoTrailer')
     },

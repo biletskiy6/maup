@@ -18,15 +18,15 @@ export default {
   beforeMount() {
     this.setLayout('home')
   },
-  head: {
-    bodyAttrs: {
-      class: 'home'
-    }
-  },
   methods: {
     ...mapMutations({
       setLayout: 'setLayout'
     })
+  },
+  head: {
+    bodyAttrs: {
+      class: 'home'
+    }
   }
 }
 </script>

@@ -16,7 +16,10 @@
             Вступи та отримай знижку на навчання
           </h3>
           <div class="controls">
-            <AppButton theme="primary">
+            <AppButton
+              theme="primary"
+              @click="scrollToSection('#education-cost')"
+            >
               <span class="icon" v-html="arrowRight"></span>
               Розпочати навчання
             </AppButton>
@@ -33,7 +36,7 @@
             Вступи та отримай знижку на навчання
           </h3>
           <div class="controls">
-            <AppButton>
+            <AppButton @click="scrollToSection('#consult')">
               <span class="icon" v-html="arrowRight"></span>
               Замовити консультацію
             </AppButton>
@@ -49,7 +52,7 @@
             <span class="word">Telegram-бот</span>
           </h2>
           <div class="controls">
-            <AppButton>
+            <AppButton @click="scrollToSection('#education-cost')">
               <span class="icon" v-html="arrowRight"></span>
               Розпочати навчання
             </AppButton>
@@ -66,8 +69,11 @@
 <script>
 // import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 // import 'swiper/css/swiper.css'
+import gsap from 'gsap'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import AppButton from './AppButton'
 import arrowRight from '@/assets/icons/arrow-right.svg?raw'
+gsap.registerPlugin(ScrollToPlugin)
 export default {
   name: 'HeroSlider',
   components: {
@@ -87,7 +93,6 @@ export default {
         autoHeight: false,
         on: {
           slideChange() {
-            console.log(this)
             return this.realIndex === 1
               ? document.querySelector('body').classList.add('dark')
               : document.querySelector('body').classList.remove('dark')
@@ -102,6 +107,17 @@ export default {
           prevEl: '.hero-slider .swiper-button-prev'
         }
       }
+    }
+  },
+  methods: {
+    scrollToSection(sectionId) {
+      gsap.to(window, {
+        duration: 1,
+        scrollTo: {
+          y: sectionId,
+          offsetY: 150
+        }
+      })
     }
   }
 }

@@ -97,8 +97,6 @@ import gsap from 'gsap'
 export default {
   name: 'Gallery',
   mounted() {
-    const images = gsap.utils.toArray('.gallery img')
-    console.log(images)
     gsap.utils.toArray('.gallery .demo-gallery').forEach((section, index) => {
       const w = section.querySelector('.demo-gallery .wrapper')
       // eslint-disable-next-line no-unreachable

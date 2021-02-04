@@ -80,6 +80,7 @@
   .prev-class,
   .next-class {
     position: relative;
+    cursor: pointer;
     font-size: 20px;
     font-weight: 700;
     color: $blue;
@@ -199,6 +200,7 @@
         height: 32px;
         background-color: $dark;
         border-radius: 8px;
+        transition: background-color .25s ease;
         svg {
           fill: $white;
           width: 12px;
@@ -250,6 +252,10 @@
             color: #fff;
             transition: color 0.25s ease;
           }
+          &-shape {
+            background-color: $accent;
+            transition: background-color .25s ease;
+          }
         }
       }
       .views,
@@ -257,6 +263,12 @@
         &__text {
           color: #fff;
           transition: color 0.25s ease;
+        }
+        &__icon {
+          svg {
+            fill: $white;
+            transition: fill .25s ease;
+          }
         }
       }
       .section-subtitle {
@@ -279,6 +291,7 @@
   &__icon {
     svg {
       fill: rgba($dark, 0.32);
+      transition: fill .25s ease;
     }
   }
   &__text {

@@ -40,7 +40,9 @@
               <span class="number-list__text">{{ document.content }}</span>
             </li>
           </ul>
-          <AppButton theme="white">Замовити консультацію</AppButton>
+          <AppButton theme="white" @click="scrollToSection('#consult')"
+            >Замовити консультацію</AppButton
+          >
         </div>
       </div>
     </div>
@@ -143,6 +145,17 @@ export default {
     //       )
     //   }
     // })
+  },
+  methods: {
+    scrollToSection(sectionId) {
+      gsap.to(window, {
+        duration: 1,
+        scrollTo: {
+          y: sectionId,
+          offsetY: 150
+        }
+      })
+    }
   }
 }
 </script>

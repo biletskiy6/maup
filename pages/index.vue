@@ -220,7 +220,6 @@ export default {
     },
     animateSlider() {
       if (!process.client) return
-      console.log(document.querySelector('.slider-title'))
       const tl = gsap.timeline()
       tl.fromTo(
         '.hero-slider .letter',

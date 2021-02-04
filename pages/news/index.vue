@@ -78,9 +78,7 @@ export default {
     }
   },
   methods: {
-    clickCallback: (pageNum) => {
-      console.log(pageNum)
-    }
+    clickCallback: (pageNum) => {}
   }
 }
 </script>

@@ -7,7 +7,8 @@
             Замовити консультацію
           </h2>
           <p class="common-section__description">
-            Хочете отримати консультацію, звертайтесь! Ми завжди на зв'язку!
+            Хочете отримати консультацію, звертайтесь! <br />
+            Ми завжди на зв'язку!
           </p>
           <form class="common-form" @submit.prevent>
             <div class="common-form__container">
@@ -38,13 +39,13 @@
                 />
               </div>
               <div class="common-form__right">
-                <no-ssr>
+                <client-only>
                   <v-select placeholder="№ Клас" :options="classes">
                     <template #footer>
                       <div class="app-input__icon" v-html="EmailIcon"></div>
                     </template>
                   </v-select>
-                </no-ssr>
+                </client-only>
                 <AppInput
                   v-model="message"
                   name="message"

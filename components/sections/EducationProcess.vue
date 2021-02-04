@@ -69,13 +69,32 @@ export default {
           id: 'e-book',
           name: 'Електронний підручник',
           isActive: false,
-          content:
-            'З232аняття проходять інтенсивно, з мінімальним часом біля екрану і максимумом спілкування. Багато дебатів'
+          content: 'Текст?'
         },
-        { id: 'consulting', name: 'Консультації', isActive: false },
-        { id: 'homework', name: 'Домашнє завдання', isActive: false },
-        { id: 'exam', name: 'Контрольна робота', isActive: false },
-        { id: 'video-checking', name: 'Відеоразбор робіт', isActive: false }
+        {
+          id: 'consulting',
+          name: 'Консультації',
+          content: 'Текст?',
+          isActive: false
+        },
+        {
+          id: 'homework',
+          name: 'Домашнє завдання',
+          content: 'Текст?',
+          isActive: false
+        },
+        {
+          id: 'exam',
+          name: 'Контрольна робота',
+          content: 'Текст?',
+          isActive: false
+        },
+        {
+          id: 'video-checking',
+          name: 'Відеоразбор робіт',
+          content: 'Текст?',
+          isActive: false
+        }
       ]
     }
   },
